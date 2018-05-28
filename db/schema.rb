@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_135253) do
+ActiveRecord::Schema.define(version: 2018_05_28_154423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_135253) do
     t.string "college_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hourly_rate_cents", default: 0, null: false
     t.index ["agency_id"], name: "index_apprentices_on_agency_id"
     t.index ["user_id"], name: "index_apprentices_on_user_id"
   end
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_135253) do
     t.string "proof_picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount_cents", default: 0, null: false
     t.index ["timesheet_segment_id"], name: "index_expenses_on_timesheet_segment_id"
   end
 
@@ -73,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_135253) do
     t.bigint "timesheet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount_cents", default: 0, null: false
     t.index ["timesheet_id"], name: "index_invoices_on_timesheet_id"
   end
 
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_135253) do
     t.date "interview_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hourly_rate_cents", default: 0, null: false
     t.index ["apprentice_id"], name: "index_placements_on_apprentice_id"
     t.index ["host_invoice_contact_id"], name: "index_placements_on_host_invoice_contact_id"
     t.index ["host_validator_id"], name: "index_placements_on_host_validator_id"
@@ -121,6 +125,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_135253) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

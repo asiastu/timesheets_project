@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2018_05_28_135253) do
 
   create_table "expenses", force: :cascade do |t|
     t.string "type"
-    t.string "amount"
     t.bigint "timesheet_segment_id"
     t.string "proof_picture"
     t.datetime "created_at", null: false
@@ -94,7 +93,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_135253) do
 
   create_table "timesheet_segments", force: :cascade do |t|
     t.date "date"
-    t.string "hours_worked"
+    t.float "hours_worked"
     t.string "type_of_work"
     t.bigint "timesheet_id"
     t.datetime "created_at", null: false

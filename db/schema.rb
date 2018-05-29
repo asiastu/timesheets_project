@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 2018_05_29_103258) do
 
   create_table "expenses", force: :cascade do |t|
     t.string "type"
-    t.bigint "timesheet_segment_id"
+    t.bigint "timesheet_id"
     t.string "proof_picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "amount_cents", default: 0, null: false
-    t.index ["timesheet_segment_id"], name: "index_expenses_on_timesheet_segment_id"
+    t.index ["timesheet_id"], name: "index_expenses_on_timesheet_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_103258) do
   end
 
   add_foreign_key "apprentices", "users"
-  add_foreign_key "expenses", "timesheet_segments"
+  add_foreign_key "expenses", "timesheets"
   add_foreign_key "invoices", "timesheets"
   add_foreign_key "timesheet_segments", "timesheets"
   add_foreign_key "timesheets", "placements"

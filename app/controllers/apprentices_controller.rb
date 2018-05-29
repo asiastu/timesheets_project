@@ -10,12 +10,14 @@ class ApprenticesController < ApplicationController
 
   def new
     @apprentice = Apprentice.new
+    autothorize @apprentice
   end
 
   def create
     @apprentice = Apprentice.new(apprentice_params)
     @apprentice.save
     redirect_to apprentice_show(@apprentice)
+    autothorize @apprentice
   end
 
   def edit
@@ -29,6 +31,7 @@ class ApprenticesController < ApplicationController
 private
   def set_apprentice
     @apprentice = Apprentice.find(params[:id])
+    autothorize @apprentice
   end
 
   def apprentice_params

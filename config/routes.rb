@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :apprentices do
     resources :placements do
-      resources :timesheets
+      resources :timesheets do
+        resources :invoices, only: [:index, :show]
+      end
     end
   end
 end

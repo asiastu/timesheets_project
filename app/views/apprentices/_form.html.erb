@@ -1,0 +1,9 @@
+<%= simple_form_for @apprentice do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.simple_fields_for @apprentice.user do |u| %>
+    <%= u.input :email %>
+    <%= u.input :password %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

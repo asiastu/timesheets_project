@@ -1,4 +1,4 @@
 class Expense < ApplicationRecord
-  belongs_to :timesheet_segment
+  belongs_to :timesheet
   monetize :amount_cents
 end

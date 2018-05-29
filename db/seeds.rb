@@ -12,7 +12,7 @@ User.destroy_all
 user1 = User.create(email: 'email@email.com', password: '123456', role: "apprentice")
 apprentice1 = Apprentice.new(first_name: 'John', last_name: 'Doe')
 apprentice1.user = user1
-apprentice1.save
+apprentice1.save!
 
 user2 = User.create(email: 'email2@email.com', password: '123456', role: "apprentice")
 apprentice2 = Apprentice.new(first_name: 'Johna', last_name: 'Doea')

@@ -2,7 +2,7 @@ class ApprenticesController < ApplicationController
   before_action :set_apprentice, only:[:show, :edit, :update]
 
   def index
-    @apprentices = [""] if @apprentices == nil
+    @apprentices = Apprentice.all
   end
 
   def show

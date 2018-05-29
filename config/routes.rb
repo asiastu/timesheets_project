@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'timesheet_segment/index'
+  get 'timesheet_segment/new'
+  get 'timesheet_segment/create'
+  get 'timesheet_segment/edit'
+  get 'timesheet_segment/update'
   get 'apprentices/index'
   get 'apprentice/show'
   get 'apprentices/new'

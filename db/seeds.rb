@@ -62,3 +62,18 @@ user14 = User.create(email: 'email14@email.com', password: '123456', role: "host
 
 
 user15 = User.create(email: 'email15@email.com', password: '123456', role: "host_invoice_contact")
+
+
+user16 = User.create(email: 'email16@email.com', password: '123456', role: "agency")
+
+user17 = User.create(email: 'email7@email.com', password: '123456', role: "agency")
+
+
+user18 = User.create(email: 'email18@email.com', password: '123456', role: "agency")
+
+
+user19 = User.create(email: 'email19@email.com', password: '123456', role: "agency")
+
+
+user20 = User.create(email: 'email20@email.com', password: '123456', role: "agency")
+

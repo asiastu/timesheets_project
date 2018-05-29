@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_154423) do
+ActiveRecord::Schema.define(version: 2018_05_29_103258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "agencies", force: :cascade do |t|
-    t.string "first_name"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_agencies_on_user_id"
-  end
 
   create_table "apprentices", force: :cascade do |t|
     t.bigint "user_id"
@@ -51,24 +43,6 @@ ActiveRecord::Schema.define(version: 2018_05_28_154423) do
     t.datetime "updated_at", null: false
     t.integer "amount_cents", default: 0, null: false
     t.index ["timesheet_segment_id"], name: "index_expenses_on_timesheet_segment_id"
-  end
-
-  create_table "host_invoice_contacts", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "first_name"
-    t.string "last_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_host_invoice_contacts_on_user_id"
-  end
-
-  create_table "host_validators", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "first_name"
-    t.string "last_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_host_validators_on_user_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -126,20 +100,17 @@ ActiveRecord::Schema.define(version: 2018_05_28_154423) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone_number"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company_name"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "agencies", "users"
-  add_foreign_key "apprentices", "agencies"
   add_foreign_key "apprentices", "users"
   add_foreign_key "expenses", "timesheet_segments"
-  add_foreign_key "host_invoice_contacts", "users"
-  add_foreign_key "host_validators", "users"
   add_foreign_key "invoices", "timesheets"
-  add_foreign_key "placements", "apprentices"
-  add_foreign_key "placements", "host_invoice_contacts"
-  add_foreign_key "placements", "host_validators"
   add_foreign_key "timesheet_segments", "timesheets"
   add_foreign_key "timesheets", "placements"
 end

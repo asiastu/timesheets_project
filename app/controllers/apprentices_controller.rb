@@ -22,6 +22,23 @@ class ApprenticesController < ApplicationController
   end
 
   def update
+
+    @apprentice.update(apprentice_params)
+    redirect_to apprentice_show(@apprentice)
+  end
+
+private
+  def set_apprentice
+    @apprentice = Apprentice.find(params[:id])
+    authorize @apprentice
+  end
+
+  def apprentice_params
+    params.require(:apprentice).permit(:agency_id, :first_name, :last_name, :trade, :skills, :borough, :address, :personal_statement, :app_start_date, :app_end_date, :college_day, :hourly_rate)
+  end
+
+  def user_params
+    params.require(:apprentice).require(:user).permit(:email, :password)
   end
 
 end

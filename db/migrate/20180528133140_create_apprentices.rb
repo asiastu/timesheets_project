@@ -2,7 +2,7 @@ class CreateApprentices < ActiveRecord::Migration[5.2]
   def change
     create_table :apprentices do |t|
       t.references :user, foreign_key: true
-      t.references :agency, foreign_key: true
+      t.references :agency, references: :users
       t.string :first_name
       t.string :last_name
       t.string :trade

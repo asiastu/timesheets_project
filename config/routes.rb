@@ -4,12 +4,7 @@ Rails.application.routes.draw do
   get 'timesheet_segment/create'
   get 'timesheet_segment/edit'
   get 'timesheet_segment/update'
-  get 'apprentices/index'
-  get 'apprentice/show'
-  get 'apprentices/new'
-  get 'apprentices/create'
-  get 'apprentices/edit'
-  get 'apprentices/update'
+
   devise_for :users
   root to: 'pages#home'
 

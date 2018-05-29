@@ -4,27 +4,23 @@ class ApprenticePolicy < ApplicationPolicy
       scope
     end
   end
-end
-
-def create?
-    user_is_apprentice?
+  
+  def create?
+    user.role == 'agency'
   end
 
   def update?
-    record.user == user || user_is_apprentice?
+    user.role == 'agency' || record.user == user
   end
 
   def show?
-    record.user == user || !user_is_apprentice?
+    record.user == user || user.role == 'agency' # || (user.role == 'host_validator' && user.placement == record.placement)
   end
 
-  def destroy?
-    record.user == user
+  private
+  
+  def user_is_apprentice?
+    user.role == 'apprentice'
   end
 
-
-private
-def user_is_apprentice?
-  user.role == 'apprentice'
-end
 end

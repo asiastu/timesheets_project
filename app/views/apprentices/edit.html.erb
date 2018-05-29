@@ -1,2 +1,19 @@
-<h1>Apprentices#edit</h1>
-<p>Find me in app/views/apprentices/edit.html.erb</p>
+<div class="form-container container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
+
+      <% if user.role == 'apprentice' %>
+
+        <h1>Edit Profile</h1>
+        <%= render 'app_view_form' %>
+
+      <% elsif user.role == 'agency' %>
+
+        <h1>Edit Apprentice</h1>
+        <%= render 'form' %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

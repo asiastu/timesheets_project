@@ -4,14 +4,14 @@ class InvoicePolicy < ApplicationPolicy
       scope
     end
   end
-end
 
-      def show?
-        record.user == user || !user_is_host?
-      end
+  def show?
+    user.role == 'host_invoice_contact' && record.placement == user.placement
+  end
 
-    private
-    def user_is_host?
-      user.role == 'host'
-    end
+  private
+
+  def user_is_host?
+    user.role == 'host'
+  end
 end

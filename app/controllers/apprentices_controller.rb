@@ -37,11 +37,11 @@ class ApprenticesController < ApplicationController
 private
   def set_apprentice
     @apprentice = Apprentice.find(params[:id])
-    autothorize @apprentice
+    authorize @apprentice
   end
 
   def apprentice_params
-    params.require(:apprentice).permit(:agency_id, :first_name, :last_name, :trade, :skills, :borough, :address, :personal_statement, :app_start_date, :app_end_date, :college_day, :hourly_rate_cents)
+    params.require(:apprentice).permit(:agency_id, :first_name, :last_name, :trade, :skills, :borough, :address, :personal_statement, :app_start_date, :app_end_date, :college_day, :hourly_rate)
   end
 
   def user_params

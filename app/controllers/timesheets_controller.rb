@@ -19,20 +19,20 @@ class TimesheetsController < ApplicationController
   def new
     @timesheet = Timesheet.new
     @timesheet_segment = Timesheet_Segment.new
-    autothorize @timesheet
+    authorize @timesheet
   end
 
   def create
     @timesheet = Timesheet.new
     @timesheet_segment = Timesheet_Segment.new
-    autothorize @timesheet
+    authorize @timesheet
   end
 
   private
 
   def set_timesheet
     @timesheet = Timesheet.find(params[:id])
-    autothorize @timesheet
+    authorize @timesheet
   end
 
   # def timesheet_params

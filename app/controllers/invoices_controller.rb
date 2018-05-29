@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
 
   def show
-     @invoice = invoice.find(params[:id])
+     @invoice = Invoice.find(params[:id])
    end
 
    def index

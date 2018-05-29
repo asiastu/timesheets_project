@@ -7,23 +7,20 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    set_expenses
-    @expense.update(params[expenses_params])
+    @expense.update(expenses_params)
   end
 
   def destroy
-    set_expenses
     @expense.destroy
   end
 
   def edit
-    set_expenses
   end
 
  private
 
  def expenses_params
-   params.require(:expenses).permit(:amount_cents)
+   params.require(:expenses).permit(:amount)
  end
 
   def set_expenses

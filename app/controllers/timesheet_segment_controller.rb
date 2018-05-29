@@ -7,12 +7,14 @@ class TimesheetSegmentsController < ApplicationController
 
   def new
     @timesheetsegment = Timesheetsegment.new
+    autothorize @timesheetsegment
   end
 
   def create
      @timesheetsegment = Timesheetsegment.new(timesheetsegment_params)
     @timesheetsegment.save
     redirect_to timesheetsegment_show(@timesheetsegment)
+    autothorize @timesheetsegment
   end
 
   def edit
@@ -27,6 +29,7 @@ private
 
 def set_timesheetsegment
     @timesheetsegment = Timesheetsegment.find(params[:id])
+    autothorize @timesheetsegment
   end
 
   def timesheetsegment_params

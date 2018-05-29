@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
  def create
     @expense = Expense.new(expenses_params)
     @expense.save
+    autothorize @expense
   end
 
   def update
@@ -25,6 +26,7 @@ class ExpensesController < ApplicationController
 
   def set_expenses
     @expense = Expense.find(params[:id])
+    autothorize @expense
   end
 
 end

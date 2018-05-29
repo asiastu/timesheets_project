@@ -37,6 +37,7 @@ class ApprenticesController < ApplicationController
 private
   def set_apprentice
     @apprentice = Apprentice.find(params[:id])
+    autothorize @apprentice
   end
 
   def apprentice_params

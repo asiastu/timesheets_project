@@ -12,6 +12,7 @@ class PlacementsController < ApplicationController
   def new
     @apprentice = Apprentice.find(params[:apprentice_id])
     @placement = Placement.new
+    autothorize @placement
   end
 
   def create
@@ -22,6 +23,7 @@ class PlacementsController < ApplicationController
     @placement.pl_end_date = @Placement.pl_end_date.strftime('%a, %d %B %Y')
     @placement.save
     redirect_to apprentice_path
+    autothorize @placement
   end
 
   def edit
@@ -38,6 +40,7 @@ class PlacementsController < ApplicationController
 
   def set_placement
     @placement = Placement.find(placement_params)
+    autothorize @placement
   end
 
   def placement_params

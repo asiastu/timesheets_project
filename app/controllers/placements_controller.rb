@@ -35,6 +35,8 @@ class PlacementsController < ApplicationController
     @placement.pl_start_date = @placement.pl_start_date.strftime('%a, %d %B %Y')
     @placement.pl_end_date = @placement.pl_end_date.strftime('%a, %d %B %Y')
     redirect_to apprentice_placement_path
+
+    #if dates change, do job "update timesheets" (create it), add/delete timesheets as needed
   end
 
   private

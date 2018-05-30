@@ -90,3 +90,5 @@ placement4 = Placement.create!(apprentice: apprentice4, host_validator: user9, h
 
 placement5 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: Date.yesterday, pl_end_date: Date.tomorrow, address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
 
+placement6 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: '10/05/2018', pl_end_date: Date.tomorrow, address: 'London', interview_date: '9/12/2017', hourly_rate: 7)
+

@@ -1,10 +1,8 @@
 class PlacementsController < ApplicationController
   before_action :set_placement, only: [:show, :edit, :update]
   def index
-    # @placements = policy_scope(Placement)
-    @placements = Placement.all
+    @placements =  policy_scope(Placement)
     @placements = [""] if @placements == nil
-    authorize @placement
   end
 
   def show

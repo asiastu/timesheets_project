@@ -20,7 +20,7 @@ class PlacementsController < ApplicationController
     @placement = Placement.new
     @placement.apprentice = @apprentice
     @placement.pl_start_date = @placement.pl_start_date.strftime('%a, %d %B %Y')
-    @placement.pl_end_date = @Placement.pl_end_date.strftime('%a, %d %B %Y')
+    @placement.pl_end_date = @placement.pl_end_date.strftime('%a, %d %B %Y')
     @placement.save
     redirect_to apprentice_path
     authorize @placement
@@ -32,7 +32,7 @@ class PlacementsController < ApplicationController
   def update
     @placement.update(placement_params)
     @placement.pl_start_date = @placement.pl_start_date.strftime('%a, %d %B %Y')
-    @placement.pl_end_date = @Placement.pl_end_date.strftime('%a, %d %B %Y')
+    @placement.pl_end_date = @placement.pl_end_date.strftime('%a, %d %B %Y')
     redirect_to apprentice_placement_path
   end
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'dashboard', to: 'pages#dashboard'
 
   resources :apprentices do
     resources :placements do
@@ -14,5 +15,4 @@ Rails.application.routes.draw do
 
   resources :expenses, only: [:destroy]
   resources :timesheet_segments, only: [:destroy]
-
 end

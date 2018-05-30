@@ -2,7 +2,7 @@
   <h1>Apprentices index</h1>
   <div class="apprentice-card">
     <% @apprentices.each do |apprentice| %>
-      <p><%= link_to apprentice.first_name, apprentice_path(apprentice) %></p>
+      <p><%= link_to apprentice.user.first_name, apprentice_path(apprentice) %></p>
     <% end %>
   </div>
 </div>

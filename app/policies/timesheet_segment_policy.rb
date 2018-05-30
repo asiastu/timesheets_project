@@ -4,7 +4,7 @@ class TimesheetSegmentPolicy < ApplicationPolicy
       scope
     end
   end
-end
+
 
  def create?
         user_is_host?

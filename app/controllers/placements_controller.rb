@@ -4,6 +4,7 @@ class PlacementsController < ApplicationController
     # @placements = policy_scope(Placement)
     @placements = Placement.all
     @placements = [""] if @placements == nil
+    authorize @placement
   end
 
   def show

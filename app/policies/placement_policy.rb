@@ -4,7 +4,6 @@ class PlacementPolicy < ApplicationPolicy
       scope
     end
   end
-end
 
       def create?
         user_is_host?
@@ -22,6 +21,9 @@ end
         record.user == user || user_is_host?
       end
 
+      def index?
+        record.user == user || user_is_host?
+      end
 
     private
     def user_is_host?

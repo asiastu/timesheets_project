@@ -1,0 +1,12 @@
+<%= simple_form_for @apprentice do |f| %>
+  <%= f.input :first_name, class: "form-control" %>
+  <%= f.input :last_name, class: "form-control" %>
+  <%= f.input :skills, class: "form-control" %>
+  <%= f.input :personal_statement, class: "form-control" %>
+  <%= f.simple_fields_for @apprentice.user do |u| %>
+    <%= u.input :email, class: "form-control" %>
+    <%= u.input :password, class: "form-control" %>
+  <% end %>
+  <%= f.submit, class: "btn btn-primary" %>
+<% end %>
+<%= link_to "back", :back %>

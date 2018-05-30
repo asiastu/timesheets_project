@@ -4,29 +4,33 @@ class PlacementPolicy < ApplicationPolicy
       scope
     end
   end
+<<<<<<< HEAD
 
       def create?
         user_is_host?
       end
+=======
+>>>>>>> 9dc8f573c93ad02f1e27424685ea381bb1ba543d
 
-      def update?
-        record.user == user || user_is_host?
-      end
+  def index
+    true
+  end
 
-      def show?
-        record.user == user || !user_is_host?
-      end
+  def create?
+    user.role == 'agency'
+  end
 
-      def new?
-        record.user == user || user_is_host?
-      end
-
+<<<<<<< HEAD
       def index?
         record.user == user || user_is_host?
       end
+=======
+  def update?
+    user.role == 'agency'
+  end
+>>>>>>> 9dc8f573c93ad02f1e27424685ea381bb1ba543d
 
-    private
-    def user_is_host?
-      user.role == 'host'
-    end
+  def show?
+    true
+  end
 end

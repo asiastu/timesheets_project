@@ -1,10 +1,14 @@
 class ApprenticePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
-  
+
+  def index?
+    user.role == 'agency' || user.role == 'host_invoice_contact' || user.role == 'host_validator'
+  end
+
   def create?
     user.role == 'agency'
   end
@@ -18,7 +22,7 @@ class ApprenticePolicy < ApplicationPolicy
   end
 
   private
-  
+
   def user_is_apprentice?
     user.role == 'apprentice'
   end

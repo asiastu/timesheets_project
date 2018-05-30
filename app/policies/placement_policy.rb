@@ -5,7 +5,12 @@ class PlacementPolicy < ApplicationPolicy
     end
   end
 
-  def index
+
+  def create?
+    user_is_host?
+  end
+
+  def index?
     true
   end
 
@@ -16,6 +21,7 @@ class PlacementPolicy < ApplicationPolicy
   def update?
     user.role == 'agency'
   end
+
 
   def show?
     true

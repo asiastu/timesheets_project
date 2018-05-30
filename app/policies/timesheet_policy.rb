@@ -4,7 +4,7 @@ class TimesheetPolicy < ApplicationPolicy
       scope
     end
   end
-end
+
 
 
      def create?

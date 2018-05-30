@@ -50,19 +50,19 @@ apprentice5.user = user5
 apprentice5.agency = user20
 apprentice5.save
 
-user6 = User.create(email: 'email6@email.com', password: '123456', role: "host_validator")
+user6 = User.create(email: 'email6@email.com', password: '123456', role: "host_validator", company_name: "London1, Inc")
 
 
-user7 = User.create(email: 'email7@email.com', password: '123456', role: "host_validator")
+user7 = User.create(email: 'email7@email.com', password: '123456', role: "host_validator", company_name: "London2, Inc")
 
 
-user8 = User.create(email: 'email8@email.com', password: '123456', role: "host_validator")
+user8 = User.create(email: 'email8@email.com', password: '123456', role: "host_validator", company_name: "London3, Inc")
 
 
-user9 = User.create(email: 'email9@email.com', password: '123456', role: "host_validator")
+user9 = User.create(email: 'email9@email.com', password: '123456', role: "host_validator", company_name: "London4, Inc")
 
 
-user10 = User.create(email: 'email10@email.com', password: '123456', role: "host_validator")
+user10 = User.create(email: 'email10@email.com', password: '123456', role: "host_validator", company_name: "London5, inc")
 
 
 user11 = User.create(email: 'email11@email.com', password: '123456', role: "host_invoice_contact")

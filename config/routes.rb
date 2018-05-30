@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard'
+  get 'timesheets', to: 'pages#timesheets'
 
   resources :apprentices do
     resources :placements do

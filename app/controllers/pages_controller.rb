@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @apprentice = Apprentice.where(user_id: current_user.id).first
+    @apprentice = Apprentice.where(user: current_user).first
     # @timesheet = Timesheet.where(xxx)
   end
 end

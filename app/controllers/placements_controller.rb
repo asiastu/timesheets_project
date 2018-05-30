@@ -11,6 +11,7 @@ class PlacementsController < ApplicationController
   def new
     @apprentice = Apprentice.find(params[:apprentice_id])
     @placement = Placement.new
+
     authorize @placement
   end
 

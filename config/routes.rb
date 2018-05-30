@@ -15,4 +15,10 @@ Rails.application.routes.draw do
 
   resources :expenses, only: [:destroy]
   resources :timesheet_segments, only: [:destroy]
+
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
 end

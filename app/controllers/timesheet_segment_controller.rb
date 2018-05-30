@@ -5,17 +5,17 @@ class TimesheetSegmentsController < ApplicationController
     @timesheetsegments = TimesheetSegment.where(timesheet_id: params[:timesheet_id])
   end
 
-  def new
-    @timesheetsegment = Timesheetsegment.new
-    authorize @timesheetsegment
-  end
+  # def new
+  #   @timesheetsegment = Timesheetsegment.new
+  #   authorize @timesheetsegment
+  # end
 
-  def create
-     @timesheetsegment = Timesheetsegment.new(timesheetsegment_params)
-    @timesheetsegment.save
-    redirect_to timesheetsegment_show(@timesheetsegment)
-    authorize @timesheetsegment
-  end
+  # def create
+  #    @timesheetsegment = Timesheetsegment.new(timesheetsegment_params)
+  #   @timesheetsegment.save
+  #   redirect_to timesheetsegment_show(@timesheetsegment)
+  #   authorize @timesheetsegment
+  # end
 
   def edit
   end

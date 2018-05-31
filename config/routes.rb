@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'timesheets', to: 'pages#timesheets'
 
   resources :apprentices do
-    resources :placements do
+    resources :placements, only: [:index, :show, :edit, :update, :destroy] do
       resources :timesheets do
         resources :timesheet_segments, only: [:create, :new, :edit, :update,]
         resources :expenses, only: [:show, :edit, :update, :new, :create]
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :placements, only: [:create, :new]
   resources :expenses, only: [:destroy]
   resources :timesheet_segments, only: [:destroy]
 

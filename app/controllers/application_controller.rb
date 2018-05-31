@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/ || params[:controller] == 'apprentices'
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/ || params[:controller] == 'apprentices' || params[:controller] == 'registrations'
   end
 
   def after_sign_in_path_for(resource)

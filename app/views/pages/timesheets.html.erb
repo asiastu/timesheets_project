@@ -5,3 +5,5 @@
     <%= link_to "#{timesheet.week_start.strftime('%a, %d %B %Y')} - #{timesheet.week_end.strftime('%a, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
   <% end %>
 <% end %>
+
+<%= link_to 'Back', :back %>

@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2018_05_30_111724) do
   create_table "apprentices", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "agency_id"
+    t.string "first_name"
+    t.string "last_name"
     t.string "trade"
     t.string "skills"
     t.string "borough"

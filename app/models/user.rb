@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :hosted_placements, foreign_key: :host_validator_id, class_name: "Placement"
   has_many :invoice_placements, foreign_key: :host_invoice_contact_id, class_name: "Placement"
 
+
   def agency?
     role == 'Employment Agency'
   end

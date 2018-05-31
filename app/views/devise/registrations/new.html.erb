@@ -8,6 +8,7 @@
 
         <div class="form-inputs">
           <%= f.input :company_name, label: "agency name", required: true, autofocus: true %>
+
           <%= f.input :email, label: "email address", required: true, autofocus: true %>
           <%= f.input :password, label: "password", required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
           <%= f.input :password_confirmation, label: "confirm password", required: true %>

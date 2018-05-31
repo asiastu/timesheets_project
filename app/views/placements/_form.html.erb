@@ -1,8 +1,4 @@
-<% my_apprentices = [] %>
-<% my_apprentice_ids = current_user.apprentices %>
-<% my_apprentice_ids.each do |x| %>
-<% my_apprentices << User.find(x.user_id).first_name %>
-<% end %>
+<% my_apprentices = current_user.apprentices.map { |x| "#{User.find(x.user_id).id} - #{User.find(x.user_id).last_name}, #{User.find(x.user_id).first_name}" } %>
 
 <%# my_host_validators = [] %>
 <%# my_host_validator_ids = current_user.host_validators %>
@@ -11,10 +7,9 @@
 <%# end %>
 
 <%= simple_form_for @placement do |f| %>
-  <%= f.input :host_validator_id, label: 'Primary Validator', class: "form-control" %>
-  <%= f.input :host_validator_id, label: 'Secondary Validator', class: "form-control" %>
-  <%= f.input :host_invoice_contact_id, label: 'Invoice Contact', class: "form-control" %>
-  <%= f.input :apprentice_id, label: 'Apprentice', :collection => my_apprentices, class: "form-control" %>
+  <%= f.association :host_validator, collection: User.host_validators, label: 'Primary Validator' %>
+  <%= f.association :host_invoice_contact, collection: User.host_invoice_contacts, label: 'Invoice Contact', class: "form-control" %>
+  <%= f.association :apprentice, label: 'Apprentice', collection: my_apprentices, class: "form-control" %>
   <%= f.input :pl_start_date, label: 'Placement Start Date', class: "form-control" %>
   <%= f.input :pl_end_date, label: 'Placement End Date', class: "form-control" %>
   <%= f.input :address, label: "Postcode", class: "form-control" %>

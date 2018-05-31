@@ -17,7 +17,9 @@ class PlacementsController < ApplicationController
   end
 
   def create
-    @apprentice = Apprentice.find(params[:apprentice_id])
+    raise
+    @apprentice = User.find(params[:placement][:apprentice_id].split.first).apprentice
+
     @placement = Placement.new
     @placement.apprentice = @apprentice
     @placement.pl_start_date = @placement.pl_start_date.strftime('%a, %d %B %Y')

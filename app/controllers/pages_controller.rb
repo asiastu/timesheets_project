@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   end
 
   def timesheets
-    if current_user.role == 'agency'
+    if current_user.agency?
       @apprentices = policy_scope(Apprentice).where(agency_id: current_user.id)
       @apprentices = [""] if @apprentices == nil
       @placements = []
@@ -24,13 +24,13 @@ class PagesController < ApplicationController
         @timesheets << placement.first.timesheets
       end
     else
-      if current_user.role == 'apprentice'
+      if current_user.apprentice?
         @placements = Placement.where(apprentice_id: current_user.apprentice.id)
 
-      elsif current_user.role == 'host_invoice_contact'
+      elsif current_user.host_invoice_contact?
         @placements = policy_scope(Placement).where(host_invoice_contact_id: current_user.id)
 
-      elsif current_user.role == 'host_validator'
+      elsif current_user.host_validator?
         @placements = policy_scope(Placement).where(host_validator_id: current_user.id)
       end
       @placements = [""] if @placements == nil

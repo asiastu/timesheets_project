@@ -2,17 +2,17 @@ class ApprenticesController < ApplicationController
   before_action :set_apprentice, only:[:show, :edit, :update]
 
   def index
-    if current_user.role == 'agency'
+    if current_user.agency?
       @apprentices = policy_scope(Apprentice).where(agency_id: current_user.id)
       @apprentices = [""] if @apprentices == nil
-    elsif current_user.role == 'host_invoice_contact'
+    elsif current_user.host_invoice_contact?
       @placements = policy_scope(Placement).where(host_invoice_contact_id: current_user.id)
       @apprentices = []
       @placements.each do |placement|
         @apprentices << placement.apprentice
       end
       @apprentices.uniq!
-    elsif current_user.role == 'host_validator'
+    elsif current_user.host_validator?
       @placements = policy_scope(Placement).where(host_validator_id: current_user.id)
       @apprentices = []
       @placements.each do |placement|

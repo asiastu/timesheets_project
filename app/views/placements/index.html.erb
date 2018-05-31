@@ -1,10 +1,12 @@
 <h1>Current Placements</h1>
-
+<ol>
 <% @apprentice.placements.each do |placement| %>
-<div>
-  <h3>Company Name: <%= placement.host_validator.company_name %> </h3>
-  <p>Location: <%= placement.address %></p>
-  <p>Payment per hour: £<%= placement.hourly_rate %></p>
-  <p>Created at: <%= placement.created_at %></p>
-</div>
+<li>
+  <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
+    <p>Company Name: <%= placement.host_validator.company_name %> </p>
+    <p>Created at: <%= placement.created_at %></p>
+    <p>Start Date: <%= placement.pl_start_date %></p>
+  <% end %>
+</li>
 <% end %>
+</ol>

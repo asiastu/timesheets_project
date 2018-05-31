@@ -1,4 +1,5 @@
 <div>
+  <%= link_to "back", :back  %>
   <h3><%= @placement.host_validator.company_name %></h3>
   <p>Address: <%= @placement.address %></p>
   <p>Hourly Rate: <%= @placement.hourly_rate %></p>
@@ -6,5 +7,6 @@
   <p>Interview Date: <%= @placement.interview_date %></p>
   <p>Start Date: <%= @placement.pl_start_date %></p>
   <p>End Date: <%= @placement.pl_end_date %></p>
+  <%= link_to "edit",  edit_apprentice_placement_path %>
 </div>
 

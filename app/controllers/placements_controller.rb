@@ -18,15 +18,14 @@ class PlacementsController < ApplicationController
   end
 
   def create
-    raise
     @apprentice = User.find(params[:placement][:apprentice_id].split.first).apprentice
-
+    @host_validator = User.find(params[:placement][:host_validator_id].split.first)
+    @host_invoicer = User.find(params[:placement][:host_invoice_contact_id].split.first)
     @placement = Placement.new
     @placement.apprentice = @apprentice
-    @placement.pl_start_date = @placement.pl_start_date.strftime('%a, %d %B %Y')
-    @placement.pl_end_date = @placement.pl_end_date.strftime('%a, %d %B %Y')
-    @placement.save
-    redirect_to apprentice_path
+    @placement.pl_start_date = @placement.pl_start_date
+    @placement.pl_end_date = @placement.pl_end_date
+    redirect_to apprentice_placement_path
     authorize @placement
   end
 

@@ -1,5 +1,6 @@
 <div>
   <h3><%= @placement.host_validator.company_name %></h3>
+  <%= link_to 'Back', :back %>
   <p>Address: <%= @placement.address %></p>
   <p>Hourly Rate: <%= @placement.hourly_rate %></p>
   <p>Created at: <%= @placement.created_at %></p>
@@ -7,5 +8,3 @@
   <p>Start Date: <%= @placement.pl_start_date %></p>
   <p>End Date: <%= @placement.pl_end_date %></p>
 </div>
-
-<%= link_to 'Back', :back %>

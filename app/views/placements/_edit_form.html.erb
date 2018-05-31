@@ -4,7 +4,7 @@
 
 <% invoice_contacts = User.host_invoice_contacts.map { |x| "#{x.id} - Company: #{x.company_name} #{x.last_name}, #{x.first_name}" } %>
 
-<%= simple_form_for @placement do |f| %>
+<%= simple_form_for [@apprentice, @placement] do |f| %>
   <%= f.association :host_validator, collection: host_validators, label: 'Primary Validator' %>
   <%= f.association :host_invoice_contact, collection: invoice_contacts, label: 'Invoice Contact', class: "form-control" %>
   <%= f.association :apprentice, label: 'Apprentice', collection: my_apprentices, class: "form-control" %>

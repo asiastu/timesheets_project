@@ -1,58 +1,72 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
-  <% end %>
+  <%= link_to "L Y N K", root_path, class: "logo" %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <% if user_signed_in? %>
-
-      <!-- Links when logged in -->
-      <%= link_to "Dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Timesheets", timesheets_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <% if user_signed_in? %>
 
 
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+    <!-- Links when logged in -->
+    <% if current_user.role == 'apprentice'%>
+
+      <% unless current_user.profile == nil%>
+        <%= link_to dashboard_path do %>
+          <div class="circular_name initial">
+            <%= current_user.first_name[0]  %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to dashboard_path(current_user.profile) do %>
+          <div class="circular_name initial">
+           <i class="fal fa-user-alt fa-2x  "></i>
+          </div>
+        <% end %>
+      <% end %>
+
+    <% elsif current_user.role == 'host'%>
+      <% unless current_user.company == nil%>
+        <%= link_to dashboard_path do %>
+          <div class="circular_name initial ">
+            <%= current_user.company.name[0] %>
+          </div>
+        <% end %>
+
+      <% else %>
+        <%= link_to dashboard_path(current_user.profile) do %>
+          <div class="circular_name initial">
+            <i class="fal fa-user-alt"></i>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+
+    <%= link_to "Dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class: "navbar-wagon-item navbar-wagon-link"></i>  <%= t(".sign_out", default: "Log out") %>
     <% end %>
   </div>
+    <!-- Dropdown list appearing on mobile only -->
 
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li> <%= link_to "Dashboard", dashboard_path %>
+          <li> <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
+
+
+  <% else %>
+    <!-- Login link (when logged out) -->
+    <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <% end %>
 </div>
 

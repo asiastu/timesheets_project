@@ -6,28 +6,21 @@ class ApprenticePolicy < ApplicationPolicy
   end
 
   def index?
-    user.role == 'agency' || user.role == 'host_invoice_contact' || user.role == 'host_validator'
+    user.agency? || user.host_invoice_contact? || user.host_validator?
   end
 
   def create?
-    user.role == 'agency'
+    user.agency?
   end
 
   def update?
-    user.role == 'agency' || record.user == user
+    user.agency? || record.user == user
   end
 
   def show?
     record.user == user ||
-    user.role == 'agency' ||
-    user.role == 'host_invoice_contact' ||
-    user.role == 'host_validator'
+    user.agency? ||
+    user.host_invoice_contact? ||
+    user.host_validator?
   end
-
-  private
-
-  def user_is_apprentice?
-    user.role == 'apprentice'
-  end
-
 end

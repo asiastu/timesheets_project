@@ -6,12 +6,6 @@ class InvoicePolicy < ApplicationPolicy
   end
 
   def show?
-    user.role == 'host_invoice_contact' && record.placement == user.placement
-  end
-
-  private
-
-  def user_is_host?
-    user.role == 'host'
+    user.host_invoice_contact? && record.placement == user.placement
   end
 end

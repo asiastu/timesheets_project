@@ -29,7 +29,7 @@ apprentice1.save
 user2 = User.create(email: 'email2@email.com', password: '123456', role: "apprentice", first_name: 'Johna', last_name: 'Doea')
 apprentice2 = Apprentice.new
 apprentice2.user = user2
-apprentice2.agency = user17
+apprentice2.agency = user16
 apprentice2.save
 
 user3 = User.create(email: 'email3@email.com', password: '123456', role: "apprentice", first_name: 'Johnb', last_name: 'Doeb')

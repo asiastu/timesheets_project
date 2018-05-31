@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :apprentices do
     resources :placements, only: [:index, :show, :edit, :update, :destroy] do
       resources :timesheets do
-        resources :timesheet_segments, only: [:create, :new, :edit, :update,]
+        resources :timesheet_segments, only: [:create, :new, :edit, :update]
         resources :expenses, only: [:show, :edit, :update, :new, :create]
         resources :invoices, only: [:index, :show]
       end

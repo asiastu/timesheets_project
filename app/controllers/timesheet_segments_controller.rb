@@ -28,12 +28,11 @@ class TimesheetSegmentsController < ApplicationController
 private
 
 def set_timesheetsegment
-    @timesheetsegment = Timesheetsegment.find(params[:id])
+    @timesheetsegment = TimesheetSegment.find(params[:id])
     authorize @timesheetsegment
   end
 
   def timesheetsegment_params
     params.require(:timesheetsegment).permit(:hours_worked, :type_of_work)
   end
-
 end

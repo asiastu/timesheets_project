@@ -4,11 +4,11 @@
 <% my_apprentices << User.find(x.user_id).first_name %>
 <% end %>
 
-<% my_host_validators = [] %>
-<% my_host_validator_ids = current_user.host_validators %>
-<% my_host_validator_ids.each do |x| %>
-<% my_host_validators << User.find(x.user_id).first_name %>
-<% end %>
+<%# my_host_validators = [] %>
+<%# my_host_validator_ids = current_user.host_validators %>
+<%# my_host_validator_ids.each do |x| %>
+<%# my_host_validators << User.find(x.user_id).first_name %>
+<%# end %>
 
 <%= simple_form_for @placement do |f| %>
   <%= f.input :host_validator_id, label: 'Primary Validator', class: "form-control" %>

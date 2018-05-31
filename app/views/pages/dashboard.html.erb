@@ -1,4 +1,4 @@
-<%= render 'dashboard_apprentice' if current_user.role == 'apprentice' %>
-<%= render 'dashboard_agency' if current_user.role == 'agency' %>
-<%= render 'dashboard_host_validator' if current_user.role == 'host_validator' %>
-<%= render 'dashboard_host_invoice_contact' if current_user.role == 'host_invoice_contact' %>
+<%= render 'dashboard_apprentice' if current_user.apprentice? %>
+<%= render 'dashboard_agency' if current_user.agency? %>
+<%= render 'dashboard_host_validator' if current_user.host_validator? %>
+<%= render 'dashboard_host_invoice_contact' if current_user.host_invoice_contact? %>

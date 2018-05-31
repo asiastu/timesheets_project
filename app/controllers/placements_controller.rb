@@ -7,6 +7,7 @@ class PlacementsController < ApplicationController
   end
 
   def show
+
   end
 
   def new
@@ -44,7 +45,7 @@ class PlacementsController < ApplicationController
   private
 
   def set_placement
-    @placement = Placement.find(placement_params)
+    @placement = Placement.find(params[:id])
     authorize @placement
   end
 

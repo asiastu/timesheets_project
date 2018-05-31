@@ -11,4 +11,20 @@ class User < ApplicationRecord
 
    scope :host_validators, -> { where(role: "Host Company (Timesheet Validation)") }
    scope :host_invoice_contacts, -> { where(role: "Host Company (Invoicing)") }
+
+  def agency?
+    role == 'Employment Agency'
+  end
+
+  def host_validator?
+    role == 'Host Company (Timesheet Validation)'
+  end
+
+  def host_invoice_contact?
+    role == 'Host Company (Invoicing)'
+  end
+
+  def apprentice?
+    role == 'Apprentice'
+  end
 end

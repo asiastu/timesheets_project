@@ -7,7 +7,7 @@ class PlacementPolicy < ApplicationPolicy
 
 
   def create?
-    user_is_host?
+    user.agency?
   end
 
   def index?
@@ -15,11 +15,11 @@ class PlacementPolicy < ApplicationPolicy
   end
 
   def create?
-    user.role == 'agency'
+    user.agency?
   end
 
   def update?
-    user.role == 'agency'
+    user.agency?
   end
 
 

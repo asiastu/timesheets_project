@@ -2,7 +2,7 @@
 
 <%# @apprentice.placements.each do |placement| %>
 
-  <p>Present</p>
+  <h3>Present</h3>
 <% @apprentice.placements.each do |placement| %>
 <% if placement.pl_start_date < Date.today && placement.pl_end_date >= Date.today %>
   <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
@@ -12,7 +12,7 @@
       <% end %>
     <% end %>
     <% end %>
-  <p>Future</p>
+  <h3>Future</h3>
 <% @apprentice.placements.each do |placement| %>
     <% if placement.pl_start_date > Date.today && placement.pl_end_date > Date.today %>
   <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
@@ -22,7 +22,7 @@
       <% end %>
     <% end %>
     <% end %>
-  <p>Past</p>
+  <h3>Past</h3>
 <% @apprentice.placements.each do |placement| %>
       <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
   <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>

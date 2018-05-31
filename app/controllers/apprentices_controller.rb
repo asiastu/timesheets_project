@@ -4,7 +4,7 @@ class ApprenticesController < ApplicationController
   def index
     if current_user.agency?
       @apprentices = policy_scope(Apprentice).where(agency_id: current_user.id)
-      @apprentices = [""] if @apprentices == nil
+      @apprentices = [""  ] if @apprentices == nil
     elsif current_user.host_invoice_contact?
       @placements = policy_scope(Placement).where(host_invoice_contact_id: current_user.id)
       @apprentices = []
@@ -19,12 +19,22 @@ class ApprenticesController < ApplicationController
         @apprentices << placement.apprentice
       end
       @apprentices.uniq!
+    elsif current_user.apprentice?
+      @apprentices = []
+      @apprentices << Apprentice.find_by(user_id: current_user.id)
     end
   end
 
   def show
-    unless current_user == User.find(@apprentice.user_id) || current_user.id == @apprentice.agency_id || current_user.id == @apprentice.placements.where('placements.pl_start_date < ? AND placements.pl_end_date > ?', Date.today, Date.today).first.host_validator_id || current_user.id == @apprentice.placements.where('placements.pl_start_date < ? AND placements.pl_end_date > ?', Date.today, Date.today).first.host_invoice_contact_id
+    placement_selection = @apprentice.placements.where('placements.pl_start_date < ? AND placements.pl_end_date > ?', Date.today, Date.today).first
+    if placement_selection.nil?
+      unless current_user.agency? || current_user == User.find(@apprentice.user_id)
       redirect_to apprentices_path, alert: "You are not allowed to view this apprentice"
+      end
+    else
+      unless current_user == User.find(@apprentice.user_id) || current_user.id == @apprentice.agency_id || current_user.id == @apprentice.placements.where('placements.pl_start_date < ? AND placements.pl_end_date > ?', Date.today, Date.today).first.host_validator_id || current_user.id == @apprentice.placements.where('placements.pl_start_date < ? AND placements.pl_end_date > ?', Date.today, Date.today).first.host_invoice_contact_id
+      redirect_to apprentices_path, alert: "You are not allowed to view this apprentice"
+      end
     end
   end
 

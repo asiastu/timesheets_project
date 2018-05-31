@@ -80,7 +80,11 @@ user14 = User.create(email: 'email14@email.com', password: '123456', role: "Host
 user15 = User.create(email: 'email15@email.com', password: '123456', role: "Host Company (Invoicing)")
 
 
-placement1 = Placement.create!(apprentice: apprentice1, host_validator: user6, host_invoice_contact: user11, pl_start_date: Date.yesterday, pl_end_date: Date.tomorrow, address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
+placement1 = Placement.create!(apprentice: apprentice1, host_validator: user6, host_invoice_contact: user11, pl_start_date: '01/06/2018', pl_end_date: '01/07/2018', address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
+placement1a = Placement.create!(apprentice: apprentice1, host_validator: user7, host_invoice_contact: user11, pl_start_date: '01/05/2018', pl_end_date: '30/05/2018', address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
+placement1b = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/05/2018', pl_end_date: '31/05/2018', address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
+placement1c = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/06/2018', pl_end_date: '31/07/2018', address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
+placement1d = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/04/2018', pl_end_date: '30/04/2018', address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
 
 placement2 = Placement.create!(apprentice: apprentice2, host_validator: user7, host_invoice_contact: user12, pl_start_date: Date.yesterday, pl_end_date: Date.tomorrow, address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
 
@@ -90,5 +94,6 @@ placement4 = Placement.create!(apprentice: apprentice4, host_validator: user9, h
 
 placement5 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: Date.yesterday, pl_end_date: Date.tomorrow, address: 'London', interview_date: Date.yesterday, hourly_rate: 7)
 
+placement6 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: '10/05/2018', pl_end_date: Date.tomorrow, address: 'London', interview_date: '9/12/2017', hourly_rate: 7)
 placement6 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: '10/05/2018', pl_end_date: Date.tomorrow, address: 'London', interview_date: '9/12/2017', hourly_rate: 7)
 

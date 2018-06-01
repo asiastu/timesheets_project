@@ -11,7 +11,7 @@
       <% unless current_user.first_name == nil%>
         <%= link_to dashboard_path do %>
           <div class="circular_name initial ">
-            <%= current_user.company.name[0] %>
+            <%= current_user.first_name[0] %>
           </div>
         <% end %>
 

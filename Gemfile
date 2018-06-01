@@ -12,6 +12,8 @@ gem 'redis'
 
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'

@@ -8,10 +8,10 @@
     <% timesheet_month = @timesheets[i].week_start %>
     <% month = timesheet.week_start.month %>
     <% if month == timesheet_month.month %>
-      <p><%= timesheet.week_start %> - <%= timesheet.week_end %></p>
+      <p><%= link_to "#{timesheet.week_start} - #{timesheet.week_end}", apprentice_placement_timesheet_path(params[:apprentice_id], @placement, timesheet) %></p>
     <% else %>
       <%= timesheet.week_start.strftime("%B") %>
-      <p><%= timesheet.week_start %> - <%= timesheet.week_end %></p>
+      <p><%= link_to "#{timesheet.week_start} - #{timesheet.week_end}", apprentice_placement_timesheet_path(params[:apprentice_id], @placement, timesheet) %></p>
     <% i += 1 %>
     <% end %>
   <% end %>

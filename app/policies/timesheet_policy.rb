@@ -9,4 +9,8 @@ class TimesheetPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    user.agency? || (user.apprentice? && user.placements.where(id: params[:placement_id]) == Placement.find(params[:placement_id]))
+  end
+
 end

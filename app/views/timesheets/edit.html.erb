@@ -1,0 +1,10 @@
+<h2>Edit timesheet</h2>
+
+<% @timesheetsegments.each do |timesheetsegment| %>
+  <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
+  <%= simple_form_for [@apprentice, @placement, @timesheet, timesheetsegment] do |f| %>
+    <%= f.input :type_of_work, collection: @type_of_work %>
+    <%= f.input :hours_worked %>
+    <%= f.submit %>
+  <% end %>
+<% end %>

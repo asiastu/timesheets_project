@@ -27,25 +27,25 @@ apprentice1.agency = user16
 apprentice1.save
 
 user2 = User.create!(address: 'London', email: 'email2@email.com', password: '123456', role: "Apprentice", first_name: 'Johna', last_name: 'Doea')
-apprentice2 = Apprentice.new(trade: 'carpenter' , skills: 'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/04/2018', app_end_date: '31/05/2018', college_day: 'Monday', hourly_rate_cents: 7)
+apprentice2 = Apprentice.new(trade: 'carpenter' , skills: 'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/04/2018', app_end_date: '31/05/2018', college_day: 'Monday', hourly_rate: 7)
 apprentice2.user = user2
 apprentice2.agency = user16
 apprentice2.save
 
 user3 = User.create!(address: 'London', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Johnb', last_name: 'Doeb')
-apprentice3 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/06/2018', app_end_date: '31/07/2018', college_day: 'Monday', hourly_rate_cents: 7)
+apprentice3 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/06/2018', app_end_date: '31/07/2018', college_day: 'Monday', hourly_rate: 7)
 apprentice3.user = user3
 apprentice3.agency = user18
 apprentice3.save
 
 user4 = User.create!(address: 'London', email: 'email4@email.com', password: '123456', role: "Apprentice", first_name: 'Johnc', last_name: 'Doec')
-apprentice4 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/02/2018', app_end_date: '31/05/2018', college_day: 'Monday', hourly_rate_cents: 7)
+apprentice4 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/02/2018', app_end_date: '31/05/2018', college_day: 'Monday', hourly_rate: 7)
 apprentice4.user = user4
 apprentice4.agency = user19
 apprentice4.save
 
 user5 = User.create!(address: 'London', email: 'email5@email.com', password: '123456', role: "Apprentice", first_name: 'Johnd', last_name: 'Doed')
-apprentice5 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/06/2018', app_end_date: '31/08/2018', college_day: 'Monday', hourly_rate_cents: 7)
+apprentice5 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/06/2018', app_end_date: '31/08/2018', college_day: 'Monday', hourly_rate: 7)
 apprentice5.user = user5
 apprentice5.agency = user20
 apprentice5.save
@@ -82,7 +82,7 @@ user15 = User.create!(email: 'email15@email.com', password: '123456', role: "Hos
 
 placement1 = Placement.create!(apprentice: apprentice1, host_validator: user6, host_invoice_contact: user12, pl_start_date: '01/06/2018', pl_end_date: '01/07/2018', address: 'London', interview_date: '31/05/2018', hourly_rate: 7)
 placement1a = Placement.create!(apprentice: apprentice1, host_validator: user7, host_invoice_contact: user13, pl_start_date: '01/05/2018', pl_end_date: '30/05/2018', address: 'London', interview_date: '30/04/2018', hourly_rate: 7.5)
-placement1b = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/05/2018', pl_end_date: '10/06/2018', address: 'London', interview_date: '10/05/2018', hourly_rate: 7)
+placement1b = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/09/2018', pl_end_date: '10/10/2018', address: 'London', interview_date: '10/05/2018', hourly_rate: 7)
 placement1c = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/06/2018', pl_end_date: '31/07/2018', address: 'London', interview_date: '10/06/2018', hourly_rate: 7)
 placement1d = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/04/2018', pl_end_date: '30/04/2018', address: 'London', interview_date: '10/04/2018', hourly_rate: 7)
 

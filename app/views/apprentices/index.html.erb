@@ -1,8 +1,10 @@
 <div class="container">
   <h1>Apprentices index</h1>
 
-<%# raise %>
-<%= link_to 'Back', :back %>
+
+ <%= link_to :back do %>
+    <i class="fas fa-arrow-left profile-back", title="back"></i>
+  <% end %>
 
 <h3>Present</h3>
 <% @apprentices.each do |apprentice| %>
@@ -28,4 +30,3 @@
     <% end %>
   <% end %>
 <% end %>
-

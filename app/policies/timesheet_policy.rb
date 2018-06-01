@@ -10,7 +10,7 @@ class TimesheetPolicy < ApplicationPolicy
   end
 
   def update?
-    user.agency? || (user.apprentice? && user.placements.where(id: params[:placement_id]) == Placement.find(params[:placement_id]))
+    user.agency? || (user.apprentice? && user.apprentice.placements.where(id: params[:placement_id]) == Placement.find(params[:placement_id]))
   end
 
 end

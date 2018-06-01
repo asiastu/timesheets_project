@@ -18,21 +18,34 @@ class TimesheetSegmentsController < ApplicationController
   # end
 
   def edit
+
   end
 
   def update
     @timesheetsegment.update(timesheetsegment_params)
-    redirect_to timesheetsegment_show(@timesheetsegment)
+    redirect_to apprentice_placement_timesheet_path(set_apprentice, set_placement, set_timesheet)
   end
 
 private
 
-def set_timesheetsegment
+  def set_apprentice
+    Apprentice.find(params[:apprentice_id])
+  end
+
+  def set_placement
+    Placement.find(params[:placement_id])
+  end
+
+  def set_timesheet
+    Timesheet.find(params[:timesheet_id])
+  end
+
+  def set_timesheetsegment
     @timesheetsegment = TimesheetSegment.find(params[:id])
     authorize @timesheetsegment
   end
 
   def timesheetsegment_params
-    params.require(:timesheetsegment).permit(:hours_worked, :type_of_work)
+    params.require(:timesheet_segment).permit(:type_of_work, :hours_worked)
   end
 end

@@ -1,2 +1,13 @@
 <h1>Timesheet w/c <%= @timesheet.week_start %></h1>
 <%= link_to 'Back', :back %>
+<br>
+<% @timesheetsegments.each do |timesheetsegment| %>
+  <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
+  <%= simple_form_for [@apprentice, @placement, @timesheet, timesheetsegment] do |f| %>
+    <%= f.input :type_of_work, collection: @type_of_work %>
+    <%= f.input :hours_worked %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
+<br><br><br><br><br>

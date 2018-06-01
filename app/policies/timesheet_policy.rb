@@ -5,19 +5,8 @@ class TimesheetPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
 
-
-     def create?
-        user_is_host?
-      end
-
-      def new?
-        record.user == user || user_is_host?
-      end
-
-
-    private
-    def user_is_host?
-      user.role == 'host'
-    end
 end

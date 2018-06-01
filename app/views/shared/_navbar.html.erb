@@ -3,14 +3,14 @@
   <%= link_to "L Y N K", root_path, class: "logo" %>
 
   <!-- Right Navigation -->
+  <% if user_signed_in? %>
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-  <% if user_signed_in? %>
 
 
 
     <!-- Links when logged in -->
-    <% if current_user.role == 'apprentice'%>
+
 
       <% unless current_user.profile == nil%>
         <%= link_to dashboard_path do %>
@@ -26,7 +26,7 @@
         <% end %>
       <% end %>
 
-    <% elsif current_user.role == 'host'%>
+
       <% unless current_user.company == nil%>
         <%= link_to dashboard_path do %>
           <div class="circular_name initial ">
@@ -41,7 +41,6 @@
           </div>
         <% end %>
       <% end %>
-    <% end %>
 
 
     <%= link_to "Dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
@@ -62,7 +61,6 @@
         </ul>
       </div>
     </div>
-
 
   <% else %>
     <!-- Login link (when logged out) -->

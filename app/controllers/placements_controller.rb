@@ -26,6 +26,7 @@ class PlacementsController < ApplicationController
     @placement.host_validator_id = @host_validator.id
     @placement.host_invoice_contact_id = @host_invoicer.id
     if @placement.save
+      GenerateTimesheets.perform_now(@placement)
       redirect_to apprentices_path
     else
       render :new

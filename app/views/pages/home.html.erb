@@ -1,2 +1,43 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner">
+  <div class="banner-content">
+    <h1>L Y N K</h1>
+    <h2>Find your next apprentice today</h2><br>
+    <p><%= link_to "Enter", dashboard_path, class: "button-banner" %></p>
+  </div>
+</div>
+
+<div class="steps">
+  <br>
+  <h1 class="main-title">How does it work?</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="title">
+          <h3>Verified, up-to-date job listings</h3>
+        </div>
+        <p class="message">Every day we list dozens of apprentices directly. We’re committed to accurate, high-quality apprenticeships so you won’t find old, duplicated, or spammy listings here.</p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="title">
+          <h3>Seamless</h3>
+        </div>
+        <p class="message">Organize and automate your apprentice search  on the go. We’ll deliver new, relevant apprentices straight to your inbox.</p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="title">
+          <h3>Apprentices and employers connect</h3>
+        </div>
+        <p class="message">We want apprentices and employers to connect directly. After you find the right apprentice, you’re both connected directly. No fuss.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container2">
+      <h3>Proven Track Record</h3>
+      <p>We have a proven track record of helping employers, <br> in all industries, reach and hire qualified candidates. </p>
+      <br><br>
+       <p><strong><%= link_to "LEARN HOW WE DO IT", dashboard_path %></strong></p>
+      <br><br><br>
+  </div>
+<!--   <br><br><br><br><br> -->
+</div>
+

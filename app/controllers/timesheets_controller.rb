@@ -3,7 +3,7 @@ class TimesheetsController < ApplicationController
 
   def index
     @placement = Placement.find(params[:placement_id])
-    if (current_user.apprentice? && !current_user.placements.where(id: @placement.id).nil?) ||
+    if (current_user.apprentice? && !current_user.apprentice.placements.where(id: @placement.id).nil?) ||
     (current_user.agency? && @placement.apprentice.agency_id == current_user.id) ||
     (current_user.host_validator? && @placement.host_validator_id == current_user.id) ||
     (current_user.host_invoice_contact? && @placement.host_invoice_contact_id == current_user.id)

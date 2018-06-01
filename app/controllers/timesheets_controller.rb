@@ -23,11 +23,13 @@ class TimesheetsController < ApplicationController
   end
 
   def edit
-    @timesheetsegments = TimesheetSegment.where(timesheet_id: params[:id])
-    @apprentice = Apprentice.find(params[:apprentice_id])
-    @placement = Placement.find(params[:placement_id])
-    @timesheet = Timesheet.find(params[:id])
-    @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday']
+    if current_user.agency? || current_user.apprentice.placements.where(id: params[:placement_id]).first == Placement.find(params[:placement_id])
+      @timesheetsegments = TimesheetSegment.where(timesheet_id: params[:id])
+      @apprentice = Apprentice.find(params[:apprentice_id])
+      @placement = Placement.find(params[:placement_id])
+      @timesheet = Timesheet.find(params[:id])
+      @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday']
+    end
   end
 
   def update

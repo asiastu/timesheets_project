@@ -11,23 +11,7 @@
 
     <!-- Links when logged in -->
 
-
-      <% unless current_user.profile == nil%>
-        <%= link_to dashboard_path do %>
-          <div class="circular_name initial">
-            <%= current_user.first_name[0]  %>
-          </div>
-        <% end %>
-      <% else %>
-        <%= link_to dashboard_path(current_user.profile) do %>
-          <div class="circular_name initial">
-           <i class="fal fa-user-alt fa-2x  "></i>
-          </div>
-        <% end %>
-      <% end %>
-
-
-      <% unless current_user.company == nil%>
+      <% unless current_user.first_name == nil%>
         <%= link_to dashboard_path do %>
           <div class="circular_name initial ">
             <%= current_user.company.name[0] %>
@@ -35,7 +19,7 @@
         <% end %>
 
       <% else %>
-        <%= link_to dashboard_path(current_user.profile) do %>
+        <%= link_to dashboard_path(current_user.first_name) do %>
           <div class="circular_name initial">
             <i class="fal fa-user-alt"></i>
           </div>

@@ -10,7 +10,7 @@
     <% @apprentices.each do |apprentice| %>
       <p><%= link_to apprentice.user.first_name, apprentice_path(apprentice) %></p>
     <% end %>
-  
+
   <% elsif current_user.host_invoice_contact? || current_user.host_validator? %>
     <h3>Present</h3>
     <% @placements.each do |placement| %>
@@ -34,5 +34,5 @@
     <% end %>
 
   <% end %>
-
+<%# raise %>
 </div>

@@ -1,10 +1,12 @@
 <div class="container">
   <h1>Timesheets</h1>
 
-  <% unless @timesheets == [] %>
+  <% if @timesheets == ![] %>
     <% @timesheets.first.each do |timesheet| %>
       <%= link_to "#{timesheet.week_start.strftime('%a, %d %B %Y')} - #{timesheet.week_end.strftime('%a, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
     <% end %>
+  <% else %>
+    <h3>No timesheets yet!</h3>
   <% end %>
 
    <%= link_to :back do %>

@@ -1,9 +1,22 @@
+  <% def user_can_see?
+    current_user.id == @apprentice.agency_id ||
+    current_user == User.find(@apprentice.user_id) ||
+    current_user.id == @apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_validator_id ||
+    current_user.id == @apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_invoice_contact_id
+  end %>
 
 <div class="app-profile-container">
   <h1>Apprentice Profile</h1>
-  <%= @apprentice.user.first_name %>
+  <p>Name: <%= @apprentice.user.first_name %>
+    <%= @apprentice.user.last_name if user_can_see? %>
+    </p>
+    <p>Borough: <%= @apprentice.borough %></p>
+    <p>Trade: <%= @apprentice.trade %></p>
+    <p>Skills: <%= @apprentice.skills %></p>
+
   <%= link_to 'Placements', apprentice_placements_path(@apprentice) %>
   <%= link_to :back do %>
     <i class="fas fa-arrow-left profile-back", title="back"></i>
   <% end %>
 </div>
+

@@ -1,0 +1,14 @@
+.button-banner {
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  color: white;
+  border: 3px solid white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-size: 25px;
+  &:hover {
+    text-decoration: none;
+    color: white;
+    opacity: 0.7;
+  }
+}

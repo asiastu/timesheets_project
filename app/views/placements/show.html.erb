@@ -1,15 +1,18 @@
-<div>
-  <%= link_to "back", :back  %>
-  <h3><%= @placement.host_validator.company_name %></h3>
-  <%= link_to 'Back', :back %>
-  <p>Address: <%= @placement.address %></p>
-  <p>Hourly Rate: <%= @placement.hourly_rate %></p>
-  <p>Created at: <%= @placement.created_at %></p>
-  <p>Interview Date: <%= @placement.interview_date %></p>
-  <p>Start Date: <%= @placement.pl_start_date %></p>
-  <p>End Date: <%= @placement.pl_end_date %></p>
-  <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
+
+<div class="container">
+
+  <div>
+
+    <h3><%= @placement.host_validator.company_name %></h3>
+    <p>Address: <%= @placement.address %></p>
+    <p>Hourly Rate: <%= @placement.hourly_rate %></p>
+    <p>Created at: <%= @placement.created_at %></p>
+    <p>Interview Date: <%= @placement.interview_date %></p>
+    <p>Start Date: <%= @placement.pl_start_date %></p>
+    <p>End Date: <%= @placement.pl_end_date %></p>
+    <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
     <%= link_to "edit", edit_apprentice_placement_path %>
   <% end %>
   <%= link_to "View timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement) %>
+  </div>
 </div>

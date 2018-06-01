@@ -1,7 +1,7 @@
 <h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
 <p><%= current_user.role %></p>
 
-<%= link_to "History of Timesheets", timesheets_path %>
-<%= link_to 'Apprentices', apprentices_path %>
-<%= link_to 'Add a placement', new_placement_path  %>
+<%= link_to "History of Timesheets", timesheets_path, class: 'dashboard-item' %>
+<%= link_to 'Apprentices', apprentices_path, class: 'dashboard-item' %>
+<%= link_to 'Add a placement', new_placement_path, class: 'dashboard-item'  %>
 <%#= link_to 'Placements',  %>

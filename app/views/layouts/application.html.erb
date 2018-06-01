@@ -10,15 +10,16 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-4 col-xs-offset-2">
-          <%= yield %>
-        </div>
+    <div><%= render 'shared/navbar' %></div>
+    <div><%= render 'shared/flashes' %></div>
+     <% if params[:controller] == "pages" && params[:action] == "home" %>
+      <%= yield %>
+    <% else %>
+      <div class="main-wrapper container">
+        <%= yield %>
       </div>
-    </div>
+    <% end %>
+      <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

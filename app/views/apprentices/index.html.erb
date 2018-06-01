@@ -1,10 +1,32 @@
 <div class="container">
   <h1>Apprentices index</h1>
-  <div class="apprentice-card">
-    <% @apprentices.each do |apprentice| %>
-      <p><%= link_to apprentice.user.first_name, apprentice_path(apprentice) %></p>
-    <% end %>
-  </div>
-</div>
 
-<%= link_to 'Back', :back %>
+
+ <%= link_to :back do %>
+    <i class="fas fa-arrow-left profile-back", title="back"></i>
+  <% end %>
+
+<h3>Present</h3>
+<% @apprentices.each do |apprentice| %>
+    <% @placements.each do |placement| %>
+     <% if placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today %>
+       <p><%= link_to apprentice.user.first_name, apprentice_path(apprentice) %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <h3>Future</h3>
+<% @apprentices.each do |apprentice| %>
+    <% @placements.each do |placement| %>
+      <% if placement.pl_start_date > Date.today && placement.pl_end_date > Date.today %>
+        <p><%= link_to placement.user.first_name, apprentice_path(apprentice) %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <h3>Past</h3>
+<% @apprentices.each do |apprentice| %>
+    <% @placements.each do |placement| %>
+      <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
+        <p><%= link_to placement.user.first_name, apprentice_path(apprentice) %></p>
+    <% end %>
+  <% end %>
+<% end %>

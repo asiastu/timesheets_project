@@ -1,2 +1,44 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(10,2,0,0.4) 0%, rgba(10,2,0,0.4) 100%), url(<%= cl_image_path("home-banner2.jpg", crop: :fill) %>)">
+  <div class="banner-content">
+    <h1>L Y N K</h1>
+    <h2>an <strong>easy</strong> timesheet management system</h2><br>
+    <p><%= link_to "Enter", dashboard_path, class: "button-banner" %></p>
+  </div>
+</div>
+
+<div class="steps">
+  <br>
+  <h1 class="main-title">How does it work?</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="title">
+         <h3>Intuitive management</h3>
+        </div>
+        <p class="message">We allow you to keep track of how many apprentices and host your are currently working with in an easy to use system.</p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="title">
+          <h3>Seamless</h3>
+        </div>
+        <p class="message">Organize and automate how and when apprenrices fill each timesheet, on the go. We’ll deliver deliver invoices and payments straight to your inbox.</p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="title">
+          <h3>We allow you to connect</h3>
+        </div>
+        <p class="message">We want you to be the link between apprentices and host. After host find the right apprentice, you'll will be able to help them both connected directly. No fuss.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container2">
+      <h3>Proven Track Record</h3>
+      <p>We have a proven track record of helping employers, <br> in all industries, reach and hire qualified candidates. </p>
+      <br><br>
+       <p><strong><%= link_to "LEARN HOW WE DO IT", dashboard_path %></strong></p>
+      <br><br><br>
+  </div>
+<!--   <br><br><br><br><br> -->
+</div>
+

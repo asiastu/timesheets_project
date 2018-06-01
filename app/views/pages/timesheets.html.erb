@@ -1,9 +1,15 @@
-<h1>Timesheets</h1>
+<div class="container">
+  <h1>Timesheets</h1>
 
-<% unless @timesheets == [] %>
-  <% @timesheets.first.each do |timesheet| %>
-    <%= link_to "#{timesheet.week_start.strftime('%a, %d %B %Y')} - #{timesheet.week_end.strftime('%a, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
+  <% unless @timesheets == [] %>
+    <% @timesheets.first.each do |timesheet| %>
+      <%= link_to "#{timesheet.week_start.strftime('%a, %d %B %Y')} - #{timesheet.week_end.strftime('%a, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
+    <% end %>
   <% end %>
-<% end %>
 
-<%= link_to 'Back', :back %>
+   <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
+    <% end %>
+
+</div>
+

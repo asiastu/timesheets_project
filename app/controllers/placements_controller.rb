@@ -12,9 +12,7 @@ class PlacementsController < ApplicationController
   end
 
   def new
-
     @placement = Placement.new
-
     authorize @placement
   end
 
@@ -22,11 +20,16 @@ class PlacementsController < ApplicationController
     @apprentice = User.find(params[:placement][:apprentice_id].split.first).apprentice
     @host_validator = User.find(params[:placement][:host_validator_id].split.first)
     @host_invoicer = User.find(params[:placement][:host_invoice_contact_id].split.first)
-    @placement = Placement.new
-    @placement.apprentice = @apprentice
-    @placement.pl_start_date = @placement.pl_start_date
-    @placement.pl_end_date = @placement.pl_end_date
-    redirect_to apprentices_path
+    #raise
+    @placement = Placement.new(placement_params)
+    @placement.apprentice_id = @apprentice.id
+    @placement.host_validator_id = @host_validator.id
+    @placement.host_invoice_contact_id = @host_invoicer.id
+    if @placement.save
+      redirect_to apprentices_path
+    else
+      render :new
+    end
     authorize @placement
   end
 

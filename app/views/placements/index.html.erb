@@ -17,6 +17,7 @@
       <% end %>
     <% end %>
   <% end %>
+
   <h3>Future</h3>
   <% @apprentice.placements.each do |placement| %>
     <% if placement.pl_start_date > Date.today && placement.pl_end_date > Date.today %>
@@ -27,6 +28,7 @@
       <% end %>
     <% end %>
   <% end %>
+
   <h3>Past</h3>
   <% @apprentice.placements.each do |placement| %>
     <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>

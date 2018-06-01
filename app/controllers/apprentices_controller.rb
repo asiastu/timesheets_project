@@ -4,12 +4,16 @@ class ApprenticesController < ApplicationController
   def index
     if current_user.agency?
       @apprentices = policy_scope(Apprentice).where(agency_id: current_user.id)
-      @apprentices = [""  ] if @apprentices == nil
+      @apprentices = [""] if @apprentices.nil?
     elsif current_user.host_invoice_contact?
       @placements = policy_scope(Placement).where(host_invoice_contact_id: current_user.id)
-      @apprentices = []
-      @placements.each do |placement|
-        @apprentices << placement.apprentice
+      if @placements.nil?
+        @placements = [""]
+      else
+        @apprentices = []
+        @placements.each do |placement|
+          @apprentices << placement.apprentice
+        end
       end
       @apprentices.uniq!
     elsif current_user.host_validator?

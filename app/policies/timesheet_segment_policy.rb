@@ -5,18 +5,8 @@ class TimesheetSegmentPolicy < ApplicationPolicy
     end
   end
 
+  def update?
+    user.apprentice?
+  end
 
- def create?
-        user_is_host?
-      end
-
-      def new?
-        record.user == user || user_is_host?
-      end
-
-
-    private
-    def user_is_host?
-      user.role == 'host'
-    end
 end

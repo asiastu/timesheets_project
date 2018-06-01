@@ -1,5 +1,6 @@
 class PlacementsController < ApplicationController
   before_action :set_placement, only: [:show, :edit, :update]
+
   def index
     @apprentice = Apprentice.find(params[:apprentice_id])
     @placements =  policy_scope(Placement)

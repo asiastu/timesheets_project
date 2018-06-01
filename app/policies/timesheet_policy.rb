@@ -5,19 +5,12 @@ class TimesheetPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
 
+  def update?
+    user.agency? || (user.apprentice? && user.placements.where(id: params[:placement_id]) == Placement.find(params[:placement_id]))
+  end
 
-     def create?
-        user_is_host?
-      end
-
-      def new?
-        record.user == user || user_is_host?
-      end
-
-
-    private
-    def user_is_host?
-      user.role == 'host'
-    end
 end

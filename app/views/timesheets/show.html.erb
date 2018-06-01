@@ -1,2 +1,11 @@
 <h1>Timesheet w/c <%= @timesheet.week_start %></h1>
 <%= link_to 'Back', :back %>
+<br>
+<% @timesheetsegments.each do |timesheetsegment| %>
+  <p><%= timesheetsegment.date.strftime('%a, %d %B %Y') %></p>
+  <p><%= timesheetsegment.type_of_work %></p>
+  <p><%= timesheetsegment.hours_worked %></p>
+<% end %>
+
+
+<%= link_to "Edit timesheet", edit_apprentice_placement_timesheet_path(@apprentice, @placement, @timesheet) %>

@@ -11,7 +11,6 @@
       <p><%= link_to apprentice.user.first_name, apprentice_path(apprentice) %></p>
     <% end %>
   <% elsif current_user.role == "Host Company (Invoicing)" || "Host Company (Timesheet Validation)"%>
-
     <h3>Present</h3>
     <% @apprentices.each do |apprentice| %>
       <% @placements.each do |placement| %>

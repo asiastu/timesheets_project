@@ -1,35 +1,41 @@
-<h1>History of Placements</h1>
-<%= link_to 'Back', :back %>
-<%# @apprentice.placements.each do |placement| %>
 
-  <h3>Present</h3>
-<% @apprentice.placements.each do |placement| %>
-<% if placement.pl_start_date < Date.today && placement.pl_end_date >= Date.today %>
-  <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
-    <p>Company Name: <%= placement.host_validator.company_name %> </p>
-    <p>Created at: <%= placement.created_at %></p>
-    <p>Start Date: <%= placement.pl_start_date %></p>
+<div class="container">
+
+  <h1>History of Placements</h1>
+  <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
+    <% end %>
+  <%# @apprentice.placements.each do |placement| %>
+
+    <h3>Present</h3>
+  <% @apprentice.placements.each do |placement| %>
+  <% if placement.pl_start_date < Date.today && placement.pl_end_date >= Date.today %>
+    <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
+      <p>Company Name: <%= placement.host_validator.company_name %> </p>
+      <p>Created at: <%= placement.created_at %></p>
+      <p>Start Date: <%= placement.pl_start_date %></p>
+        <% end %>
       <% end %>
-    <% end %>
-    <% end %>
-  <h3>Future</h3>
-<% @apprentice.placements.each do |placement| %>
-    <% if placement.pl_start_date > Date.today && placement.pl_end_date > Date.today %>
-  <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
-    <p>Company Name: <%= placement.host_validator.company_name %> </p>
-    <p>Created at: <%= placement.created_at %></p>
-    <p>Start Date: <%= placement.pl_start_date %></p>
       <% end %>
-    <% end %>
-    <% end %>
-  <h3>Past</h3>
-<% @apprentice.placements.each do |placement| %>
-      <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
-  <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
-    <p>Company Name: <%= placement.host_validator.company_name %> </p>
-    <p>Created at: <%= placement.created_at %></p>
-    <p>Start Date: <%= placement.pl_start_date %></p>
+    <h3>Future</h3>
+  <% @apprentice.placements.each do |placement| %>
+      <% if placement.pl_start_date > Date.today && placement.pl_end_date > Date.today %>
+    <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
+      <p>Company Name: <%= placement.host_validator.company_name %> </p>
+      <p>Created at: <%= placement.created_at %></p>
+      <p>Start Date: <%= placement.pl_start_date %></p>
+        <% end %>
       <% end %>
+      <% end %>
+    <h3>Past</h3>
+  <% @apprentice.placements.each do |placement| %>
+        <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
+    <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
+      <p>Company Name: <%= placement.host_validator.company_name %> </p>
+      <p>Created at: <%= placement.created_at %></p>
+      <p>Start Date: <%= placement.pl_start_date %></p>
+        <% end %>
+    <% end %>
   <% end %>
-<% end %>
 
+</div>

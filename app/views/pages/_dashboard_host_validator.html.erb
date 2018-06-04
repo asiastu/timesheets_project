@@ -5,5 +5,5 @@
 <%= link_to "Apprentices History", apprentices_path %>
 
 <% @timesheets.each do |timesheet| %>
-  <p><%= timesheet.week_start %> - <%= timesheet.status %></p>
+  <p class="pending_status"><%= timesheet.week_start %> - <%= timesheet.status %></p>
 <% end %>

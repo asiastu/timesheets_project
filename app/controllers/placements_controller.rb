@@ -4,7 +4,7 @@ class PlacementsController < ApplicationController
   def index
     @apprentice = Apprentice.find(params[:apprentice_id])
     @placements = policy_scope(Placement)
-    if current_user.agency? && @apprentice.agency_id == current_user.id?
+    if current_user.agency? && @apprentice.agency_id == current_user.id
       @placements = @placements.where(apprentice_id: @apprentice.id)
     elsif current_user.apprentice? && @apprentice.user_id == current_user.id
       @placements = @placements.where(apprentice_id: current_user.apprentice.id)

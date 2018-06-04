@@ -6,7 +6,7 @@ class TimesheetSegmentPolicy < ApplicationPolicy
   end
 
   def update?
-    user.apprentice?
+    user.apprentice? || user.agency?
   end
 
 end

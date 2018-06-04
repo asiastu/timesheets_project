@@ -97,3 +97,34 @@ placement5 = Placement.create!(apprentice: apprentice5, host_validator: user10, 
 placement6 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: '10/05/2018', pl_end_date: '10/07/2018', address: 'London', interview_date: '9/12/2017', hourly_rate: 6)
 placement6 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: '10/08/2018', pl_end_date: '31/08/2018', address: 'London', interview_date: '12/12/2017', hourly_rate: 7)
 
+Placement.all.each do |placement|
+  p_s = placement.pl_start_date
+  p_e = placement.pl_end_date
+  p_date_range = (Date.ordinal(p_s.year, p_s.yday)..Date.ordinal(p_e.year, p_e.yday))
+  unique_weeks_array = [] #array of ord_dates
+
+  #adds a date to unique_weeks_array if week is unique
+  p_date_range.each do |dte|
+    unique_weeks_array << dte unless unique_weeks_array.any? { |week| week.cweek == dte.cweek }
+  end
+
+  #create timesheets for each week
+  unique_weeks_array.map do |week|
+    timesheet = Timesheet.create(week_start: week.beginning_of_week, week_end: week.end_of_week, placement_id: placement.id)
+
+    #create only valid timesheet segments for each timesheet
+    (timesheet.week_start..timesheet.week_end).each do |date|
+      if p_date_range.include? date
+        timesheetsegment = TimesheetSegment.new(date: date, timesheet_id: timesheet.id)
+        if placement.apprentice.college_day == timesheetsegment.date.strftime("%A")
+          timesheetsegment.type_of_work = "College"
+          timesheetsegment.hours_worked = 7.0
+        else
+          timesheetsegment.type_of_work = "On Site"
+          timesheetsegment.hours_worked = 0.0
+        end
+        timesheetsegment.save
+      end
+    end
+  end
+end

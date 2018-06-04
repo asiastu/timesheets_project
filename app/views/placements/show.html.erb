@@ -13,7 +13,7 @@
     <p>Start Date: <%= @placement.pl_start_date %></p>
     <p>End Date: <%= @placement.pl_end_date %></p>
     <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
-    <%= link_to "edit", edit_apprentice_placement_path %>
+    <%= link_to "Edit Placement", edit_apprentice_placement_path %>
   <% end %>
   <%= link_to "View timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement) %>
   </div>

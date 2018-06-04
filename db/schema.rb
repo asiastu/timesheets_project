@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 2018_06_01_192941) do
   create_table "apprentices", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "agency_id"
-    t.string "first_name"
-    t.string "last_name"
     t.string "trade"
     t.string "skills"
     t.string "borough"
@@ -107,6 +105,7 @@ ActiveRecord::Schema.define(version: 2018_06_01_192941) do
     t.string "last_name"
     t.string "company_name"
     t.string "role"
+    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -6,7 +6,7 @@
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
     <h3><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h3>
-    <p><%= current_user.role %></p>
+    <p class="btn-primary"><%= current_user.role %></p>
 
   <h3 >Current Timesheets</h3>
    <div class="row">

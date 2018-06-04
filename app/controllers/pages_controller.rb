@@ -59,6 +59,12 @@ class PagesController < ApplicationController
           end
         end
       end
+      # if timesheet.update?
+        #respond_to do |format|
+         # format.html { redirect_to dashboard_path }
+        #  format.js
+        #end
+      #end
     end
   end
 

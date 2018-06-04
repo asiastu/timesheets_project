@@ -24,16 +24,20 @@ class TimesheetsController < ApplicationController
 
   def edit
     if current_user.agency? || current_user.apprentice.placements.where(id: params[:placement_id]).first == Placement.find(params[:placement_id])
-      @timesheetsegments = TimesheetSegment.where(timesheet_id: params[:id])
       @apprentice = Apprentice.find(params[:apprentice_id])
       @placement = Placement.find(params[:placement_id])
       @timesheet = Timesheet.find(params[:id])
+      @timesheetsegments = TimesheetSegment.where(timesheet_id: @timesheet)
       @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday']
     end
   end
 
   def update
-
+    @timesheet.update(timesheet_params)
+    respond_to do |format|
+      format.html { redirect_to apprentice_placement_timesheet_path(@timesheet.placement.apprentice, @timesheet.placement, @timesheet) }
+      format.js
+    end
   end
 
   def new
@@ -55,7 +59,7 @@ class TimesheetsController < ApplicationController
     authorize @timesheet
   end
 
-  # def timesheet_params
-  #   params.require(:timesheet).permit!
-  # end
+  def timesheet_params
+    params.require(:timesheet).permit(:status)
+  end
 end

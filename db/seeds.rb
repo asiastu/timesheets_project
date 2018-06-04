@@ -10,74 +10,74 @@ Apprentice.destroy_all
 User.destroy_all
 Placement.destroy_all
 
-user16 = User.create!(email: 'email16@email.com', password: '123456', role: "Employment Agency", first_name: "Susie1", last_name: "Derbya", company_name: "Cie.", phone_number: "0123456789", address: "London")
+user16 = User.create!(email: 'email16@email.com', password: '123456', role: "Employment Agency", first_name: "Yolanda", last_name: "Derby", company_name: "Construction Cie.", phone_number: "0123456789", address: "London")
 
-user17 = User.create!(email: 'email17@email.com', password: '123456', role: "Employment Agency", first_name: "Susie2", last_name: "Derbyb", company_name: "Cie.", phone_number: "0123456789", address: "London")
+user17 = User.create!(email: 'email17@email.com', password: '123456', role: "Employment Agency", first_name: "Paula", last_name: "Delta", company_name: "Hammer & Nailz", phone_number: "0123456789", address: "London")
 
-user18 = User.create!(email: 'email18@email.com', password: '123456', role: "Employment Agency", first_name: "Susie3", last_name: "Derbyc", company_name: "Cie.", phone_number: "0123456789", address: "Bristol")
+user18 = User.create!(email: 'email18@email.com', password: '123456', role: "Employment Agency", first_name: "Johna", last_name: "Alpha", company_name: "Hammond and co", phone_number: "0123456789", address: "Bristol")
 
-user19 = User.create!(email: 'email19@email.com', password: '123456', role: "Employment Agency", first_name: "Susie4", last_name: "Derbyd", company_name: "Cie.", phone_number: "0123456789", address: "Canterbury")
+user19 = User.create!(email: 'email19@email.com', password: '123456', role: "Employment Agency", first_name: "Ringa", last_name: "Omega", company_name: "L Y N K", phone_number: "0123456789", address: "Canterbury")
 
-user20 = User.create!(email: 'email20@email.com', password: '123456', role: "Employment Agency", first_name: "Susie5", last_name: "Derbye", company_name: "Cie.", phone_number: "0123456789", address: "Somewhere")
+user20 = User.create!(email: 'email20@email.com', password: '123456', role: "Employment Agency", first_name: "Beta", last_name: "Caroten", company_name: "Pristeen", phone_number: "0123456789", address: "Somewhere")
 
 user1 = User.create!(address: 'London', email: 'email@email.com', password: '123456', role: "Apprentice",first_name: 'John', last_name: 'Doe')
-apprentice1 = Apprentice.new(trade: 'carpenter' , skills: 'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/05/2018', app_end_date: '31/06/2018', college_day: 'Monday', hourly_rate_cents: 7)
+apprentice1 = Apprentice.new(trade: 'Carpentry' , skills: 'stairs', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '10/10/2017', app_end_date: '10/10/2019', college_day: 'Monday', hourly_rate_cents: 7)
 apprentice1.user = user1
 apprentice1.agency = user16
 apprentice1.save
 
-user2 = User.create!(address: 'London', email: 'email2@email.com', password: '123456', role: "Apprentice", first_name: 'Johna', last_name: 'Doea')
-apprentice2 = Apprentice.new(trade: 'carpenter' , skills: 'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/04/2018', app_end_date: '31/05/2018', college_day: 'Monday', hourly_rate: 7)
+user2 = User.create!(address: 'London', email: 'email2@email.com', password: '123456', role: "Apprentice", first_name: 'Susan', last_name: 'Suse')
+apprentice2 = Apprentice.new(trade: 'Electrical' , skills: 'snagging', borough: 'Hackney', personal_statement: 'First year', app_start_date: '02/01/2018', app_end_date: '02/01/2020', college_day: 'Tuesday', hourly_rate: 7)
 apprentice2.user = user2
 apprentice2.agency = user16
 apprentice2.save
 
-user3 = User.create!(address: 'London', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Johnb', last_name: 'Doeb')
-apprentice3 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/06/2018', app_end_date: '31/07/2018', college_day: 'Monday', hourly_rate: 7)
+user3 = User.create!(address: 'London', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Lily', last_name: 'Lilou')
+apprentice3 = Apprentice.new(trade: 'Bricklaying' , skills:'blockwork', borough: 'Islington', personal_statement: 'Second year apprentice', app_start_date: '1/11/2017', app_end_date: '1/11/2019', college_day: 'Thursday', hourly_rate: 9.5)
 apprentice3.user = user3
 apprentice3.agency = user18
 apprentice3.save
 
-user4 = User.create!(address: 'London', email: 'email4@email.com', password: '123456', role: "Apprentice", first_name: 'Johnc', last_name: 'Doec')
-apprentice4 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/02/2018', app_end_date: '31/05/2018', college_day: 'Monday', hourly_rate: 7)
+user4 = User.create!(address: 'London', email: 'email4@email.com', password: '123456', role: "Apprentice", first_name: 'Eric', last_name: 'Erich')
+apprentice4 = Apprentice.new(trade: 'Bricklaying' , skills:'round corners', borough: 'City of Westminster', personal_statement: 'I love brickwork!', app_start_date: '03/02/2018', app_end_date: '03/02/2020', college_day: 'Thursday', hourly_rate: 8)
 apprentice4.user = user4
 apprentice4.agency = user19
 apprentice4.save
 
-user5 = User.create!(address: 'London', email: 'email5@email.com', password: '123456', role: "Apprentice", first_name: 'Johnd', last_name: 'Doed')
-apprentice5 = Apprentice.new(trade: 'carpenter' , skills:'wood', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '31/06/2018', app_end_date: '31/08/2018', college_day: 'Monday', hourly_rate: 7)
+user5 = User.create!(address: 'London', email: 'email5@email.com', password: '123456', role: "Apprentice", first_name: 'Sam', last_name: 'Err')
+apprentice5 = Apprentice.new(trade: 'Painting & Decorating' , skills:'columns', borough: 'Croydon', personal_statement: 'Looking for a commercial site', app_start_date: '12/12/2016', app_end_date: '12/12/2018', college_day: 'Wednesday', hourly_rate: 9)
 apprentice5.user = user5
 apprentice5.agency = user20
 apprentice5.save
 
-user6 = User.create!(email: 'email6@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "London1, Inc", first_name: "Guy1", last_name: "Rolanda", phone_number: "0132456789", address: "London")
+user6 = User.create!(email: 'email6@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Wates", first_name: "Guy", last_name: "Roland", phone_number: "0132456789", address: "London")
 
 
-user7 = User.create!(email: 'email7@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "London2, Inc", first_name: "Guy2", last_name: "Rolandb", phone_number: "0132456789", address: "Bristol")
+user7 = User.create!(email: 'email7@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Mace", first_name: "Sixteen", last_name: "die Antwword", phone_number: "0132456789", address: "Bristol")
 
 
-user8 = User.create!(email: 'email8@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "London3, Inc", first_name: "Guy3", last_name: "Rolandc", phone_number: "0132456789", address: "Manchester")
+user8 = User.create!(email: 'email8@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Bouygues", first_name: "Roger", last_name: "Hodgson", phone_number: "0132456789", address: "Manchester")
 
 
-user9 = User.create!(email: 'email9@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "London4, Inc", first_name: "Guy4", last_name: "Rolandd", phone_number: "0132456789", address: "Doncaster")
+user9 = User.create!(email: 'email9@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Morgan Sindall", first_name: "Tim", last_name: "Minchin", phone_number: "0132456789", address: "Doncaster")
 
 
-user10 = User.create!(email: 'email10@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "London5, inc", first_name: "Guy5", last_name: "Rolande", phone_number: "0132456789", address: "Surrey")
+user10 = User.create!(email: 'email10@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Willmott Dixon", first_name: "Phil", last_name: "Genesis", phone_number: "0132456789", address: "Surrey")
 
 
-user11 = User.create!(email: 'email11@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Paul1", last_name: "Randa", phone_number: "0132456789", address: "London", company_name: "London1, Inc",)
+user11 = User.create!(email: 'email11@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Joan", last_name: "Jett", phone_number: "0132456789", address: "London", company_name: "Wates",)
 
 
-user12 = User.create!(email: 'email12@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Paul2", last_name: "Randb", phone_number: "0132456789", address: "Bristol", company_name: "London2, Inc",)
+user12 = User.create!(email: 'email12@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Rudolf", last_name: "Schenker", phone_number: "0132456789", address: "Bristol", company_name: "Mace",)
 
 
-user13 = User.create!(email: 'email13@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Paul3", last_name: "Randc", phone_number: "0132456789", address: "Manchester", company_name: "London3, Inc",)
+user13 = User.create!(email: 'email13@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Poucet", last_name: "Le Petit", phone_number: "0132456789", address: "Manchester", company_name: "Bouygues",)
 
 
-user14 = User.create!(email: 'email14@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Paul4", last_name: "Randd", phone_number: "0132456789", address: "Doncaster", company_name: "London4, Inc",)
+user14 = User.create!(email: 'email14@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Nathan", last_name: "Fillon", phone_number: "0132456789", address: "Doncaster", company_name: "Morgan Sindall",)
 
 
-user15 = User.create!(email: 'email15@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Paul5", last_name: "Rande", phone_number: "0132456789", address: "Surrey", company_name: "London5, Inc",)
+user15 = User.create!(email: 'email15@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "Danny", last_name: "Elfman", phone_number: "0132456789", address: "Surrey", company_name: "Willmott Dixon",)
 
 
 placement1 = Placement.create!(apprentice: apprentice1, host_validator: user6, host_invoice_contact: user12, pl_start_date: '01/06/2018', pl_end_date: '01/07/2018', address: 'London', interview_date: '31/05/2018', hourly_rate: 7)
@@ -97,3 +97,34 @@ placement5 = Placement.create!(apprentice: apprentice5, host_validator: user10, 
 placement6 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: '10/05/2018', pl_end_date: '10/07/2018', address: 'London', interview_date: '9/12/2017', hourly_rate: 6)
 placement6 = Placement.create!(apprentice: apprentice5, host_validator: user10, host_invoice_contact: user15, pl_start_date: '10/08/2018', pl_end_date: '31/08/2018', address: 'London', interview_date: '12/12/2017', hourly_rate: 7)
 
+Placement.all.each do |placement|
+  p_s = placement.pl_start_date
+  p_e = placement.pl_end_date
+  p_date_range = (Date.ordinal(p_s.year, p_s.yday)..Date.ordinal(p_e.year, p_e.yday))
+  unique_weeks_array = [] #array of ord_dates
+
+  #adds a date to unique_weeks_array if week is unique
+  p_date_range.each do |dte|
+    unique_weeks_array << dte unless unique_weeks_array.any? { |week| week.cweek == dte.cweek }
+  end
+
+  #create timesheets for each week
+    unique_weeks_array.map do |week|
+      timesheet = Timesheet.create(week_start: week.beginning_of_week, week_end: week.end_of_week, placement_id: placement.id, status: "Pending Submission")
+
+    #create only valid timesheet segments for each timesheet
+    (timesheet.week_start..timesheet.week_end).each do |date|
+      if p_date_range.include? date
+        timesheetsegment = TimesheetSegment.new(date: date, timesheet_id: timesheet.id)
+        if placement.apprentice.college_day == timesheetsegment.date.strftime("%A")
+          timesheetsegment.type_of_work = "College"
+          timesheetsegment.hours_worked = 7.0
+        else
+          timesheetsegment.type_of_work = "On Site"
+          timesheetsegment.hours_worked = 0.0
+        end
+        timesheetsegment.save
+      end
+    end
+  end
+end

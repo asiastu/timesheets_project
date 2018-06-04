@@ -1,12 +1,18 @@
 <div class="wrapper">
-  <div class="container options-container">
-    <h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
-    <p><%= current_user.role %></p>
+  <div class="dashboard-container">
+    <h1>DASHBOARD</h1>
+    <h2><%= Time.now >= 12 ? 'Good afternoon,' : 'Good morning,' %><%= "#{current_user.first_name}!" %></h2>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
+    <% end %>
 
       <div class="row">
 
           <div class="col-xs-12 col-md-4">
             <%= link_to "Timesheet History", timesheets_path %>
+            <% @timesheets.each do |timesheet| %>
+              <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %> - <span class="pending_status"><%= timesheet.status %></span></p>
+            <% end %>
           </div>
 
           <div class="col-xs-12 col-md-4">

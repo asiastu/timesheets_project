@@ -1,8 +1,9 @@
 <div class="wrapper">
   <div class="dashboard-container">
     <h1>DASHBOARD</h1>
-        <%= link_to :back do %>
-    <i class="fas fa-arrow-left profile-back", title="back"></i>
+    <h2><%= Time.now >= 12 ? 'Good afternoon,' : 'Good morning,' %><%= "#{current_user.first_name}!" %></h2>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
     <h3>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h3>
 
@@ -12,7 +13,16 @@
    <div class="row">
     <div class="col-xs-12 col-md-4">
       <div class ="dashboard-card">
-          Placeholder
+       <% @timesheets.each do |timesheet| %>
+        <% timesheet.timesheet_segments.each do |timesheetsegment| %>
+          <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
+          <%= simple_form_for [@apprentice, timesheet.placement, timesheet, timesheetsegment] do |f| %>
+            <%= f.input :type_of_work, collection: @type_of_work %>
+            <%= f.input :hours_worked %>
+            <%= f.submit %>
+           <% end %>
+         <% end %>
+       <% end %>
       </div>
     </div>
   </div>

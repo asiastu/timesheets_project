@@ -1,7 +1,11 @@
 <h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
 <p><%= current_user.role %></p>
 
-<%= link_to "History of Timesheets", timesheets_path, class: 'dashboard-item' %>
-<%= link_to 'Apprentices', apprentices_path, class: 'dashboard-item' %>
+<%= link_to "Timesheets History", timesheets_path, class: 'dashboard-item' %>
+<%= link_to 'Apprentices History', apprentices_path, class: 'dashboard-item' %>
 <%= link_to 'Add a placement', new_placement_path, class: 'dashboard-item'  %>
 <%#= link_to 'Placements',  %>
+
+<% @timesheets.each do |timesheet| %>
+  <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %> - <span class="pending_status"><%= timesheet.status %></span></p>
+<% end %>

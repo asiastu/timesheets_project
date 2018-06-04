@@ -30,9 +30,9 @@ class ApprenticesController < ApplicationController
   end
 
   def show
-    placement_selection = @apprentice.placements.where('placements.pl_start_date < ? AND placements.pl_end_date > ?', Date.today, Date.today).first
-    if placement_selection.nil?
-      unless current_user.id == @apprentice.agency_id || current_user == User.find(@apprentice.user_id) || current_user.id == @apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_validator_id || current_user.id == @apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_invoice_contact_id
+    placement_selection = @apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first
+    unless placement_selection.nil?
+      unless current_user.id == @apprentice.agency_id || current_user == User.find(@apprentice.user_id) || @apprentice.placements.where(host_validator_id: current_user.id).first.present? || current_user.id == @apprentice.placements.where(host_invoice_contact_id: current_user.id).first.present?
         redirect_to apprentices_path, alert: "You are not allowed to view this apprentice"
       end
     end

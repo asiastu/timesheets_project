@@ -18,12 +18,10 @@ class TimesheetSegmentsController < ApplicationController
   # end
 
   def edit
-
   end
 
   def update
     @timesheetsegment.update(timesheetsegment_params)
-    redirect_to apprentice_placement_timesheet_path(set_apprentice, set_placement, set_timesheet)
   end
 
 private

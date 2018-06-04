@@ -1,4 +1,4 @@
-class GenerateTimesheets <ApplicationJob
+class GenerateTimesheets < ApplicationJob
   queue_as :default
 
   def perform(placement_id)
@@ -15,12 +15,20 @@ class GenerateTimesheets <ApplicationJob
 
     #create timesheets for each week
     unique_weeks_array.map do |week|
-      @timesheet = Timesheet.create(week_start: week.beginning_of_week, week_end: week.end_of_week, placement_id: @placement.id)
+      @timesheet = Timesheet.create(week_start: week.beginning_of_week, week_end: week.end_of_week, placement_id: @placement.id, status: "Pending Submission")
 
       #create only valid timesheet segments for each timesheet
       (@timesheet.week_start..@timesheet.week_end).each do |date|
         if p_date_range.include? date
-          timesheetsegment = TimesheetSegment.create!(date: date, timesheet_id: @timesheet.id)
+          timesheetsegment = TimesheetSegment.new(date: date, timesheet_id: @timesheet.id, hours_worked: 0)
+          if @placement.apprentice.college_day == timesheetsegment.date.strftime("%A")
+            timesheetsegment.type_of_work = "College"
+            timesheetsegment.hours_worked = 7.0
+          else
+            timesheetsegment.type_of_work = "On Site"
+            timesheetsegment.hours_worked = 0.0
+          end
+          timesheetsegment.save
         end
       end
     end

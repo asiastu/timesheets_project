@@ -10,7 +10,7 @@ class TimesheetPolicy < ApplicationPolicy
   end
 
   def update?
-    user.agency? || user.apprentice?
+    user.agency? || user.apprentice? || (user.host_validator? && record.placement.host_validator_id == user.id)
   end
 
 end

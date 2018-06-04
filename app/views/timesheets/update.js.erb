@@ -1,0 +1,7 @@
+function refreshForm(innerHTML) {
+  const status = document.getElementById('timesheet');
+  status.innerHTML = innerHTML;
+}
+
+
+  refreshForm('<%= j render "timesheet_status", timesheet: @timesheet %>');

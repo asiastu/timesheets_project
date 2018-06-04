@@ -6,18 +6,18 @@
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
 
-  <div class="row">
-
-    <% unless @timesheets == [] %>
-      <% @timesheets.first.each do |timesheet| %>
-        <div class="col-xs-12">
-          <div class ="dashboard-card">
-
+<div class="row">
+  <div class="col-xs-12">
+   <div class ="dashboard-card">
+    <% if @show_timesheets.first.present? %>
+      <% @show_timesheets.each do |timesheet| %>
         <%= link_to "FROM: #{timesheet.week_start.strftime('%A, %d %B %Y')} - TO: #{timesheet.week_end.strftime('%A, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
-      </div>
-      </div>
       <% end %>
-     <% end %>
+    <% else %>
+        <h3>No timesheets yet!</h3>
+    <% end %>
+    </div>
+  </div>
 
   </div>
 

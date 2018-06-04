@@ -1,18 +1,32 @@
 <h1>Timesheets for Placement <%= @placement.id %></h1>
+
 <% if @timesheets.first.nil? %>
   <h2>No timesheets yet!</h2>
 <% else %>
+
   <% i = 0 %>
   <%= @timesheets.first.week_start.strftime("%B") %>
+
   <% @timesheets.each do |timesheet| %>
+
     <% timesheet_month = @timesheets[i].week_start %>
+
     <% month = timesheet.week_start.month %>
     <% if month == timesheet_month.month %>
+
       <p><%= link_to "#{timesheet.week_start} - #{timesheet.week_end}", apprentice_placement_timesheet_path(params[:apprentice_id], @placement, timesheet) %></p>
+
     <% else %>
+
       <%= timesheet.week_start.strftime("%B") %>
       <p><%= link_to "#{timesheet.week_start} - #{timesheet.week_end}", apprentice_placement_timesheet_path(params[:apprentice_id], @placement, timesheet) %></p>
+
     <% i += 1 %>
+
     <% end %>
+
   <% end %>
+
 <% end %>
+
+

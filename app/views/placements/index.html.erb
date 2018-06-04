@@ -1,26 +1,11 @@
 <div class="wrapper">
 
-    <div class="container">
+    <div class="dashboard-container">
 
-      <h1>Placements</h1>
+      <h1>Past / Future Placements</h1>
       <%= link_to :back do %>
         <i class="fas fa-arrow-left profile-back", title="back"></i>
       <% end %>
-
-      <h3>Present</h3>
-      <div class="row">
-      <% @apprentice.placements.each do |placement| %>
-        <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
-          <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
-            <div class="col-xs-12 col-md-4">
-                <p>Company Name: <%= placement.host_validator.company_name %> </p>
-                <p>Created at: <%= placement.created_at %></p>
-                <p>Start Date: <%= placement.pl_start_date %></p>
-            </div>
-        <% end %>
-      <% end %>
-    <% end %>
-    </div>
 
       <h3>Future</h3>
       <div class="row">
@@ -28,9 +13,11 @@
         <% if placement.pl_start_date > Date.today && placement.pl_end_date > Date.today %>
           <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
             <div class="col-xs-12 col-md-4">
+              <div class ="dashboard-card">
               <p>Company Name: <%= placement.host_validator.company_name %> </p>
               <p>Created at: <%= placement.created_at %></p>
               <p>Start Date: <%= placement.pl_start_date %></p>
+             </div>
             </div>
           <% end %>
         <% end %>
@@ -42,11 +29,13 @@
       <% @apprentice.placements.each do |placement| %>
         <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
           <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
-            <div class="col-xs-12 col-md-4">
+           <div class="col-xs-12 col-md-4">
+              <div class ="dashboard-card">
               <p>Company Name: <%= placement.host_validator.company_name %> </p>
               <p>Created at: <%= placement.created_at %></p>
               <p>Start Date: <%= placement.pl_start_date %></p>
             </div>
+          </div>
         <% end %>
       <% end %>
      <% end %>

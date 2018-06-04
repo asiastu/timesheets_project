@@ -1,4 +1,4 @@
-<div class="container">
+<div class="dashboard-container">
 
   <h1>Timesheets</h1>
 
@@ -10,10 +10,13 @@
 
     <% unless @timesheets == [] %>
       <% @timesheets.first.each do |timesheet| %>
-        <div class="col-xs-12 col-md-4">
-        <%= link_to "#{timesheet.week_start.strftime('%a, %d %B %Y')} - #{timesheet.week_end.strftime('%a, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
-        </div>
-       <% end %>
+        <div class="col-xs-12">
+          <div class ="dashboard-card">
+
+        <%= link_to "FROM: #{timesheet.week_start.strftime('%A, %d %B %Y')} - TO: #{timesheet.week_end.strftime('%A, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
+      </div>
+      </div>
+      <% end %>
      <% end %>
 
   </div>

@@ -1,11 +1,15 @@
 <h1>Timesheet w/c <%= @timesheet.week_start %></h1>
 <%= link_to 'Back', :back %>
 <br>
+  <% if @timesheet.pending_submission? %>
+    <p class="pending_status"><strong><%= @timesheet.status %></strong></p>
+  <% else %>
+    <p><%= @timesheet.status %></p>
+  <% end %>
 <% @timesheetsegments.each do |timesheetsegment| %>
   <p><%= timesheetsegment.date.strftime('%a, %d %B %Y') %></p>
   <p><%= timesheetsegment.type_of_work %></p>
   <p><%= timesheetsegment.hours_worked %></p>
-  <p><%= @timesheet.status %></p>
 <% end %>
 
 

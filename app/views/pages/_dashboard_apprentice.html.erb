@@ -6,17 +6,18 @@
 <%= link_to "Placements History", apprentice_placements_path(@apprentice) %>
 <%= link_to "Timesheets History", timesheets_path %>
 
+<br>
 
-
+<% @timesheets.each do |timesheet| %>
+  <% timesheet.timesheet_segments.each do |timesheetsegment| %>
+    <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
+    <%= simple_form_for [@apprentice, timesheet.placement, timesheet, timesheetsegment] do |f| %>
+      <%= f.input :type_of_work, collection: @type_of_work %>
+      <%= f.input :hours_worked %>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+<% end %>
 
 <!-- TO DO: Build Hot Actions section -->
 <%#= link_to "Update timesheet segment", edit_apprentice_placement_timesheet_timesheet_segment_path(current_user.apprentice, Placement.find(), Timesheet.first, @timesheet) %>
-
-  <%# @timesheetsegments.each do |timesheetsegment| %>
-    <%#= timesheetsegment.date.strftime('%a, %d %B %Y') %>
-    <%#= simple_form_for [@apprentice, @placement, @timesheet, timesheetsegment] do |f| %>
-      <%#= f.input :type_of_work, collection: @type_of_work %>
-      <%#= f.input :hours_worked %>
-      <%#= f.submit %>
-    <%# end %>
-  <%# end %>

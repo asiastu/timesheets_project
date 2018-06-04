@@ -5,3 +5,7 @@
 <%= link_to 'Apprentices History', apprentices_path, class: 'dashboard-item' %>
 <%= link_to 'Add a placement', new_placement_path, class: 'dashboard-item'  %>
 <%#= link_to 'Placements',  %>
+
+<% @timesheets.each do |timesheet| %>
+  <p><%= timesheet.week_start %> - <%= timesheet.status %></p>
+<% end %>

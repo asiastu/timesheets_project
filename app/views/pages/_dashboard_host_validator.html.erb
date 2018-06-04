@@ -3,3 +3,7 @@
 
 <%= link_to "Timesheets History", timesheets_path %>
 <%= link_to "Apprentices History", apprentices_path %>
+
+<% @timesheets.each do |timesheet| %>
+  <p><%= timesheet.week_start %> - <%= timesheet.status %></p>
+<% end %>

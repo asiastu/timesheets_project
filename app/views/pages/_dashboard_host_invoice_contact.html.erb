@@ -1,5 +1,18 @@
-<h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
-<p><%= current_user.role %></p>
+<div class="wrapper">
+  <div class="container options-container">
+    <h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
+    <p><%= current_user.role %></p>
 
-<%= link_to "History of Timesheets", timesheets_path %>
-<%= link_to "Apprentices Index", apprentices_path %>
+      <div class="row">
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to "Timesheet History", timesheets_path %>
+          </div>
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to "Apprentices Index", apprentices_path %>
+         </div>
+
+     </div>
+  </div>
+</div>

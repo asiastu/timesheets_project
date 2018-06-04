@@ -1,7 +1,19 @@
-<h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
-<p><%= current_user.role %></p>
-<%#= link_to 'Timesheets', apprentice_placement_timesheets_path %>
-<%= link_to "Current Placements", apprentice_placements_path(@apprentice) %>
-<%= link_to "History of Timesheets", timesheets_path %>
+<div class="wrapper">
+  <div class="container options-container">
+    <h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
 
-<%#= link_to "Update timesheet segment", edit_apprentice_placement_timesheet_timesheet_segment_path(current_user.apprentice, Placement.find(), Timesheet.first, @timesheet) %>
+    <p><%= current_user.role %></p>
+
+      <div class="row">
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to "Placements", apprentice_placements_path(@apprentice) %>
+          </div>
+
+          <div class="col-xs-12 col-md-4">
+            <%= link_to "Timesheet History", timesheets_path %>
+          </div>
+
+      </div>
+    </div>
+</div>

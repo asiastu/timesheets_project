@@ -1,5 +1,9 @@
 
-<div class="container">
+<div class="dashboard-container">
+  <h1>Host Profile</h1>
+     <%= link_to :back do %>
+    <i class="fas fa-arrow-left profile-back", title="back"></i>
+  <% end %>
 <div class="row">
     <h3><%= @placement.host_validator.company_name %></h3>
     <p>Address: <%= @placement.address %></p>
@@ -13,7 +17,5 @@
   <% end %>
   <%= link_to "View timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement) %>
   </div>
-   <%= link_to :back do %>
-    <i class="fas fa-arrow-left profile-back", title="back"></i>
-  <% end %>
+
 </div>

@@ -1,6 +1,7 @@
 <h1>Timesheet w/c <%= @timesheet.week_start %></h1>
 <%= link_to 'Back', :back %>
 <br>
+<div class="row">
 <div id="timesheet">
   <%= render 'timesheet_status', timesheet: @timesheet %>
 </div>
@@ -13,5 +14,6 @@
     <%= render 'change_status_button' %>
 
   <% end %>
+</div>
 
 <%= link_to "Edit timesheet", edit_apprentice_placement_timesheet_path(@apprentice, @placement, @timesheet) %>

@@ -1,14 +1,31 @@
-<h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
-<p><%= current_user.role %></p>
+<div class="wrapper">
+  <div class="dashboard-container">
+    <h1>DASHBOARD</h1>
+    <h2><%= Time.now >= 12 ? 'Good afternoon,' : 'Good morning,' %><%= "#{current_user.first_name}!" %></h2>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
+    <% end %>
+    
+      <div class="row">
 
-<%= link_to "Timesheets History", timesheets_path %>
-<%= link_to "Apprentices History", apprentices_path %>
+          <div class="col-xs-12 col-md-4">
+            <%= link_to "Timesheet History", timesheets_path %>
+            
+            <% @timesheets.each do |timesheet| %>
+              <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %> - <span class="pending_status"><%= timesheet.status %></span></p>
+              <p><%= timesheet.placement.apprentice.user.first_name %> <%= timesheet.placement.apprentice.user.last_name %></p>
+              <p><% timesheet.timesheet_segments.each do |ts| %></p>
+                <%= ts.type_of_work %>
+                <%= ts.hours_worked %>
+              <% end %>
+            <% end %>
+          </div>
 
-<% @timesheets.each do |timesheet| %>
-  <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %> - <span class="pending_status"><%= timesheet.status %></span></p>
-  <p><%= timesheet.placement.apprentice.user.first_name %> <%= timesheet.placement.apprentice.user.last_name %></p>
-  <p><% timesheet.timesheet_segments.each do |ts| %></p>
-    <%= ts.type_of_work %>
-    <%= ts.hours_worked %>
-  <% end %>
-<% end %>
+          <div class="col-xs-12 col-md-4">
+              <%= link_to "Apprentices Index", apprentices_path %>
+          </div>
+
+    </div>
+  </div>
+</div>
+

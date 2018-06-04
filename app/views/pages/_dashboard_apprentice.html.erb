@@ -1,23 +1,67 @@
-<h1>
-  <%= Time.now >= 12 ? 'Good afternoon,' : 'Good morning,' %><%= "#{current_user.first_name}!" %>
-</h1>
-<p><%= current_user.role %></p>
-<%#= link_to 'Timesheets', apprentice_placement_timesheets_path %>
-<%= link_to "Placements History", apprentice_placements_path(@apprentice) %>
-<%= link_to "Timesheets History", timesheets_path %>
-
-<br>
-
-<% @timesheets.each do |timesheet| %>
-  <% timesheet.timesheet_segments.each do |timesheetsegment| %>
-    <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
-    <%= simple_form_for [@apprentice, timesheet.placement, timesheet, timesheetsegment] do |f| %>
-      <%= f.input :type_of_work, collection: @type_of_work %>
-      <%= f.input :hours_worked %>
-      <%= f.submit %>
+<div class="wrapper">
+  <div class="dashboard-container">
+    <h1>DASHBOARD</h1>
+    <h2><%= Time.now >= 12 ? 'Good afternoon,' : 'Good morning,' %><%= "#{current_user.first_name}!" %></h2>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
-  <% end %>
-<% end %>
+    <h3>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h3>
 
-<!-- TO DO: Build Hot Actions section -->
-<%#= link_to "Update timesheet segment", edit_apprentice_placement_timesheet_timesheet_segment_path(current_user.apprentice, Placement.find(), Timesheet.first, @timesheet) %>
+    <p><%= current_user.role %></p>
+
+  <h3 >Current Timesheets</h3>
+   <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <div class ="dashboard-card">
+       <% @timesheets.each do |timesheet| %>
+        <% timesheet.timesheet_segments.each do |timesheetsegment| %>
+          <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
+          <%= simple_form_for [@apprentice, timesheet.placement, timesheet, timesheetsegment] do |f| %>
+            <%= f.input :type_of_work, collection: @type_of_work %>
+            <%= f.input :hours_worked %>
+            <%= f.submit %>
+           <% end %>
+         <% end %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+
+    <h3 >Current Placements</h3>
+      <div class="row">
+      <% @apprentice.placements.each do |placement| %>
+        <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
+          <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
+            <div class="col-xs-12 col-md-4">
+              <div class ="dashboard-card">
+                <p>Company Name: <%= placement.host_validator.company_name %> </p>
+                <p>Created at: <%= placement.created_at %></p>
+                <p>Start Date: <%= placement.pl_start_date %></p>
+              </div>
+            </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    </div>
+
+      <div class="row">
+          <div class="col-xs-12 ">
+            <p>Looking for past or future placements?<br>
+            <%= link_to "Click Here", apprentice_placements_path(@apprentice) %></p>
+          </div>
+        </div>
+
+    <h3 >Timesheet Options</h3>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class ="dashboard-card">
+            <%= link_to "Fill Timesheets", timesheets_path %>
+          </div>
+          <div class ="dashboard-card">
+            <%= link_to "View or Edit Timesheets", timesheets_path %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>

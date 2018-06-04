@@ -48,6 +48,7 @@ class PlacementsController < ApplicationController
 
   def edit
     @apprentice = Apprentice.find(params[:apprentice_id])
+    raise
   end
 
   def update

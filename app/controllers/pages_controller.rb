@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     if current_user.apprentice?
       placements = current_user.apprentice.placements
       placements.each do |placement|
-        timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today)
+        timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected').where('week_start <= ?', Date.today))
         timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet
@@ -28,7 +28,7 @@ class PagesController < ApplicationController
         end
       end
       agency_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected').where('week_start <= ?', Date.today))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet
@@ -40,7 +40,7 @@ class PagesController < ApplicationController
       host_placements = current_user.invoice_placements
       host_apprentices = []
       host_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected').where('week_start <= ?', Date.today))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet
@@ -52,7 +52,7 @@ class PagesController < ApplicationController
       host_placements = current_user.hosted_placements
       host_apprentices = []
       host_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected').where('week_start <= ?', Date.today))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet

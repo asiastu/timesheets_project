@@ -1,17 +1,44 @@
-<% my_apprentices = current_user.apprentices.map { |x| "#{User.find(x.user_id).id} - #{User.find(x.user_id).last_name}, #{User.find(x.user_id).first_name}" } %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2 ">
 
-<% host_validators = User.host_validators.map { |x| "#{x.id} - Company: #{x.company_name} #{x.last_name}, #{x.first_name}" } %>
 
-<% invoice_contacts = User.host_invoice_contacts.map { |x| "#{x.id} - Company: #{x.company_name} #{x.last_name}, #{x.first_name}" } %>
+    <% my_apprentices = current_user.apprentices.map { |x| "#{User.find(x.user_id).id} - #{User.find(x.user_id).last_name}, #{User.find(x.user_id).first_name}" } %>
 
-<%= simple_form_for @placement do |f| %>
-  <%= f.association :host_validator, collection: host_validators, label: 'Primary Validator' %>
-  <%= f.association :host_invoice_contact, collection: invoice_contacts, label: 'Invoice Contact', class: "form-control" %>
-  <%= f.association :apprentice, label: 'Apprentice', collection: my_apprentices, class: "form-control" %>
-  <%= f.input :pl_start_date, label: 'Placement Start Date', class: "form-control" %>
-  <%= f.input :pl_end_date, label: 'Placement End Date', class: "form-control" %>
-  <%= f.input :address, label: "Postcode", class: "form-control" %>
-  <%= f.input :interview_date, placeholder: 'DD/MM/YYYY', class: "form-control" %>
-  <%= f.input :hourly_rate_cents, class: "form-control" %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+    <% host_validators = User.host_validators.map { |x| "#{x.id} - Company: #{x.company_name} #{x.last_name}, #{x.first_name}" } %>
+
+    <% invoice_contacts = User.host_invoice_contacts.map { |x| "#{x.id} - Company: #{x.company_name} #{x.last_name}, #{x.first_name}" } %>
+
+    <%= simple_form_for @placement do |f| %>
+      <%= f.association :apprentice, label: 'Apprentice', collection: my_apprentices %>
+
+      <div class="row">
+        <div class="col-xs-6 form-group">
+          <%= f.association :host_validator, collection: host_validators, label: 'Primary Validator' %>
+        </div>
+        <div class="col-xs-6 form-group">
+          <%= f.association :host_invoice_contact, collection: invoice_contacts, label: 'Invoice Contact' %>
+        </div>
+      </div>
+    <div class="row">
+        <div class="col-xs-6 form-group">
+          <%= f.input :address, label: "Postcode" %>
+        </div>
+        <div class="col-xs-6 form-group">
+          <%= f.input :hourly_rate_cents %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6 form-group">
+          <%= f.input :pl_start_date, label: 'Placement Start Date' %>
+        </div>
+        <div class="col-xs-6 form-group">
+          <%= f.input :pl_end_date, label: 'Placement End Date' %>
+        </div>
+      </div>
+
+      <%= f.input :interview_date, placeholder: 'DD/MM/YYYY' %>
+      <%= f.submit class: "btn btn-primary placement-btn center-block" %>
+    <% end %>
+  </div>
+</div>

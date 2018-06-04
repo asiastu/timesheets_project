@@ -33,7 +33,8 @@ class TimesheetsController < ApplicationController
   end
 
   def update
-
+    @timesheet.update(timesheet_params)
+    redirect_to apprentice_placement_timesheet_path(@timesheet.placement.apprentice, @timesheet.placement, @timesheet)
   end
 
   def new
@@ -55,7 +56,7 @@ class TimesheetsController < ApplicationController
     authorize @timesheet
   end
 
-  # def timesheet_params
-  #   params.require(:timesheet).permit!
-  # end
+  def timesheet_params
+    params.require(:timesheet).permit(:status)
+  end
 end

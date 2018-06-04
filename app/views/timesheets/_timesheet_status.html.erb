@@ -1,0 +1,5 @@
+  <% if timesheet.pending_submission? %>
+    <p class="pending_status", id="timesheet_status"><strong><%= @timesheet.status %></strong></p>
+  <% else %>
+    <p><%= timesheet.status %></p>
+  <% end %>

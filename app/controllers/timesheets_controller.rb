@@ -34,7 +34,10 @@ class TimesheetsController < ApplicationController
 
   def update
     @timesheet.update(timesheet_params)
-    redirect_to apprentice_placement_timesheet_path(@timesheet.placement.apprentice, @timesheet.placement, @timesheet)
+    respond_to do |format|
+      format.html { redirect_to apprentice_placement_timesheet_path(@timesheet.placement.apprentice, @timesheet.placement, @timesheet) }
+      format.js
+    end
   end
 
   def new

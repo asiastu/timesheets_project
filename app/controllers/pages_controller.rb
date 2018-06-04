@@ -28,7 +28,7 @@ class PagesController < ApplicationController
         end
       end
       agency_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Queried')).or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Rejected'))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet
@@ -40,7 +40,7 @@ class PagesController < ApplicationController
       host_placements = current_user.invoice_placements
       host_apprentices = []
       host_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Queried')).or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Rejected'))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet
@@ -52,7 +52,7 @@ class PagesController < ApplicationController
       host_placements = current_user.hosted_placements
       host_apprentices = []
       host_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Queried')).or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').or(placement.timesheets.where(status: 'Rejected'))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet

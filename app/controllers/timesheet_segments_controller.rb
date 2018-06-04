@@ -22,7 +22,6 @@ class TimesheetSegmentsController < ApplicationController
 
   def update
     @timesheetsegment.update(timesheetsegment_params)
-    redirect_to apprentice_placement_timesheet_path(set_apprentice, set_placement, set_timesheet)
   end
 
 private

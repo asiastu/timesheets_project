@@ -1,6 +1,14 @@
+  a.login-link {
+    text-decoration: none;
+  }
+.login-link {
+  color: white;
+  &:hover {
+  opacity: 0.5;
+  }
+}
 /* Main navbar */
 .navbar-wagon {
-  background-color: transparent;
   transition: all 0.3s ease;
   height: 70px;
   padding: 0px 30px;
@@ -8,14 +16,19 @@
   align-items: center;
   justify-content: space-between;
   transition: 0.3s background-color ease;
+background-color: $blue;
 }
 
 
-.navbar-wagon-solid {
-background-color: #2E4057;
+.home-nav {
+  background-color: transparent;
+  box-shadow: none;
+  a {
+    color: white;
+  }
 }
-.navbar-wagon-solid {
-background-color: #2E4070;
+.navbar-home-solid {
+  background-color: $blue;
 }
 
 /* Logo */
@@ -40,17 +53,18 @@ background-color: #2E4070;
 /* Basic navbar item */
 .navbar-wagon-item {
   cursor: pointer;
-  padding: 0 20px;
+  margin: 0 20px;
 }
 
 /* Navbar link */
 .navbar-wagon-link {
-  color: #616668;
+  color: white;
   font-size: 16px;
-}
-.navbar-wagon-link:hover {
-  // color: #da552f !important;
+  &:hover {
+  color: $burnt-red !important;
   text-decoration: none;
+  border-bottom: 1px solid $burnt-red;
+  }
 }
 
 /* Dropdown menu */
@@ -106,6 +120,7 @@ a .initial:hover{
 .logo {
   font-weight: bolder;
   font-size: 25px;
+  color: white;
   // font-family: monospace;
 
 }
@@ -116,7 +131,7 @@ a .initial:hover{
 
 .nav-link {
   a {
-  color: #616668;
+  color: white;
   font-size: 16px;
     a:hover {
       // color: #da552f;
@@ -124,18 +139,6 @@ a .initial:hover{
       // opacity: 0;
       text-decoration: none !important;
     }
-  }
-}
-
-.navbar-home-solid {
-  background-color: black;
-}
-
-
-.home-nav {
-  box-shadow: none;
-  a {
-    color: white;
   }
 }
 

@@ -5,12 +5,11 @@
     <%= link_to :back do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
-    
+
       <div class="row">
 
           <div class="col-xs-12 col-md-4">
-            <%= link_to "Timesheet History", timesheets_path %>
-            
+
             <% @timesheets.each do |timesheet| %>
               <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %> - <span class="pending_status"><%= timesheet.status %></span></p>
               <p><%= timesheet.placement.apprentice.user.first_name %> <%= timesheet.placement.apprentice.user.last_name %></p>
@@ -20,11 +19,6 @@
               <% end %>
             <% end %>
           </div>
-
-          <div class="col-xs-12 col-md-4">
-              <%= link_to "Apprentices Index", apprentices_path %>
-          </div>
-
     </div>
   </div>
 </div>

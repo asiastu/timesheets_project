@@ -33,10 +33,8 @@ class TimesheetsController < ApplicationController
   end
 
   def update
-    @timesheet.update(timesheet_params)
-    respond_to do |format|
-      format.html { redirect_to apprentice_placement_timesheet_path(@timesheet.placement.apprentice, @timesheet.placement, @timesheet) }
-      format.js
+    if @timesheet.update(timesheet_params)
+      redirect_to dashboard_path
     end
   end
 

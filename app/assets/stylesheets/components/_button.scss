@@ -13,6 +13,19 @@
   }
 }
 
-.btn-primary-blue {
-  background-color: $primary-blue;
+.button-banner-blue {
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  color: $blue;
+  border: 3px solid $blue;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: bolder;
+  opacity: 0.7;
+  &:hover {
+    text-decoration: none;
+    color: $blue;
+    opacity: 1;
+  }
 }

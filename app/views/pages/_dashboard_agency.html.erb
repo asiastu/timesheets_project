@@ -1,7 +1,4 @@
-<div class="agency-dashboard">
-  <h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
-  <p><%= current_user.role %></p>
-
+<h3><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h3>
 
   <div class="dashboard-timesheets">
     <% @timesheets.each do |timesheet| %>

@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @apprentice = Apprentice.where(user: current_user).first
+    @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday']
     @timesheets = []
 
     if current_user.apprentice?
@@ -17,6 +18,8 @@ class PagesController < ApplicationController
             @timesheets << timesheet
           end
         end
+        @timesheet = @timesheets.first
+
       end
 
     elsif current_user.agency?
@@ -76,6 +79,7 @@ class PagesController < ApplicationController
       @placements.each do |placement|
         @show_timesheets << placement.first.timesheets
       end
+      @show_timesheets.flatten!
     else
       if current_user.apprentice?
         @placements = Placement.where(apprentice_id: current_user.apprentice.id)

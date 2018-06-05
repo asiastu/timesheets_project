@@ -9,8 +9,11 @@ class User < ApplicationRecord
   has_many :hosted_placements, foreign_key: :host_validator_id, class_name: "Placement"
   has_many :invoice_placements, foreign_key: :host_invoice_contact_id, class_name: "Placement"
 
-   scope :host_validators, -> { where(role: "Host Company (Timesheet Validation)") }
-   scope :host_invoice_contacts, -> { where(role: "Host Company (Invoicing)") }
+  scope :host_validators, -> { where(role: "Host Company (Timesheet Validation)") }
+  scope :host_invoice_contacts, -> { where(role: "Host Company (Invoicing)") }
+
+  validates :first_name, format: { with: /\A[a-zA-Z\s]+\z/, message: "only allows letters" }
+  validates :last_name, format: { with: /\A[a-zA-Z\s]+\z/, message: "only allows letters" }
 
   def agency?
     role == 'Employment Agency'

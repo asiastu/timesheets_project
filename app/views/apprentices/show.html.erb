@@ -1,4 +1,7 @@
 <div class="container">
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
+    <% end %>
   <% def user_can_see?
     current_user.id == @apprentice.agency_id ||
     current_user == User.find(@apprentice.user_id) ||
@@ -16,9 +19,6 @@
       <p>Skills: <%= @apprentice.skills %></p>
 
     <%= link_to 'Placements', apprentice_placements_path(@apprentice) %>
-    <%= link_to :back do %>
-      <i class="fas fa-arrow-left profile-back", title="back"></i>
-    <% end %>
   </div>
 </div>
 

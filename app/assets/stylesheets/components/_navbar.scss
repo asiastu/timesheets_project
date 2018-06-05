@@ -1,3 +1,17 @@
+.agency-nav-blue {
+  background-color: $primary-blue !important;
+}
+.appren-nav-blue {
+  background-color: $light-blue !important;
+}
+.hostval-nav-blue {
+  background-color: $blue !important;
+}
+
+.hostinv-nav-blue {
+  background-color: $burnt-red !important;
+}
+
   a.login-link {
     text-decoration: none;
   }
@@ -60,10 +74,12 @@ background-color: $blue;
 .navbar-wagon-link {
   color: white;
   font-size: 16px;
+  font-weight: bolder;
+  opacity: .8;
   &:hover {
-  color: $burnt-red !important;
+  color: white;
   text-decoration: none;
-  border-bottom: 1px solid $burnt-red;
+  opacity: 1;
   }
 }
 
@@ -101,7 +117,8 @@ background-color: $blue;
 .circular_name {
   height:33px;
   width:33px;
-  background-color: black;
+  background-color: $warning-red;
+  opacity: .9;
   border-radius: 50%;
   display:flex;
   justify-content: center;

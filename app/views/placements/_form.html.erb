@@ -3,7 +3,7 @@
     <%= simple_form_for @placement do |f| %>
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.association :apprentice, label: 'Apprentice', collection: current_user.apprentices, label_method: :formatted_name %>
+          <%= f.association :apprentice, required: true, label: 'Apprentice', collection: current_user.apprentices, label_method: :formatted_name %>
         </div>
       </div>
       <div class="row">

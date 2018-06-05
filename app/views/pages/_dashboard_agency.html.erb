@@ -1,6 +1,16 @@
-<h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
-<p><%= current_user.role %></p>
+<div class="agency-dashboard">
+  <h1>Welcome<%= current_user.first_name.nil? ? 'back!' : ", #{current_user.first_name}!" %></h1>
+  <p><%= current_user.role %></p>
 
-<% @timesheets.each do |timesheet| %>
-  <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %> - <span class="pending_status"><%= timesheet.status %></span></p>
-<% end %>
+
+  <div class="dashboard-timesheets">
+    <% @timesheets.each do |timesheet| %>
+      <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %> - <span class="pending_status"><%= timesheet.status %></span></p>
+    <% end %>
+  </div>
+
+  <div class="dashboard-placements">
+    <!-- select placements where end date is within 2 weeks -->
+    <!-- select placememtns where start date is within 2 weeks -->
+  </div>
+</div>

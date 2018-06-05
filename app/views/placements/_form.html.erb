@@ -1,22 +1,17 @@
-<% my_apprentices = current_user.apprentices.map { |x| "#{User.find(x.user_id).id} - #{User.find(x.user_id).last_name}, #{User.find(x.user_id).first_name}" } %>
-
-<% host_validators = User.host_validators.map { |x| "#{x.id} - Company: #{x.company_name} #{x.last_name}, #{x.first_name}" } %>
-
-<% invoice_contacts = User.host_invoice_contacts.map { |x| "#{x.id} - Company: #{x.company_name} #{x.last_name}, #{x.first_name}" } %>
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2 ">
     <%= simple_form_for @placement do |f| %>
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.association :apprentice, label: 'Apprentice', collection: my_apprentices %>
+          <%= f.association :apprentice, label: 'Apprentice', collection: current_user.apprentices, label_method: :formatted_name %>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.association :host_validator, collection: host_validators, label: 'Primary Validator' %>
+          <%= f.association :host_validator, collection: User.host_validators, label_method: :host_formatted_name, label: 'Primary Validator' %>
         </div>
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.association :host_invoice_contact, collection: invoice_contacts, label: 'Invoice Contact' %>
+          <%= f.association :host_invoice_contact, collection: User.host_invoice_contacts, label_method: :host_formatted_name, label: 'Invoice Contact' %>
         </div>
       </div>
       <div class="row">

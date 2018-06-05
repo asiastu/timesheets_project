@@ -29,9 +29,9 @@ class PlacementsController < ApplicationController
   end
 
   def create
-    @apprentice = User.find(params[:placement][:apprentice_id].split.first).apprentice
-    @host_validator = User.find(params[:placement][:host_validator_id].split.first)
-    @host_invoicer = User.find(params[:placement][:host_invoice_contact_id].split.first)
+    @apprentice = User.find(params[:placement][:apprentice_id])
+    @host_validator = User.find(params[:placement][:host_validator_id])
+    @host_invoicer = User.find(params[:placement][:host_invoice_contact_id])
     #raise
     @placement = Placement.new(placement_params)
     @placement.apprentice_id = @apprentice.id
@@ -52,8 +52,8 @@ class PlacementsController < ApplicationController
 
   def update
     @apprentice = Apprentice.find(params[:apprentice_id])
-    @host_validator = User.find(params[:placement][:host_validator_id].split.first)
-    @host_invoicer = User.find(params[:placement][:host_invoice_contact_id].split.first)
+    @host_validator = User.find(params[:placement][:host_validator_id])
+    @host_invoicer = User.find(params[:placement][:host_invoice_contact_id])
     @placement.update(placement_params)
     @placement.pl_start_date = @placement.pl_start_date.strftime('%a, %d %B %Y')
     @placement.pl_end_date = @placement.pl_end_date.strftime('%a, %d %B %Y')

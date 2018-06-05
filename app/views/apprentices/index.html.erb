@@ -3,12 +3,19 @@
   <%= link_to :back do %>
     <i class="fas fa-arrow-left profile-back", title="back"></i>
   <% end %>
-  <h1>View Apprentices</h1>
+  <h1 class="text-center">View Apprentices</h1>
 
   <% if current_user.agency? %>
 
     <% @apprentices.each do |apprentice| %>
-      <p><%= link_to apprentice.user.first_name, apprentice_path(apprentice) %></p>
+      <%= link_to apprentice_path(apprentice) do %>
+        <div class="index-row">
+          <ul class="index-list">
+            <li class="index-item"><%= apprentice.user.first_name %></li>
+            <li class="index-item"><%= apprentice.trade %></li>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
 
   <% elsif current_user.host_invoice_contact? || current_user.host_validator? %>

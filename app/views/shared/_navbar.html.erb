@@ -1,4 +1,9 @@
-<div class="navbar-wagon navbar-fixed-top <%= "home-nav" if params[:controller] == "pages" && params[:action] == "home" %>">
+<div class="navbar-wagon navbar-fixed-top
+  <%= "agency-nav-blue" if user_signed_in? && current_user.agency? %>
+  <%= "appren-nav-blue" if user_signed_in? && current_user.apprentice? %>
+  <%= "hostval-nav-blue" if user_signed_in? && current_user.host_invoice_contact? %>
+  <%= "hostinv-nav-blue" if user_signed_in? && current_user.host_validator? %>
+  <%= "home-nav" if params[:controller] == "pages" && params[:action] == "home" %>">
   <!-- Logo -->
   <%= link_to "L Y N K", root_path, class: "logo" %>
 

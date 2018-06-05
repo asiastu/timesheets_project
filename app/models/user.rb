@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def apprentice?
     role == 'Apprentice'
   end
+
+  def host_formatted_name
+    "#{company_name} - #{last_name}, #{first_name}"
+  end
 end

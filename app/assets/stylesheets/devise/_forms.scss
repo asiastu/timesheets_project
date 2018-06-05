@@ -12,6 +12,19 @@
   }
   .login-btn {
     width: 100%;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    color:  white;
+    padding: 10px;
+    background-color: $blue;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 16px;
+    &:hover {
+    text-decoration: none;
+    color: white;
+    opacity: 0.7;
+    }
   }
 }

@@ -21,3 +21,13 @@ hr.style-two {
     height: 1px;
     background-image: linear-gradient(to right, rgba(46, 64, 87, 0), rgba(46, 64, 87, 0.75), rgba(46, 64, 87, 0));
 }
+
+body {
+  color: $blue;
+}
+
+input {
+  ::collection {
+    color: blue;
+  }
+}

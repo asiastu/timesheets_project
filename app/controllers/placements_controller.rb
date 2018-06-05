@@ -29,10 +29,9 @@ class PlacementsController < ApplicationController
   end
 
   def create
-    @apprentice = User.find(params[:placement][:apprentice_id])
+    @apprentice = Apprentice.find(params[:placement][:apprentice_id])
     @host_validator = User.find(params[:placement][:host_validator_id])
     @host_invoicer = User.find(params[:placement][:host_invoice_contact_id])
-    #raise
     @placement = Placement.new(placement_params)
     @placement.apprentice_id = @apprentice.id
     @placement.host_validator_id = @host_validator.id

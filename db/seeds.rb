@@ -1,14 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 Apprentice.destroy_all
-User.destroy_all
 Placement.destroy_all
+User.destroy_all
 
 user16 = User.create!(email: 'email16@email.com', password: '123456', role: "Employment Agency", first_name: "Yolanda", last_name: "Derby", company_name: "Construction Cie.", phone_number: "0123456789", address: "London")
 
@@ -21,7 +13,7 @@ user19 = User.create!(email: 'email19@email.com', password: '123456', role: "Emp
 user20 = User.create!(email: 'email20@email.com', password: '123456', role: "Employment Agency", first_name: "Beta", last_name: "Caroten", company_name: "Pristeen", phone_number: "0123456789", address: "Somewhere")
 
 user1 = User.create!(address: 'London', email: 'email@email.com', password: '123456', role: "Apprentice",first_name: 'John', last_name: 'Doe')
-apprentice1 = Apprentice.new(trade: 'Carpentry' , skills: 'stairs', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '10/10/2017', app_end_date: '10/10/2019', college_day: 'Monday', hourly_rate_cents: 7)
+apprentice1 = Apprentice.new(trade: 'Carpentry' , skills: 'stairs', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '10/10/2017', app_end_date: '10/10/2019', college_day: 'Monday', hourly_rate: 7)
 apprentice1.user = user1
 apprentice1.agency = user16
 apprentice1.save

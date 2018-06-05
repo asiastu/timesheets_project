@@ -1,12 +1,9 @@
 <div class="wrapper">
   <div class="dashboard-container">
-    <h1>DASHBOARD</h1>
-
     <%= link_to :back do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
-    <h3><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h3>
-    <p class="btn-primary"><%= current_user.role %></p>
+    <h2><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h2>
 
   <h3>You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
     <%# @timesheets.each do |timesheet| %>
@@ -22,8 +19,7 @@
                   <%= timesheetsegment.date.strftime('%a, %d %B') %>
                   <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet, timesheetsegment] do |f| %>
                     <%= f.input :type_of_work, collection: @type_of_work %>
-                    <input :hours_worked, id="ex6", type="text", data-slider-min="0", data-slider-max="18", data-slider-step="1", data-slider-value="3"/>
-                    <span id="ex6CurrentSliderValLabel">Hours worked: <span id="ex6SliderVal">3</span></span>
+                    <%= f.input :hours_worked %>
                     <%= f.button :submit, 'Save', class:"testben" %>
                   <% end %>
                 </div>
@@ -51,7 +47,7 @@
                 <p>Site location: <%= placement.address %></p>
                 <p>Start Date: <%= placement.pl_start_date %></p>
                 <p>End Date: <%= placement.pl_end_date %></p>
-                <p>On site contact: <%= placement.host_validator.first_name %> <%= placement.host_validator.last_name %></p>
+                <p>On site contact: <%= placement.host_validator.full_name %></p>
                 <p>Email: <%= placement.host_validator.email %></p>
               </div>
             </div>

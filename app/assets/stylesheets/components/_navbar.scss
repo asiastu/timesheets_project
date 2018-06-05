@@ -117,7 +117,7 @@ background-color: $blue;
 .circular_name {
   height:33px;
   width:33px;
-  background-color: $warning-red;
+  background-color: #0AC45B;
   opacity: .9;
   border-radius: 50%;
   display:flex;
@@ -128,10 +128,12 @@ background-color: $blue;
 .initial {
   color: white;
   font-weight: bolder;
-}
+  opacity: 0.8;
 
-a .initial:hover{
+  &:hover {
   color: white;
+  opacity: 1;
+  }
 }
 
 .logo {

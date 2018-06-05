@@ -1,21 +1,38 @@
 
-<div class="show-placement-container">
-     <%= link_to :back do %>
-    <i class="fas fa-arrow-left profile-back", title="back"></i>
-  <% end %>
-  <h1>Host Profile</h1>
-<div class="row">
-    <h3><%= @placement.host_validator.company_name %></h3>
-    <p>Address: <%= @placement.address %></p>
-    <p>Hourly Rate: <%= @placement.hourly_rate %></p>
-    <p>Created at: <%= @placement.created_at %></p>
-    <p>Interview Date: <%= @placement.interview_date %></p>
-    <p>Start Date: <%= @placement.pl_start_date %></p>
-    <p>End Date: <%= @placement.pl_end_date %></p>
-    <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
-    <%= link_to "Edit Placement", edit_apprentice_placement_path %>
-  <% end %>
-  <%= link_to "View timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement) %>
+<div class="show-placement-wrapper">
+  <div class="button-prof-back">
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left placement-back", title="back"></i>
+      <% end %>
+      <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
+        <%= link_to edit_apprentice_placement_path do %>
+          <i class="fas fa-pencil-alt placement-edit", title='edit placement'></i>
+        <% end %>
+      <% end %>
   </div>
-
+  <div class="placement-show-container">
+    <div class="place-show-title">
+      <h1>Placement Details</h1>
+    </div>
+    <div class="placement-header">
+      <div>
+        <h2> <i class="far fa-building"></i> <%= @placement.host_validator.company_name %></h2>
+      </div>
+      <div>
+        <h2> <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.first_name %></h2>
+      </div>
+    </div>
+    <div class="placement-show-content">
+      <p><i class="fas fa-map-marker"></i>&emsp;<%= @placement.address %></p>
+      <p><i class="fas fa-dollar-sign"></i>&emsp;<%= "#{@placement.hourly_rate}/hour" %></p>
+      <div class="calendar">
+        <p>&emsp;<i class="fas fa-calendar-alt"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.interview_date.strftime('%A, %b %d') %></p>
+        <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.pl_start_date.strftime('%A, %b %d') %></p>
+        <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.pl_end_date.strftime('%A, %b %d') %></p>
+      </div>
+    </div>
+    <div class="ju">
+      <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
+    </div>
+  </div>
 </div>

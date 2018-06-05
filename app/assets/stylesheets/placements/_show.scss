@@ -1,14 +1,62 @@
-.show-placement-container {
+.show-placement-wrapper {
   background: white;
   padding: 10px 20px;
   padding-bottom: 30px;
   margin-top: 50px;
   border-radius: 3px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-  h2 {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    text-align: center;
+  width: 50%;
+
+}
+.place-show-title {
+display: flex;
+justify-content: flex-start;
+}
+.placement-back {
+padding-top: 40px;
+padding-right: 20px;
+}
+
+.calendar {
+  border-left: 3px solid $blue;
+  margin-left: 2px;
+  padding-left: 8px;
+}
+.placement-header {
+  display: flex;
+  background: white;
+  padding: 5px 30px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.placement-show-content {
+  padding-left: 25px;
+  margin-bottom: 20px;
+}
+.placement-edit {
+  right: 45px;
+  top: 20px;
+  opacity: .2;
+  &:hover {
+    opacity: 1;
   }
+}
+.show-placement-btn {
+  border: 2px solid $blue;
+  border-radius: 4px;
+  padding: 5px 10px;
+  opacity: .8;
+  color: $blue !important;
+  &:hover {
+    text-decoration: none;
+    opacity: 1;
+  }
+}
+.ju {
+ display: flex;
+ justify-content: space-around;
 }

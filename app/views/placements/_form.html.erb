@@ -3,15 +3,15 @@
     <%= simple_form_for @placement do |f| %>
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.association :apprentice, label: 'Apprentice', collection: current_user.apprentices, label_method: :formatted_name %>
+          <%= f.association :apprentice, label: 'Apprentice', collection: current_user.apprentices, label_method: :formatted_name, include_blank: false, include_hidden: false %>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.association :host_validator, collection: User.host_validators, label_method: :host_formatted_name, label: 'Primary Validator' %>
+          <%= f.association :host_validator, collection: User.host_validators, label_method: :host_formatted_name, label: 'Primary Validator', include_blank: false, include_hidden: false %>
         </div>
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.association :host_invoice_contact, collection: User.host_invoice_contacts, label_method: :host_formatted_name, label: 'Invoice Contact' %>
+          <%= f.association :host_invoice_contact, collection: User.host_invoice_contacts, label_method: :host_formatted_name, label: 'Invoice Contact', include_blank: false, include_hidden: false %>
         </div>
       </div>
       <div class="row">
@@ -19,7 +19,7 @@
           <%= f.input :address, label: "Postcode" %>
         </div>
         <div class="col-xs-12 col-md-6 form-group">
-          <%= f.input :hourly_rate_cents %>
+          <%= f.input :hourly_rate %>
         </div>
       </div>
       <div class="row">

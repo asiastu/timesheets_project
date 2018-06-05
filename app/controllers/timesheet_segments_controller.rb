@@ -22,6 +22,10 @@ class TimesheetSegmentsController < ApplicationController
 
   def update
     @timesheetsegment.update(timesheetsegment_params)
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      format.js
+    end
   end
 
 private

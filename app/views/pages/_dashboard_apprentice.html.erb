@@ -1,41 +1,54 @@
 <div class="wrapper">
   <div class="dashboard-container">
-    <h1>DASHBOARD</h1>
-
     <%= link_to :back do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
-    <h3><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h3>
-    <p><%= current_user.role %></p>
+    <h2><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h2>
 
-  <h3 >Current Timesheets</h3>
-   <div class="row">
-    <div class="col-xs-12">
-      <div class ="dashboard-card">
-       <% @timesheets.each do |timesheet| %>
-        <% timesheet.timesheet_segments.each do |timesheetsegment| %>
-          <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
-          <%= simple_form_for [@apprentice, timesheet.placement, timesheet, timesheetsegment] do |f| %>
-            <%= f.input :type_of_work, collection: @type_of_work %>
-            <%= f.input :hours_worked %>
-            <%= f.submit %>
-           <% end %>
-         <% end %>
-       <% end %>
+  <h3>You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
+    <%# @timesheets.each do |timesheet| %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class ="dashboard-card">
+            <div class="timesheet-title">
+              <h3>Timesheet for your placement with <%= @timesheet.placement.host_validator.company_name %> in <%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %> </h3>
+            </div>
+            <div class="timesheet_segment_container">
+              <% @timesheet.timesheet_segments.sort.each do |timesheetsegment| %>
+                <div class="dashboard-timesheetsgement", id="timesheetsegment<%= timesheetsegment.id %>">
+                  <%= timesheetsegment.date.strftime('%a, %d %B') %>
+                  <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet, timesheetsegment] do |f| %>
+                    <%= f.input :type_of_work, collection: @type_of_work %>
+                    <%= f.input :hours_worked %>
+                    <%= f.button :submit, 'Save', class:"testben" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="submit-button">
+              <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet] do |f| %>
+                <%= f.hidden_field :status, value: 'Submitted' %>
+                <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button", data: { confirm: "Are you sure? Your submission will be final!" }  %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    <%# end %>
 
-    <h3 >Current Placements</h3>
+    <h3 >Current Placement</h3>
       <div class="row">
       <% @apprentice.placements.each do |placement| %>
         <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
           <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
             <div class="col-xs-12">
               <div class ="dashboard-card">
-                <p>Company Name: <%= placement.host_validator.company_name %> </p>
-                <p>Created at: <%= placement.created_at %></p>
+                <p><strong><%= placement.host_validator.company_name %></strong></p>
+                <p>Site location: <%= placement.address %></p>
                 <p>Start Date: <%= placement.pl_start_date %></p>
+                <p>End Date: <%= placement.pl_end_date %></p>
+                <p>On site contact: <%= placement.host_validator.full_name %></p>
+                <p>Email: <%= placement.host_validator.email %></p>
               </div>
             </div>
         <% end %>

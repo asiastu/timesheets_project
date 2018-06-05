@@ -6,11 +6,20 @@
   margin: 20px;
   background: white;
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
 }
 
+.timesheet_segment_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
 
 .pending_status {
   color: $warning-red;
+
+.dashboard-timesheetsgement {
+  height: 35vh;
+  padding-top: 5vh;
+  padding-left: 5vh;
+  padding-right: 3vh;
 }

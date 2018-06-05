@@ -1,4 +1,4 @@
-<% if timesheet.pending_submission? %>
+<% if timesheet.submitted? %>
   <div data-toggle="modal" data-target="#accept">
     <%= simple_form_for [timesheet.placement.apprentice, timesheet.placement, timesheet], remote: true do |f| %>
     <%= f.hidden_field :status, value: 'Accepted' %>

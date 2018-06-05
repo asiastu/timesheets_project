@@ -8,23 +8,30 @@
     <h3><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h3>
     <p class="btn-primary"><%= current_user.role %></p>
 
-  <h3 >Current Timesheets</h3>
-   <div class="row">
-    <div class="col-xs-12">
-      <div class ="dashboard-card">
-       <% @timesheets.each do |timesheet| %>
-        <% timesheet.timesheet_segments.each do |timesheetsegment| %>
-          <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
-          <%= simple_form_for [@apprentice, timesheet.placement, timesheet, timesheetsegment] do |f| %>
-            <%= f.input :type_of_work, collection: @type_of_work %>
-            <%= f.input :hours_worked %>
-            <%= f.submit %>
-           <% end %>
-         <% end %>
-       <% end %>
+  <h3>Hot actions</h3>
+    <%# @timesheets.each do |timesheet| %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class ="dashboard-card">
+            Timesheet #<%= @timesheet.id %>
+            <% @timesheet.timesheet_segments.each do |timesheetsegment| %>
+              <div class="dashboard-timesheetsgement", id="timesheetsegment<%= timesheetsegment.id %>">
+                <%= timesheetsegment.date.strftime('%a, %d %B %Y') %>
+                <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet, timesheetsegment] do |f| %>
+                  <%= f.input :type_of_work, collection: @type_of_work %>
+                  <%= f.input :hours_worked %>
+                  <%= f.button :submit, class:"testben" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet] do |f| %>
+            <%= f.hidden_field :status, value: 'Submitted' %>
+            <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button" %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </div>
+    <%# end %>
 
     <h3 >Current Placements</h3>
       <div class="row">

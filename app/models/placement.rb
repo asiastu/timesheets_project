@@ -4,4 +4,6 @@ class Placement < ApplicationRecord
   belongs_to :apprentice
   monetize :hourly_rate_cents
   has_many :timesheets, dependent: :destroy
+
+  validates :address, presence: true
 end

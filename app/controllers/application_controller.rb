@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
+  def default_url_options
+  { host: ENV["HOST"] || "localhost:3000" }
+  end
+
   private
 
   def configure_permitted_parameters
@@ -21,5 +25,4 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || dashboard_path
   end
-
 end

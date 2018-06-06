@@ -1,5 +1,5 @@
 .placement-index-card {
-  margin: 20px;
+  margin: 20px 0;
   background: white;
   padding: 10px 20px;
   border-radius: 3px;
@@ -17,9 +17,17 @@
   padding-bottom: 30px;
   border-radius: 3px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-
 }
-
-.p-header-margin-top {
-  margin-top: 30px;
+.placement-appr {
+  opacity: 1;
+  &:hover {
+    opacity: .6 ;
+  }
+}
+.host-card-title-green {
+  color: $bright-green;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
 }

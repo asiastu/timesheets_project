@@ -1,18 +1,28 @@
 <div class="main-wrapper container">
-  <div class="show-placement-wrapper">
-    <div class="button-prof-back">
-      <%= link_to :back do %>
-        <i class="fas fa-arrow-left placement-back", title="back"></i>
+<div class="show-placement-wrapper col-xs-12 col-md-6 col-md-offset-3">
+  <div class="row">
+    <div class="col-xs-12">
+
+
+  <!-- edit and back buttons -->
+
+    <h1>
+    <%= link_to apprentice_placements_path(@placement.apprentice) do %>
+      <i class="fas fa-arrow-left in-title-back" title="back"></i>
+    <% end %>
+    Placement Details
+  </h1>
+<!-- container for all other contents -->
+
+    <div class="placement-header">
+      <div>
+        <h2> <i class="far fa-building"></i> <%= @placement.host_validator.company_name %>
+    <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
+      <%= link_to edit_apprentice_placement_path do %>
+          <i class="fas fa-pencil-alt placement-edit", title='edit placement'></i>
         <% end %>
-        <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
-          <%= link_to edit_apprentice_placement_path do %>
-            <i class="fas fa-pencil-alt placement-edit", title='edit placement'></i>
-          <% end %>
-        <% end %>
-    </div>
-    <div class="placement-show-container">
-      <div class="place-show-title">
-        <h1>Placement Details</h1>
+      <% end %>
+        </h2>
       </div>
       <div class="placement-header">
         <div>
@@ -22,6 +32,7 @@
           <h2> <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.first_name %></h2>
         </div>
       </div>
+
       <div class="placement-show-content">
         <p><i class="fas fa-map-marker"></i>&emsp;<%= @placement.address %></p>
         <p><i class="fas fa-dollar-sign"></i>&emsp;<%= "#{@placement.hourly_rate}/hour" %></p>
@@ -34,6 +45,7 @@
       <div class="ju">
         <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
       </div>
+    </div>
     </div>
   </div>
 </div>

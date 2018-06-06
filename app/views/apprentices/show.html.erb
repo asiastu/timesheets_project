@@ -1,7 +1,13 @@
 <div class="main-wrapper">
   <div class="container">
-    <%= link_to :back do %>
-      <i class="fas fa-arrow-left profile-back", title="back"></i>
+
+  <% if current_user.agency? || current_user.host_validator? || current_user.host_invoice_contact? %>
+    <% link = apprentices_path %>
+    <% elsif current_user.apprentice? %>
+    <% link = :back %>
+    <% end %>
+    <%= link_to link do %>
+      <i class="fas fa-arrow-left profile-back" title="back"></i>
     <% end %>
   <% def user_can_see?
     current_user.id == @apprentice.agency_id ||
@@ -14,16 +20,15 @@
     end
   end %>
 
-    <div class="app-profile-container">
-      <h1>Apprentice Profile</h1>
-      <p><i class="far fa-user-circle"></i> <%= @apprentice.user.first_name %>
-        <%= @apprentice.user.last_name if user_can_see? %>
-        </p>
-        <p><i class="fas fa-map-marker"></i> <%= @apprentice.borough %></p>
-        <p><i class="fas fa-toolbox"></i> <%= @apprentice.trade %></p>
-        <p><i class="fas fa-wrench"></i> <%= @apprentice.skills %></p>
+    <h1>Apprentice Profile</h1>
+  <div class="app-profile-container">
+    <p><i class="far fa-user-circle"></i> <%= @apprentice.user.first_name %>
+      <%= @apprentice.user.last_name if user_can_see? %>
+      </p>
+      <p><i class="fas fa-map-marker"></i> <%= @apprentice.borough %></p>
+      <p><i class="fas fa-toolbox"></i> <%= @apprentice.trade %></p>
+      <p><i class="fas fa-wrench"></i> <%= @apprentice.skills %></p>
 
-      <%= link_to 'Placements', apprentice_placements_path(@apprentice) %>
-    </div>
+    <p class="appr-index-placements-link"><i class="far fa-building"></i> <%= link_to 'Placements', apprentice_placements_path(@apprentice) %></p>
   </div>
 </div>

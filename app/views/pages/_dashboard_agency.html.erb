@@ -14,9 +14,23 @@
       <div class="ag-dash-timesheets col-sm-12 col-md-6">
         <div>
           <h3>Timesheets</h3>
+      </div>
+      <% @timesheets.each do |timesheet| %>
+        <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
+        <div class="ag-dash-timesheet-card">
+          <p><i class="far fa-user-circle"></i> <%= timesheet.placement.apprentice.formatted_name %></p>
+          <p><%= timesheet.week_start.strftime('%A, %b %d') %></p>
+          <div class="ag-dash-timesheet-status
+            <%= 'stat-orange' if timesheet.status == 'Pending Submission' %>
+            <%= 'stat-red' if timesheet.status == 'Rejected' %>
+            <%= 'stat-green' if timesheet.status == 'Paid' %>
+            <%= 'stat-green' if timesheet.status == 'Accepted' %>
+            <%= 'stat-green' if timesheet.status == 'Submitted' %>
+           ">
+            <%= timesheet.status %>
+        </div>
         </div>
         <% @timesheets.sort_by { |x| x["week_start"] }.each do |timesheet| %>
-        <%# raise %>
           <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
             <div class="ag-dash-timesheet-card">
               <div class="text-left ag-dash-inside-timesheet-card">

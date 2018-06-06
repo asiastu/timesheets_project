@@ -5,7 +5,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <% if @timesheets.first.nil? %>
+      <% if @timesheets.first.nil? || @timesheets.class == Class %>
         <div class ="ag-dash-timesheet-card">
           <h3 class="text-center">No timesheets yet!</h3>
         </div>

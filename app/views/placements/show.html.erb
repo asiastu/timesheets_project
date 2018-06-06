@@ -1,7 +1,7 @@
 
 <div class="show-placement-wrapper">
   <div class="button-prof-back">
-    <%= link_to :back do %>
+    <%= link_to apprentice_placements_path(@apprentice) do %>
       <i class="fas fa-arrow-left placement-back", title="back"></i>
       <% end %>
       <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>

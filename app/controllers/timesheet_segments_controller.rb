@@ -21,7 +21,7 @@ class TimesheetSegmentsController < ApplicationController
   end
 
   def update
-    @timesheetsegment.update(timesheetsegment_params)
+    @timesheetsegment.update!(timesheetsegment_params)
     respond_to do |format|
       format.html { redirect_to dashboard_path }
       format.js

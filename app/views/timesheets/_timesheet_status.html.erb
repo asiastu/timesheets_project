@@ -1,5 +1,5 @@
   <% if timesheet.pending_submission? %>
-    <p class="pending_status", id='timesheet_status'><strong><%= timesheet.status %></strong></p>
+    <p class="pending_status", id='data-timesheet-<%= timesheet.id %>'><strong><%= timesheet.status %></strong></p>
   <% else %>
-    <p id="timesheet_status"><%= timesheet.status %></p>
+    <p id="data-timesheet-<%= timesheet.id %>"><%= timesheet.status %></p>
   <% end %>

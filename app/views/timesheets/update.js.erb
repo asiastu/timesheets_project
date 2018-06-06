@@ -1,6 +1,13 @@
 function refreshForm(innerHTML) {
-  const status = document.getElementById('timesheet_status');
+  const status = document.getElementById('data-timesheet-<%= @timesheet.id%>');
   status.innerHTML = innerHTML;
 }
 
-refreshForm('<%= j render "timesheet_status", timesheet: @timesheet %>');
+if (window.location.pathname === '/dashboard') {
+  document.getElementById('data-timesheet-<%= @timesheet.id%>').remove()
+} else {
+  document.querySelectorAll(".accept-reject-form").forEach((form) => {
+    form.remove()
+  })
+  refreshForm('<%= j render "timesheet_status", timesheet: @timesheet %>');
+}

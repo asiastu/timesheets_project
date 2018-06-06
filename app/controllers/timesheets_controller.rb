@@ -33,8 +33,19 @@ class TimesheetsController < ApplicationController
   end
 
   def update
-    if @timesheet.update(timesheet_params)
-      redirect_to dashboard_path
+    if @timesheet.update({status: timesheet_params[:status]})
+      if params[:timesheet][:from_dashboard] == 'true'
+        respond_to do |format|
+          # format.html { dashboard_path }
+          format.js {render "update_all_segments"}  # <-- will render `app/views/reviews/create.js.erb`
+        end
+      else
+        raise
+        respond_to do |format|
+          format.html { redirect_to apprentice_placement_timesheet_path(@timesheet.placement.apprentice, @timesheet.placement, @timesheet) }
+          format.js  # <-- will render `app/views/reviews/create.js.erb`
+        end
+      end
     end
   end
 
@@ -58,6 +69,6 @@ class TimesheetsController < ApplicationController
   end
 
   def timesheet_params
-    params.require(:timesheet).permit(:status)
+    params.require(:timesheet).permit(:status, :from_dashboard)
   end
 end

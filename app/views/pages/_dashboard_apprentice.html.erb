@@ -13,9 +13,10 @@
       <% end %>
       <%= "#{current_user.first_name}!" %>
     </h2>
-
+  <% if @timesheets.length == 0 %>
+    <h3>Nothing to see</h3>
+  <% else %>
   <h3>You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
-    <%# @timesheets.each do |timesheet| %>
       <div class="row">
         <div class="col-xs-12">
           <div class ="dashboard-card">
@@ -27,24 +28,25 @@
                 <div class="dashboard-timesheetsgement", id="timesheetsegment<%= timesheetsegment.id %>">
                   <%= timesheetsegment.date.strftime('%a, %d %B') %>
                   <hr>
-                  <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet, timesheetsegment] do |f| %>
+                  <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet, timesheetsegment], remote: true do |f| %>
                     <%= f.input :type_of_work, collection: @type_of_work, include_blank: false, include_hidden: false %>
                     <%= f.input :hours_worked %>
-                    <%= f.button :submit, 'Save', class:"testben" %>
+                    <%= f.button :submit, 'Save', class:"save-segment-btn" %>
                   <% end %>
                 </div>
               <% end %>
             </div>
             <div class="submit-button">
-              <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet] do |f| %>
+              <%= simple_form_for([@apprentice, @timesheet.placement, @timesheet], remote: true) do |f| %>
                 <%= f.hidden_field :status, value: 'Submitted' %>
-                <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button", data: { confirm: "Are you sure? Your submission will be final!" }  %>
+                <%= f.hidden_field :from_dashboard, value: 'true' %>
+                <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button"  %>
               <% end %>
             </div>
           </div>
         </div>
       </div>
-    <%# end %>
+  <% end %>
 
     <h3 >Current Placement</h3>
       <div class="row">

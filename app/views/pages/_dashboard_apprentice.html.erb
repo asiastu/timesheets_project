@@ -1,8 +1,5 @@
 <div class="wrapper">
-  <div class="dashboard-container">
-    <%= link_to :back do %>
-      <i class="fas fa-arrow-left profile-back", title="back"></i>
-    <% end %>
+  <div class="dashboard-container container">
     <h2>
       <% if Time.now < 12 %>
         Good morning,
@@ -13,41 +10,46 @@
       <% end %>
       <%= "#{current_user.first_name}!" %>
     </h2>
+    <br>
   <% if @timesheets.length == 0 %>
-    <h3>Nothing to see</h3>
+    <div class="dashboard-card">
+      <h3>All your timesheets have been submitted! <i class="far fa-smile"></i></h3>
+    </div>
   <% else %>
-  <h3>You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class ="dashboard-card">
-            <div class="timesheet-title">
-              <h3>Timesheet for your placement with <strong><%= @timesheet.placement.host_validator.company_name %></strong> in <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
-            </div>
-            <div class="timesheet_segment_container">
-              <% @timesheet.timesheet_segments.sort.each do |timesheetsegment| %>
-                <div class="dashboard-timesheetsgement", id="timesheetsegment<%= timesheetsegment.id %>">
-                  <%= timesheetsegment.date.strftime('%a, %d %B') %>
-                  <hr>
-                  <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet, timesheetsegment], remote: true do |f| %>
-                    <%= f.input :type_of_work, collection: @type_of_work, include_blank: false, include_hidden: false %>
-                    <%= f.input :hours_worked %>
-                    <%= f.button :submit, 'Save', class:"save-segment-btn" %>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-            <div class="submit-button">
-              <%= simple_form_for([@apprentice, @timesheet.placement, @timesheet], remote: true) do |f| %>
-                <%= f.hidden_field :status, value: 'Submitted' %>
-                <%= f.hidden_field :from_dashboard, value: 'true' %>
-                <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button"  %>
-              <% end %>
-            </div>
+    <h3>You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class ="dashboard-card">
+          <div class="timesheet-title">
+            <h3>Timesheet for your placement with <strong><%= @timesheet.placement.host_validator.company_name %></strong> in <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
+          </div>
+          <div class="timesheet_segment_container">
+            <% @timesheet.timesheet_segments.sort.each do |timesheetsegment| %>
+              <div class="dashboard-timesheetsgement", id="timesheetsegment<%= timesheetsegment.id %>">
+                <%= timesheetsegment.date.strftime('%a, %d %B') %>
+                <hr>
+                <%= simple_form_for [@apprentice, @timesheet.placement, @timesheet, timesheetsegment], remote: true do |f| %>
+                  <%= f.input :type_of_work, collection: @type_of_work, include_blank: false, include_hidden: false %>
+                  <%= f.input :hours_worked %>
+                  <%= f.button :submit, 'Save', class:"save-segment-btn" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="submit-button">
+            <%= simple_form_for([@apprentice, @timesheet.placement, @timesheet], remote: true) do |f| %>
+              <%= f.hidden_field :status, value: 'Submitted' %>
+              <%= f.hidden_field :from_dashboard, value: 'true' %>
+              <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button"  %>
+            <% end %>
           </div>
         </div>
       </div>
+    </div>
   <% end %>
-
+  <br>
+  <div class="row">
+    <div class="ag-dash-placements col-sm-12 col-md-6">
     <h3 >Current Placement</h3>
       <div class="row">
       <% @apprentice.placements.each do |placement| %>
@@ -67,5 +69,50 @@
       <% end %>
     <% end %>
     </div>
-    </div>
+  </div>
+    <div class="ag-dash-placements col-sm-12 col-md-6">
+        <div>
+          <h3>Placement</h3>
+        </div>
+        <%# i = 0 %>
+        <% @placements.each do |placement| %>
+        <%# i += 1 %>
+          <% if placement.pl_start_date >= Date.today && placement.pl_start_date <= Date.today + 14 %>
+          <%# i += 1 %>
+            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+            <div class="ag-dash-timesheet-card">
+              <div>
+                <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+              </div>
+              <div>
+                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+              </div>
+              <div class="ag-dash-start-tag text-center
+               ">
+                Starting soon
+              </div>
+            </div>
+            <% end %>
+          <% elsif placement.pl_end_date >= Date.today && placement.pl_end_date <= Date.today + 14 %>
+            <%# i += 1 %>
+            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+              <div class="ag-dash-timesheet-card">
+                <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                <div class="ag-dash-end-tag text-center
+                 ">
+                  Ending soon
+                </div>
+              </div>
+          <%# elsif i == 0 %>
+    <!--         <div class="ag-dash-timesheet-card">
+              <p>No placement needs your attention.</p>
+            </div> -->
+            <%# i += 1 %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+  </div>
 </div>

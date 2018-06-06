@@ -11,8 +11,8 @@ class PagesController < ApplicationController
     @timesheets = []
 
     if current_user.apprentice?
-      placements = current_user.apprentice.placements
-      placements.each do |placement|
+      @placements = current_user.apprentice.placements
+      @placements.each do |placement|
         timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected'))
         timesheets.each do |timesheet|
           unless timesheet.nil?

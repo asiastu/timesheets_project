@@ -91,18 +91,17 @@ class PagesController < ApplicationController
       elsif current_user.host_validator?
         @placements = policy_scope(Placement).where(host_validator_id: current_user.id)
       end
+
       @placements = [""] if @placements.nil?
       @show_timesheets = []
       @placements.each do |placement|
         timesheets = placement.timesheets
-          timesheets.each do |timesheet|
-            unless timesheet.nil?
-              @show_timesheets << timesheet
+        timesheets.each do |timesheet|
+          unless timesheet.nil?
+            @show_timesheets << timesheet
           end
         end
       end
     end
-
   end
-
 end

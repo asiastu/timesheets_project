@@ -11,7 +11,7 @@ class PlacementsController < ApplicationController
     elsif current_user.host_validator?
       @placements = @placements.where(host_validator_id: current_user.id)
     elsif current_user.host_invoice_contact?
-      @placements = @placemnts.where(host_invoice_contact_id: current_user.id)
+      @placements = @placements.where(host_invoice_contact_id: current_user.id)
     else
       redirect_to :back
       alert("You are not allowed to view this page.")

@@ -38,7 +38,9 @@
           <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.pl_end_date.strftime('%A, %b %d') %></p>
         </div>
       <div class="ju">
-        <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
+        <% if @placement.host_validator == current_user || @placement.host_invoice_contact == current_user || @placement.apprentice.user == current_user || @placement.apprentice.agency == current_user %>
+          <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
+        <% end %>
       </div>
       </div>
 

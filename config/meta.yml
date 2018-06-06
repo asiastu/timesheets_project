@@ -1,5 +1,5 @@
 meta_product_name: "L Y N K"
 meta_title: "L Y N K - timesheets that don't cost you time"
 meta_description: "The first user-friendly timesheet system"
-meta_image: "og_image.jpeg"                       # should exist in `app/assets/images/`
+meta_image: "og_image.jpg"                       # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards

@@ -1,18 +1,21 @@
-<div class="form-container container">
-  <div class="form-placement">
+  <div class="form-container container">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
 
-   <%= link_to :back do %>
-    <i class="fas fa-arrow-left profile-back", title="back"></i>
-  <% end %>
-      <% if current_user.apprentice? %>
+        <% if current_user.apprentice? %>
 
-        <h1 class="text-center">Edit Profile</h1>
-        <%= render 'app_view_form' %>
+          <h1>Edit Profile</h1>
+          <%= render 'app_view_form' %>
 
-      <% elsif current_user.agency? %>
+        <% elsif current_user.agency? %>
+        
+          <h1>Edit Apprentice</h1>
+          <%= render 'form' %>
 
-        <h1 class="text-center">Edit Apprentice</h1>
-        <%= render 'form' %>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+     <%= link_to :back do %>
+      <i class="fas fa-arrow-left profile-back", title="back"></i>
+    <% end %>
   </div>
-</div>

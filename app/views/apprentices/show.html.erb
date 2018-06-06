@@ -1,4 +1,5 @@
-<div class="container">
+<div class="main-wrapper">
+  <div class="container">
 
   <% if current_user.agency? || current_user.host_validator? || current_user.host_invoice_contact? %>
     <% link = apprentices_path %>
@@ -31,4 +32,3 @@
     <p class="appr-index-placements-link"><i class="far fa-building"></i> <%= link_to 'Placements', apprentice_placements_path(@apprentice) %></p>
   </div>
 </div>
-

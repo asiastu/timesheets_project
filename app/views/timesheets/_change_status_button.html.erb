@@ -1,12 +1,12 @@
 <% if timesheet.submitted? %>
-  <div data-toggle="modal" data-target="#accept">
+  <div data-toggle="modal" data-target="#accept" class="accept-reject-form">
     <%= simple_form_for [timesheet.placement.apprentice, timesheet.placement, timesheet], remote: true do |f| %>
     <%= f.hidden_field :status, value: 'Accepted' %>
     <%= f.submit 'Approve', class: "btn btn-primary", id: "accept-button"%>
     <% end %>
   </div>
 
-  <div data-toggle="modal" data-target="#reject">
+  <div data-toggle="modal" data-target="#reject" class="accept-reject-form">
     <%= simple_form_for [timesheet.placement.apprentice, timesheet.placement, timesheet], remote: true do |f| %>
     <%= f.hidden_field :status, value: 'Rejected' %>
     <%= f.submit 'Reject', class: "btn btn-primary", id: "reject-button" %>

@@ -1,9 +1,10 @@
 .dashboard-container {
   text-align: center;
+  margin-top: 8vh;
+  margin-bottom: 8vh;
 }
 
 .dashboard-card {
-  margin: 20px;
   background: white;
   padding: 20px;
   box-shadow:1px 1px 2px rgba(0,0,0,0.1);
@@ -31,4 +32,8 @@
 .tagline {
   opacity: 0.8;
   letter-spacing: 2px;
+}
+
+.save-segment-btn {
+  display: none;
 }

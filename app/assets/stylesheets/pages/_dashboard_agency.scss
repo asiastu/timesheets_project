@@ -1,5 +1,6 @@
 .ag-dash-wrapper {
-
+  width: 80vw;
+  margin-left: 10vw;
 }
 .ag-dash-timesheet-card {
   display: flex;
@@ -10,11 +11,13 @@
   border-radius: 3px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   margin: 8px 0px;
- ;
+  opacity: 0.9;
+  align-items: center;
   &:hover {
   -webkit-transition: width 2s, height 4s; /* Safari */
     transition: width 2s, height 4s;
     box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+    opacity: 1;
   }
 }
 
@@ -36,4 +39,26 @@ a:hover {
 }
 .stat-green {
   background-color: $green;
+}
+
+.stat-yellow {
+  background-color: $mid-green;
+}
+
+.ag-dash-inside-timesheet-card {
+  width: 33%;
+}
+
+.ag-dash-end-tag {
+  color: $red;
+  border: 1px solid $red;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.ag-dash-start-tag {
+  color: $green;
+  border: 1px solid $green;
+  border-radius: 20px;
+  padding: 5px 10px;
 }

@@ -34,9 +34,7 @@
      <% if params[:controller] == "pages" && params[:action] == "home" %>
       <%= yield %>
     <% else %>
-      <div class="main-wrapper container">
-        <%= yield %>
-      </div>
+      <%= yield %>
     <% end %>
       <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>

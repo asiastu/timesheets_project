@@ -17,7 +17,7 @@
         <%= link_to 'View Apprentices', apprentices_path, class: "navbar-wagon-item navbar-wagon-link" %>
         <%= link_to 'Add a Placement', new_placement_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% elsif current_user.apprentice? %>
-        <%= link_to "Historical Placements", apprentice_placements_path(@apprentice), class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "Historical Placements", apprentice_placements_path(current_user.apprentice.id), class: "navbar-wagon-item navbar-wagon-link" %>
         <%= link_to "Historical Timesheets", timesheets_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% elsif current_user.host_validator?%>
         <%= link_to "View Apprentices", apprentices_path, class: "navbar-wagon-item navbar-wagon-link" %>
@@ -33,7 +33,7 @@
       <% unless current_user.first_name.nil? %>
         <div class="dropdown">
           <div class="circular_name initial dropdown-toggle" data-toggle="dropdown">
-            <%= current_user.first_name[0] %>
+            <strong><%= current_user.first_name[0] %></strong>
           </div>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li> <%= link_to destroy_user_session_path, method: :delete do %>
@@ -66,7 +66,7 @@
             <li><%= link_to 'View Apprentices', apprentices_path, class: "navbar-wagon-item navbar-wagon-link" %>
             <li><%= link_to 'Add a Placement', new_placement_path, class: "navbar-wagon-item navbar-wagon-link" %>
           <% elsif current_user.apprentice? %>
-            <li><%= link_to "Historical Placements", apprentice_placements_path(@apprentice), class: "navbar-wagon-item navbar-wagon-link" %>
+            <li><%= link_to "Historical Placements", apprentice_placements_path(current_user.apprentice.id), class: "navbar-wagon-item navbar-wagon-link" %>
             <li><%= link_to "Historical Timesheets", timesheets_path, class: "navbar-wagon-item navbar-wagon-link" %>
           <% elsif current_user.host_validator?%>
             <li><%= link_to "View Apprentices", apprentices_path, class: "navbar-wagon-item navbar-wagon-link" %>

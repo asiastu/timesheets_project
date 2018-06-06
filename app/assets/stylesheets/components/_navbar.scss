@@ -18,7 +18,8 @@
 .login-link {
   color: white;
   &:hover {
-  opacity: 0.5;
+  opacity: 0.8;
+  color: white;
   }
 }
 /* Main navbar */
@@ -146,6 +147,8 @@ background-color: $blue;
 
 .logo:hover{
     text-decoration: none;
+    color: white;
+    opacity: 0.8;
   }
 
 .nav-link {

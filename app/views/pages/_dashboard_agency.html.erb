@@ -1,9 +1,19 @@
-<div class="ag-dash-wrapper">
-  <h3><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h3>
-  <div class="row">
-    <div class="ag-dash-timesheets col-sm-12 col-lg-6">
-      <div class="">
-        <h3>Timesheets requiring your attention:</h3>
+<div class="main-wrapper container-fluid">
+  <div class="ag-dash-wrapper">
+    <h2>
+      <% if Time.now < 12 %>
+        Good morning,
+      <% elsif Time.now >= 18 && Time.now <= 24 %>
+        Good evening,
+      <% else %>
+        Good afternoon,
+      <% end %>
+      <%= "#{current_user.first_name}!" %>
+      </h2>
+    <div class="row">
+      <div class="ag-dash-timesheets col-sm-12 col-md-6">
+        <div>
+          <h3>Timesheets</h3>
       </div>
       <% @timesheets.each do |timesheet| %>
         <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
@@ -18,26 +28,72 @@
             <%= 'stat-green' if timesheet.status == 'Submitted' %>
            ">
             <%= timesheet.status %>
-          </div>
         </div>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="ag-dash-placements col-sm-12 col-lg-6">
-      <div class="">
-        <h3>Apprentices starting or ending a placement soon:</h3>
-      </div>
-      <%  @agency_placements.each do |placement| %>
-        <% if placement.pl_start_date <= Date.today + 14 || placement.pl_end_date >= Date.today + 14 %>
-          <%= link_to apprentice_placements_path(placement.apprentice) do %>
-          <div class="ag-dash-timesheet-card">
-            <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
-            <p><%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %> <i class="far fa-calendar-check"></i></p>
-          </div>
+        </div>
+        <% @timesheets.sort_by { |x| x["week_start"] }.each do |timesheet| %>
+          <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
+            <div class="ag-dash-timesheet-card">
+              <div class="text-left ag-dash-inside-timesheet-card">
+                <p><i class="far fa-calendar-check"></i> <%= timesheet.week_start.strftime('%A, %d %B') %></p>
+              </div>
+              <div class="ag-dash-inside-timesheet-card">
+                <p><i class="far fa-user-circle"></i> <%= timesheet.placement.apprentice.formatted_name %></p>
+              </div>
+              <div class="ag-dash-inside-timesheet-card">
+                <div class="ag-dash-timesheet-status text-center
+                  <%= 'stat-orange' if timesheet.status == 'Pending Submission' %>
+                  <%= 'stat-red' if timesheet.status == 'Rejected' %>
+                  <%= 'stat-green' if timesheet.status == 'Paid' %>
+                  <%= 'stat-green' if timesheet.status == 'Accepted' %>
+                  <%= 'stat-yellow' if timesheet.status == 'Submitted' %>
+                 ">
+                  <%= timesheet.status %>
+                </div>
+              </div>
+
+            </div>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div class="ag-dash-placements col-sm-12 col-md-6">
+        <div>
+          <h3>Placement</h3>
+        </div>
+        <%# i = 0 %>
+        <% @agency_placements.each do |placement| %>
+        <%# i += 1 %>
+          <% if placement.pl_start_date >= Date.today && placement.pl_start_date <= Date.today + 14 %>
+          <%# i += 1 %>
+            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+            <div class="ag-dash-timesheet-card">
+              <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+              <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+              <div class="ag-dash-start-tag text-center
+               ">
+                Starting soon
+              </div>
+            </div>
+            <% end %>
+          <% elsif placement.pl_end_date >= Date.today && placement.pl_end_date <= Date.today + 14 %>
+            <%# i += 1 %>
+            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+              <div class="ag-dash-timesheet-card">
+                <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                <div class="ag-dash-end-tag text-center
+                 ">
+                  Ending soon
+                </div>
+              </div>
+          <%# elsif i == 0 %>
+    <!--         <div class="ag-dash-timesheet-card">
+              <p>No placement needs your attention.</p>
+            </div> -->
+            <%# i += 1 %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-

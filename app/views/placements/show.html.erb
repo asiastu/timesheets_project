@@ -1,3 +1,4 @@
+<div class="main-wrapper container">
 <div class="show-placement-wrapper col-xs-12 col-md-6 col-md-offset-3">
   <div class="row">
     <div class="col-xs-12">
@@ -23,21 +24,27 @@
       <% end %>
         </h2>
       </div>
-      <div>
-        <h2> <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.first_name %></h2>
+      <div class="placement-header">
+        <div>
+          <h2> <i class="far fa-building"></i> <%= @placement.host_validator.company_name %></h2>
+        </div>
+        <div>
+          <h2> <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.first_name %></h2>
+        </div>
       </div>
-    </div>
-    <div class="placement-show-content">
-      <p><i class="fas fa-map-marker"></i>&emsp;<%= @placement.address %></p>
-      <p><i class="fas fa-pound-sign"></i>&emsp;<%= "#{@placement.hourly_rate}/hour" %></p>
-      <div class="calendar">
-        <p>&emsp;<i class="fas fa-calendar-alt"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.interview_date.strftime('%A, %b %d') %></p>
-        <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.pl_start_date.strftime('%A, %b %d') %></p>
-        <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.pl_end_date.strftime('%A, %b %d') %></p>
+
+      <div class="placement-show-content">
+        <p><i class="fas fa-map-marker"></i>&emsp;<%= @placement.address %></p>
+        <p><i class="fas fa-dollar-sign"></i>&emsp;<%= "#{@placement.hourly_rate}/hour" %></p>
+        <div class="calendar">
+          <p>&emsp;<i class="far fa-comments"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.interview_date.strftime('%A, %b %d') %></p>
+          <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.pl_start_date.strftime('%A, %b %d') %></p>
+          <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;&emsp;<%= @placement.pl_end_date.strftime('%A, %b %d') %></p>
+        </div>
       </div>
-    </div>
-    <div class="ju">
-      <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
+      <div class="ju">
+        <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
+      </div>
     </div>
     </div>
   </div>

@@ -6,26 +6,33 @@
   }
 }
 @media screen and (max-width: 1000px) {
+  i {
+    padding-right: 20px ;
+  }
   .app-profile-container {
-    min-width: 200px;
-    max-width: 40%;
     padding: 10px 25px;
     background: white;
     border-radius: 3px;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   }
   .index-row {
-  margin: 1em;
+  margin: 5px;
+}
+.blocks-view {
+  display: inline-block;
+  width: 100%;
+
 }
 }
 @media screen and (min-width: 1000px) {
 .index-row {
   display: inline-block;
-  margin: 1em;
+  margin: 5px;
 }
 .app-profile-container {
   display: table;
   padding: 10px;
+  background-color: white;
   border-radius: 3px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }

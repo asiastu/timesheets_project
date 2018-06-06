@@ -6,7 +6,7 @@
     <% link = :back %>
     <% end %>
     <%= link_to link do %>
-      <i class="fas fa-arrow-left profile-back", title="back"></i>
+      <i class="fas fa-arrow-left profile-back" title="back"></i>
     <% end %>
   <% def user_can_see?
     current_user.id == @apprentice.agency_id ||

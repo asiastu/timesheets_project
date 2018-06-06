@@ -19,8 +19,8 @@
     end
   end %>
 
-  <div class="app-profile-container">
     <h1>Apprentice Profile</h1>
+  <div class="app-profile-container">
     <p><i class="far fa-user-circle"></i> <%= @apprentice.user.first_name %>
       <%= @apprentice.user.last_name if user_can_see? %>
       </p>

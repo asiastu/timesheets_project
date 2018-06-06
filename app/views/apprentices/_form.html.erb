@@ -1,22 +1,59 @@
-<%= simple_form_for @apprentice do |f| %>
-  <%= f.input :trade, :collection => %w[carpenter boilermaker carpet/layer electrician ironworker insulation millwright plumber plasterer glazier] %>
-  <%= f.input :skills, class: "form-control" %>
-  <%= f.input :borough, class: "form-control" %>
-  <%= f.input :address, label: "Postcode", class: "form-control" %>
-  <%= f.input :personal_statement, class: "form-control" %>
-  <%= f.input :hourly_rate_cents, class: "form-control" %>
-  <%= f.input :app_start_date, class: "form-control" %>
-  <%= f.input :app_end_date, class: "form-control" %>
-  <%= f.simple_fields_for @apprentice.user do |u| %>
-    <%= u.input :first_name, class: "form-control" %>
-    <%= u.input :last_name, class: "form-control" %>
-    <%= u.input :email, class: "form-control" %>
-    <%= u.input :password, class: "form-control" %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2 ">
+    <%= simple_form_for @apprentice do |f| %>
+    <%= f.simple_fields_for @apprentice.user do |u| %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= u.input :first_name, class: "form-control" %>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= u.input :last_name, class: "form-control" %>
+      </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= u.input :email, class: "form-control" %>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= u.input :password, class: "form-control" %>
+      </div>
+    </div>
+    <% end %>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :trade, :collection => %w[carpenter boilermaker carpet/layer electrician ironworker insulation millwright plumber plasterer glazier] %>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :skills, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :borough, class: "form-control" %>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :address, label: "Postcode", class: "form-control" %>
+      </div>
+    </div>
+<div class="row">
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :app_start_date, placeholder: 'YYYY-MM-DD', as: :string, label: 'Apprentice Start Date', input_html: {class: "datepicker"}%>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :app_end_date, placeholder: 'YYYY-MM-DD', as: :string, label: 'Apprentice End Date', input_html: {class: "datepicker"}%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :personal_statement, class: "form-control" %>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <%= f.input :hourly_rate_cents, class: "form-control" %>
+      </div>
+    </div>
+    <%= f.submit class: "btn btn-primary placement-btn center-block" %>
   <% end %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
-<%= link_to :back do %>
-        <i class="fas fa-arrow-left profile-back", title="back"></i>
-      <% end %>
+
+    </div>
   </div>
-</div>
+

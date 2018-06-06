@@ -1,0 +1,42 @@
+.appr-index-placements-link {
+  color: $primary-blue;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
+}
+// .index-row {
+//   display: inline-block;
+//   margin: 1em;
+// }
+// .app-profile-container {
+//   display: table;
+//   padding: 10px;
+//   border:  thin solid darkgray;
+// }
+// .app-profile-container p {
+//   display:        table-cell;
+//   vertical-align: middle;
+//   padding-left: 3px;
+//   width: 230px;
+// }
+
+.apprentice-edit {
+  padding-right: 5px;
+}
+
+.index-row {
+  display: inline-block;
+  margin: 1em;
+}
+.app-profile-container {
+  display: table;
+  padding: 10px;
+  border:  thin solid darkgray;
+}
+.app-profile-container p {
+  display:        table-cell;
+  vertical-align: middle;
+  padding-left: 3px;
+  width: 230px;
+}

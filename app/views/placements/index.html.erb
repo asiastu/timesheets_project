@@ -24,7 +24,9 @@
                   <h2> <i class="far fa-building"></i> <%= placement.host_validator.company_name %></h2>
                 </div>
                 <div>
-                  <h2> <i class="far fa-user-circle placement-user-margin"></i> <%= placement.apprentice.user.first_name %></h2>
+                  <%= link_to apprentice_path(@apprentice) do %>
+                  <h2 class="placement-appr"> <i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %></h2>
+                  <% end %>
                 </div>
               </div>
               <div class="placement-show-content">

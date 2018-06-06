@@ -5,26 +5,20 @@
     opacity: 1;
   }
 }
-// .index-row {
-//   display: inline-block;
-//   margin: 1em;
-// }
-// .app-profile-container {
-//   display: table;
-//   padding: 10px;
-//   border:  thin solid darkgray;
-// }
-// .app-profile-container p {
-//   display:        table-cell;
-//   vertical-align: middle;
-//   padding-left: 3px;
-//   width: 230px;
-// }
-
-.apprentice-edit {
-  padding-right: 5px;
+@media screen and (max-width: 1000px) {
+  .app-profile-container {
+    min-width: 200px;
+    max-width: 40%;
+    padding: 10px 25px;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+  .index-row {
+  margin: 1em;
 }
-
+}
+@media screen and (min-width: 1000px) {
 .index-row {
   display: inline-block;
   margin: 1em;
@@ -32,11 +26,21 @@
 .app-profile-container {
   display: table;
   padding: 10px;
-  border:  thin solid darkgray;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 .app-profile-container p {
   display:        table-cell;
   vertical-align: middle;
   padding-left: 3px;
   width: 230px;
+
 }
+.apprentice-edit {
+  padding-right: 8px;
+}
+
+}
+
+
+

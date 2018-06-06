@@ -54,7 +54,7 @@ class ApprenticesController < ApplicationController
   def update
 
     @apprentice.update(apprentice_params)
-    redirect_to apprentice_show(@apprentice)
+    redirect_to apprentice_path(@apprentice)
   end
 
 private

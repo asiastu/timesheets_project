@@ -23,3 +23,10 @@
 .p-header-margin-top {
   margin-top: 30px;
 }
+
+.placement-appr {
+  opacity: 1;
+  &:hover {
+    opacity: .6 ;
+  }
+}

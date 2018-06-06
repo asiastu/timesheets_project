@@ -29,10 +29,10 @@
       </div>
       <%  @agency_placements.each do |placement| %>
         <% if placement.pl_start_date <= Date.today + 14 || placement.pl_end_date >= Date.today + 14 %>
-          <%= link_to dashboard_path do %>
+          <%= link_to apprentice_placements_path(placement.apprentice) do %>
           <div class="ag-dash-timesheet-card">
             <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
-            <p><i class="fas fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+            <p><%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %> <i class="far fa-calendar-check"></i></p>
           </div>
           <% end %>
         <% end %>

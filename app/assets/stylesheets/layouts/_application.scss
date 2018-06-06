@@ -23,6 +23,11 @@ hr.style-two {
     background-image: linear-gradient(to right, rgba(46, 64, 87, 0), rgba(46, 64, 87, 0.75), rgba(46, 64, 87, 0));
 }
 
+
 a {
   text-decoration: none;
+}
+
+body {
+  color: $blue;
 }

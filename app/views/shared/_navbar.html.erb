@@ -30,7 +30,7 @@
     </div>
 
     <!-- Links when logged in -->
-      <% unless current_user.first_name == nil%>
+      <% unless current_user.first_name.nil? %>
         <div class="dropdown">
           <div class="circular_name initial dropdown-toggle" data-toggle="dropdown">
             <%= current_user.first_name[0] %>

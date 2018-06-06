@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
+    @apprentice = Apprentice.where(user: current_user).first
   end
 
   def dashboard
@@ -69,13 +70,13 @@ class PagesController < ApplicationController
   def timesheets
     if current_user.agency?
       @apprentices = policy_scope(Apprentice).where(agency_id: current_user.id)
-      @apprentices = [""] if @apprentices == nil
+      @apprentices = [""] if @apprentices.nil?
       @placements = []
       @apprentices.each do |apprentice|
         @placements << apprentice.placements
       end
       @placements.uniq!
-      @placements = [""] if @placements == nil
+      @placements = [""] if @placements.nil?
       @show_timesheets = []
       @placements.each do |placement|
         @show_timesheets << placement.first.timesheets
@@ -83,6 +84,7 @@ class PagesController < ApplicationController
       @show_timesheets.flatten!
     else
       if current_user.apprentice?
+        @apprentice = Apprentice.where(user_id: current_user.id).first
         @placements = Placement.where(apprentice_id: current_user.apprentice.id)
 
       elsif current_user.host_invoice_contact?
@@ -91,7 +93,7 @@ class PagesController < ApplicationController
       elsif current_user.host_validator?
         @placements = policy_scope(Placement).where(host_validator_id: current_user.id)
       end
-      @placements = [""] if @placements == nil
+      @placements = [""] if @placements.nil?
       @show_timesheets = []
       @placements.each do |placement|
         timesheets = placement.timesheets

@@ -24,13 +24,14 @@ class PagesController < ApplicationController
 
     elsif current_user.agency?
       agency_apprentices = current_user.apprentices
-      agency_placements = []
+      @agency_placements = []
       agency_apprentices.each do |apprentice|
         unless apprentice.placements.first.nil?
-          agency_placements << apprentice.placements.first
+          @agency_placements << apprentice.placements.first
         end
+
       end
-      agency_placements.each do |placement|
+      @agency_placements.each do |placement|
         selected_timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected').where('week_start <= ?', Date.today))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?

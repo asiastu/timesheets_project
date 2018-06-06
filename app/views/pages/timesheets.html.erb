@@ -1,25 +1,60 @@
-<div class="dashboard-container">
-
-  <h1>Timesheets</h1>
-
-  <%= link_to :back do %>
+<div class="container">
+  <br>
+  <p><%= link_to :back do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
+    <h2 class="text-center">Timesheets</h2>
+    <br>
+  </p>
 
-<div class="row">
-  <div class="col-xs-12">
-   <div class ="dashboard-card">
-    <% if @show_timesheets.first.present? %>
-      <% @show_timesheets.each do |timesheet| %>
-        <%= link_to "FROM: #{timesheet.week_start.strftime('%A, %d %B %Y')} - TO: #{timesheet.week_end.strftime('%A, %d %B %Y')}", apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %>
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @show_timesheets.first.nil? %>
+        <div class ="ag-dash-timesheet-card">
+          <h3 class="text-center">No timesheets yet!</h3>
+        </div>
+      <% else %>
+        <h2 class="text-center"><strong><%= @show_timesheets.sort_by! { |x| x["week_start"]}.first.week_start.strftime("%Y") %></strong></h2>
+        <% @show_timesheets.each do |timesheet| %>
+          <% month = timesheet.week_start.month %>
+          <% timesheet_month = @show_timesheets[@show_timesheets.index(timesheet) - 1].week_start %>
+          <% year = timesheet.week_start.year %>
+          <% timesheet_year = @show_timesheets[@show_timesheets.index(timesheet) - 1].week_start %>
+            <%# raise %>
+          <% unless year == timesheet_year.year %>
+            <h2 class="text-center"><strong><%= timesheet.week_start.strftime("%Y") %></strong></h2>
+          <% end %>
+          <% if month != timesheet_month.month %>
+            <h3><%= timesheet.week_start.strftime("%B") %></h3>
+          <% end %>
+          <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
+            <div class="ag-dash-timesheet-card">
+              <div class="text-left inside-timesheet-card">
+                <p><i class="far fa-calendar-check"></i> <%= timesheet.week_start.strftime('%A, %d') %></p>
+              </div>
+              <div class="inside-timesheet-card">
+                <p><i class="far fa-user-circle"></i> <%= timesheet.placement.apprentice.formatted_name %></p>
+              </div>
+              <div class="inside-timesheet-card">
+                <p><i class="far fa-building"></i> <%= timesheet.placement.host_validator.company_name %></p>
+              </div>
+              <div class="inside-timesheet-card">
+                <div class="timesheets-status
+                  <%= 'stat-orange' if timesheet.status == 'Pending Submission' %>
+                  <%= 'stat-red' if timesheet.status == 'Rejected' %>
+                  <%= 'stat-green' if timesheet.status == 'Paid' %>
+                  <%= 'stat-green' if timesheet.status == 'Accepted' %>
+                  <%= 'stat-yellow' if timesheet.status == 'Submitted' %>
+                 ">
+                  <%= timesheet.status %>
+                </div>
+              </div>
+
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
-    <% else %>
-        <h3>No timesheets yet!</h3>
-    <% end %>
     </div>
   </div>
-
-  </div>
-
 </div>
 

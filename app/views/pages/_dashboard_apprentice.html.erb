@@ -3,7 +3,16 @@
     <%= link_to :back do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
-    <h2><%= Time.now >= 12 ? 'Good afternoon, ' : 'Good morning, '%><%= "#{current_user.first_name}!" %></h2>
+    <h2>
+      <% if Time.now < 12 %>
+        Good morning,
+      <% elsif Time.now >= 18 && Time.now <= 24 %>
+        Good evening,
+      <% else %>
+        Good afternoon,
+      <% end %>
+      <%= "#{current_user.first_name}!" %>
+    </h2>
 
   <h3>You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
     <%# @timesheets.each do |timesheet| %>

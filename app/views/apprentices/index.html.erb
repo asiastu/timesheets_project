@@ -1,4 +1,4 @@
-
+<div class="main-wrapper container">
     <% def user_can_see?(apprentice)
     current_user.id == apprentice.agency_id ||
     current_user == User.find(apprentice.user_id) ||
@@ -74,4 +74,4 @@
 
   <% end %>
 <%# raise %>
-
+</div>

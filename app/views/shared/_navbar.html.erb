@@ -33,7 +33,7 @@
       <% unless current_user.first_name.nil? %>
         <div class="dropdown">
           <div class="circular_name initial dropdown-toggle" data-toggle="dropdown">
-            <%= current_user.first_name[0] %>
+            <strong><%= current_user.first_name[0] %></strong>
           </div>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li> <%= link_to destroy_user_session_path, method: :delete do %>

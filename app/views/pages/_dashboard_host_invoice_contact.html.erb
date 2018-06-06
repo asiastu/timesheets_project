@@ -1,7 +1,16 @@
 <div class="wrapper">
   <div class="dashboard-container">
     <h1>DASHBOARD</h1>
-    <h2><%= Time.now >= 12 ? 'Good afternoon,' : 'Good morning,' %><%= "#{current_user.first_name}!" %></h2>
+    <h2>
+      <% if Time.now < 12 %>
+        Good morning,
+      <% elsif Time.now >= 18 && Time.now <= 24 %>
+        Good evening,
+      <% else %>
+        Good afternoon,
+      <% end %>
+      <%= "#{current_user.first_name}!" %>
+    </h2>
     <%= link_to :back do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>

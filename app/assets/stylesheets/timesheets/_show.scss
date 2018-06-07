@@ -1,24 +1,18 @@
 .ts-segment-card {
-  display: inline-block;
   width: auto;
   height: 100px;
   margin-left: 25px;
 }
 .ts-segment-block {
   background-color: white;
-    position: relative;
-  padding-bottom: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px 30px;
+
   border-radius: 3px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  margin-top: 20px;
 
 }
 #accept-button {
-  position: absolute;
-  bottom: 15px;
-  right: 110px;
-  margin: 5px;
   background-color: transparent;
   color: $blue;
   border: 2px solid $blue;
@@ -31,24 +25,63 @@
   }
 }
  #reject-button {
-  position: absolute;
-  bottom: 15px;
-  right: 30px;
   background-color: transparent;
-  margin: 5px;
   color: $warning-red;
   border: 2px solid $warning-red;
   border-radius: 4px;
   padding: 4px 8px;
   opacity: .8;
+  margin-left: 10px;
   &:hover {
     text-decoration: none;
     opacity: 1;
   }
  }
  .ts-stat {
-  position: absolute;
-  top: 20px;
-  right: 30px;
   width: auto;
  }
+ .ts-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  padding-top: 10px;
+ }
+ .ts-head-dates {
+  padding-top: 5px;
+  padding-left: 15px;
+ }
+
+ .inside-timesheet-show {
+  width: 33%;
+ }
+
+ .show-timesheet-card {
+  display: flex;
+  justify-content: space-between;
+  min-width: 320px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  margin: 8px 0px;
+  opacity: 0.9;
+  align-items: center;
+}
+
+.footer-contents {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+
+}
+.footer-btns {
+  align-items: flex-end !important;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.ts-show-header {
+  padding-left: 10px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+}

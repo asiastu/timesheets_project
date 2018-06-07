@@ -1,32 +1,64 @@
 <div class="main-wrapper container">
   <div class="row">
-    <div class="col-xs-12">
-      <h2>
-        <%= link_to timesheets_path do %>
-          <i class="fas fa-arrow-left in-title-back" title="back"></i>
-        <% end %><%=
-        Placement.find(id=@timesheet.placement_id).apprentice.user.first_name.possessive %>
-        Timesheet for the week of <%= @timesheet.week_start.strftime('%a, %d') %>-<%=  (@timesheet.week_start + 6).strftime('%a, %d %B %Y')  %>
-      </h2>
-        <div id="timesheet">
-        </div>
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
         <div class="ts-segment-block">
-          <% @timesheetsegments.sort_by { |segment| segment["date"] }.each do |timesheetsegment| %>
-            <div class="ts-segment-card">
-              <h3><%= timesheetsegment.date.strftime('%A') %></h3>
-              <p><%= timesheetsegment.type_of_work %></p>
-              <p><%= timesheetsegment.hours_worked %></p>
-            </div>
+        <h2 class="ts-show-header">
+          <%= link_to timesheets_path do %>
+            <i class="fas fa-arrow-left in-title-back" title="back"></i>
           <% end %>
-          <% if current_user.host_validator? && @placement.host_validator_id == current_user.id %>
-          <div class="acc-rej-btns">
-            <div class="another">
-              <p> <%= render 'timesheet_status', timesheet: @timesheet %></p>
-              <%= render 'change_status_button', timesheet: @timesheet %>
+          <%= Placement.find(id=@timesheet.placement_id).apprentice.user.first_name.possessive %>
+          Timesheet
+        </h2>
+          <div class="ts-head">
+            <div class="ts-head-dates">
+              <p><i class="far fa-calendar-check"></i>&emsp; <%= @timesheet.week_start.strftime('%A, %b %d') %></p>
+              <p><i class="far fa-calendar-times"> </i>&emsp; <%= (@timesheet.week_start + 6).strftime('%A, %b %d') %></p>
+            </div>
+              <div class="ts-head-stat">
+                <p> <%= render 'timesheet_status', timesheet: @timesheet %></p>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <% @timesheetsegments.sort_by { |segment| segment["date"] }.each do |timesheetsegment| %>
+                <div class="show-timesheet-card">
+                  <div class="text-left inside-timesheet-show">
+                    <p><i class="far fa-calendar-alt"></i> <%= timesheetsegment.date.strftime('%A, %d') %></p>
+                  </div>
+                  <div class="text-right inside-timesheet-show">
+                    <p><%= timesheetsegment.type_of_work %></p>
+                  </div>
+                  <div class="text-right inside-timesheet-show">
+                    <p><%= timesheetsegment.hours_worked %></p>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="footer-contents">
+                <div class="footer-info">
+                  <div class="">
+                    <% hours_worked = 0 %>
+                    <% @timesheet.timesheet_segments.each do |timesheet_segment| %>
+                      <% hours_worked += timesheet_segment.hours_worked %>
+                    <% end %>
+                    <h3><i class="fas fa-stopwatch"></i> Total hours worked: <%= hours_worked %></h3>
+                  </div>
+                  <div class="">
+                    <h3><i class="fas fa-pound-sign"></i> Total Earnings: <%= hours_worked * @placement.hourly_rate %></h3>
+                  </div>
+                </div>
+                <div class="footer-btns">
+                  <% if current_user.host_validator? && @placement.host_validator_id == current_user.id %>
+
+                    <%= render 'change_status_button', timesheet: @timesheet %>
+
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
-          <% end %>
         </div>
   </div>
  </div>
 </div>
+

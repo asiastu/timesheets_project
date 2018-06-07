@@ -1,6 +1,8 @@
 <div class="wrapper">
   <div class="dashboard-container">
-    <h1>DASHBOARD</h1>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+
     <h2>
       <% if Time.now.hour < 12 %>
         Good morning,
@@ -14,8 +16,7 @@
     <%= link_to :back do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
-    <div class="row">
-      <div class="col-xs-12 col-md-4">
+
         <%= link_to "Timesheet History", timesheets_path %>
         <% @timesheets.each do |timesheet| %>
           <div class="ag-dash-timesheet-card", id="data-timesheet-<%= timesheet.id %>">
@@ -29,6 +30,7 @@
             <%= render 'timesheets/change_status_button', timesheet: timesheet %>
           </div>
         <% end %>
+
       </div>
     </div>
   </div>

@@ -1,8 +1,7 @@
 <div class="wrapper">
   <div class="dashboard-container">
     <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
-
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
     <h2>
       <% if Time.now.hour < 12 %>
         Good morning,
@@ -13,22 +12,37 @@
       <% end %>
       <%= "#{current_user.first_name}!" %>
     </h2>
-    <%= link_to :back do %>
-      <i class="fas fa-arrow-left profile-back", title="back"></i>
-    <% end %>
+      <p>Action Items:</p>
+        <% @timesheets.select { |timesheet| timesheet.status = "Submitted" }.each do |timesheet| %>
+            <div class="ag-dash-timesheet-card", id="data-timesheet-<%= timesheet.id %>">
+              <div class=val-dash-item>
+                <%= render 'timesheets/timesheet_status', timesheet: timesheet %>
+              </div>
+              <div class="val-dash-item">
+          <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
+                <p><i class="far fa-user-circle"></i> <%= timesheet.placement.apprentice.user.first_name %> <%= timesheet.placement.apprentice.user.last_name %></p>
+                <% end %>
+              </div>
+              <div class="text-left val-dash-item">
+                <p><i class="far fa-calendar-alt"></i> <%= timesheet.week_start.strftime('%d %b') %> - <%= (timesheet.week_start + 6).strftime('%d %b') %></p>
+              </div>
+              <div class="val-dash-item">
+                <% hours_worked = 0 %>
+                <% timesheet.timesheet_segments.each do |timesheet_segment| %>
+                  <% hours_worked += timesheet_segment.hours_worked %>
+                <% end %>
+                <p><i class="fas fa-stopwatch"></i> <%= hours_worked %></p>
+              </div>
+              <div class="val-dash-item">
+                <p><i class="fas fa-pound-sign"></i> <%= hours_worked * timesheet.placement.hourly_rate %></p>
+              </div>
+              <div class="val-dash-item">
+                <div class="val-dash-btns">
+                  <%= render 'timesheets/change_status_button', timesheet: timesheet %>
+                </div>
+              </div>
+            </div>
 
-        <%= link_to "Timesheet History", timesheets_path %>
-        <% @timesheets.each do |timesheet| %>
-          <div class="ag-dash-timesheet-card", id="data-timesheet-<%= timesheet.id %>">
-              <%= render 'timesheets/timesheet_status', timesheet: timesheet %>
-            <p><%= link_to timesheet.week_start,  apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) %></p>
-            <p><%= timesheet.placement.apprentice.user.first_name %> <%= timesheet.placement.apprentice.user.last_name %></p>
-            <p><% timesheet.timesheet_segments.each do |ts| %></p>
-              <%= ts.type_of_work %>
-              <%= ts.hours_worked %>
-            <% end %>
-            <%= render 'timesheets/change_status_button', timesheet: timesheet %>
-          </div>
         <% end %>
 
       </div>

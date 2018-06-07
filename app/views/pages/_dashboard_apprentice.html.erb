@@ -23,10 +23,10 @@
 
             <div class="timesheet-description-new">
               <div class="ag-dash-inside-timesheet-card">
-                <h3>Host: <strong><%= @timesheet.placement.host_validator.company_name %></strong></h3>
+                <h3><i class="far fa-building"></i>&emsp; <strong><%= @timesheet.placement.host_validator.company_name %></strong></h3>
               </div>
               <div class="ag-dash-inside-timesheet-card">
-                <h3> <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
+                <h3> <i class="far fa-calendar-alt"></i>&emsp; <strong><%= @timesheet.week_start.strftime("%B %Y") %></strong> </h3>
               </div>
               <div class="ag-dash-inside-timesheet-card">
                 <p> <%= render '../views/timesheets/timesheet_status', timesheet: @timesheet %></p>
@@ -101,7 +101,7 @@
         <% else %>
         <% @placements.sort_by { |p| p["pl_end_date"] }.each do |placement| %>
           <% if placement.pl_start_date >= Date.today && placement.pl_start_date <= Date.today + 14 %>
-            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+            <%= link_to apprentice_placement_path(placement.apprentice, placement) do %>
             <div class="ag-dash-timesheet-card">
               <div class="ag-dash-inside-timesheet-card text-left">
                 <p><i class="far fa-building"></i> <%= placement.host_validator.company_name %></p>
@@ -116,7 +116,7 @@
             </div>
             <% end %>
           <% elsif placement.pl_end_date >= Date.today && placement.pl_end_date <= Date.today + 14 %>
-            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+            <%= link_to apprentice_placement_path(placement.apprentice, placement) do %>
               <div class="ag-dash-timesheet-card">
                 <div class="ag-dash-inside-timesheet-card text-left">
                   <p><i class="far fa-building"></i> <%= placement.host_validator.company_name %></p>
@@ -135,15 +135,12 @@
         <% end %>
       <% end %>
       </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <h3>Summary</h3>
+          <div class="col-sm-12 col-md-6">
       <div class="dashboard-card summary">
         <p>This month...</p>
         <div class="dashboard-card-summary">
           <div class="hours-card text-center">
-            <i class="far fa-clock" style="font-size: 60px"></i>
+            <i class="far fa-clock" style="font-size: 40px"></i>
             <br>
             <br>
             <% month_timesheets = [] %>
@@ -164,7 +161,7 @@
             <p>You have worked <%= hours_worked_month.sum %> hours!</p>
           </div>
           <div class="money-card text-center">
-            <i class="far fa-money-bill-alt" style="font-size: 60px"></i>
+            <i class="far fa-money-bill-alt" style="font-size: 40px"></i>
             <br>
             <br>
             <% month_timesheets = [] %>
@@ -182,7 +179,7 @@
                 <% end %>
               <% end %>
             <% end %>
-            <p>You have earned <i class="fas fa-pound-sign"></i> <%= @money_month.sum %> ! </p>
+            <p>You have earned <i class="fas fa-pound-sign"></i><%= @money_month.sum %> ! </p>
           </div>
         </div>
       </div>

@@ -1,28 +1,27 @@
 <div class="wrapper">
   <div class="dashboard-container">
-    <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-    <h2>
-      <% if Time.now.hour < 12 %>
-        Good morning,
-      <% elsif Time.now.hour >= 18 && Time.now.hour <= 24 %>
-        Good evening,
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <h2>
+        <% if Time.now.hour < 12 %>
+          Good morning,
+        <% elsif Time.now.hour >= 18 && Time.now.hour <= 24 %>
+          Good evening,
+        <% else %>
+          Good afternoon,
+        <% end %>
+        <%= "#{current_user.first_name}!" %>
+      </h2>
+      <% if @timesheets == [] %>
+        <div class="dashboard-card">
+          <h3>No timesheet needs your attentions!</h3>
+        </div>
       <% else %>
-        Good afternoon,
-      <% end %>
-      <%= "#{current_user.first_name}!" %>
-    </h2>
-    <% if @timesheets == [] %>
-      <div class="dashboard-card">
-        <h3>No timesheet needs your attentions!</h3>
-      </div>
-    <% else %>
-      <p>Action Items:</p>
+        <p>Action Items:</p>
         <% @timesheets.each do |timesheet| %>
           <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
             <div class="ag-dash-timesheet-card", id="data-timesheet-<%= timesheet.id %>">
 
-              <div class=val-dash-item>
+              <div class="val-dash-item">
                 <%= render 'timesheets/timesheet_status', timesheet: timesheet %>
               </div>
               <div class="val-dash-item">
@@ -50,8 +49,6 @@
           <% end %>
         <% end %>
       <% end %>
-
-      </div>
     </div>
   </div>
 </div>

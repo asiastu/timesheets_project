@@ -6,7 +6,6 @@
       <% end %>
     <%= @apprentice.user.first_name.possessive%> Placement History</h2>
     <h3>Current Placement</h3>
-    <div class="row">
       <% @apprentice.placements.each do |placement| %>
         <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
           <div class="show-placement-index-wrapper">
@@ -38,6 +37,7 @@
                   <%= link_to "View Timesheets", apprentice_placement_timesheets_path(placement.apprentice.id, placement), :class => "show-placement-btn justify-middle" %>
                 <% end %>
               </div>
+
             </div>
           </div>
         <% end %>

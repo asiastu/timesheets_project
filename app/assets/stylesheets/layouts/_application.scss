@@ -22,12 +22,18 @@ hr.style-two {
     height: 1px;
     background-image: linear-gradient(to right, rgba(46, 64, 87, 0), rgba(46, 64, 87, 0.75), rgba(46, 64, 87, 0));
 }
-
-
 a {
   text-decoration: none;
 }
-
 body {
+  color: $blue;
+}
+.fa-calendar-times {
+ color: $warning-red;
+}
+.fa-calendar-check {
+  color: #007D6B;
+}
+.fa-calendar-alt {
   color: $blue;
 }

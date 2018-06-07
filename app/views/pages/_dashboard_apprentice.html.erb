@@ -87,7 +87,7 @@
                 <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
               </div>
               <div class="ag-dash-inside-timesheet-card text-left">
-                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%></p>
+                <p><i class="far fa-calendar-alt"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
               </div>
               <div class="ag-dash-start-tag text-center
                ">
@@ -105,6 +105,7 @@
                 <div class="ag-dash-inside-timesheet-card text-left">
                   <p><i class="far fa-calendar-times"></i> <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
                 </div>
+
                 <div class="ag-dash-end-tag text-center
                  ">
                   Ending soon

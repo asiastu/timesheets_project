@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_01_192941) do
+ActiveRecord::Schema.define(version: 2018_06_07_112715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2018_06_01_192941) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "hourly_rate_cents", default: 0, null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["agency_id"], name: "index_apprentices_on_agency_id"
     t.index ["user_id"], name: "index_apprentices_on_user_id"
   end
@@ -62,6 +64,8 @@ ActiveRecord::Schema.define(version: 2018_06_01_192941) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "hourly_rate_cents", default: 0, null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["apprentice_id"], name: "index_placements_on_apprentice_id"
     t.index ["host_invoice_contact_id"], name: "index_placements_on_host_invoice_contact_id"
     t.index ["host_validator_id"], name: "index_placements_on_host_validator_id"
@@ -106,6 +110,8 @@ ActiveRecord::Schema.define(version: 2018_06_01_192941) do
     t.string "company_name"
     t.string "role"
     t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

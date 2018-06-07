@@ -8,6 +8,16 @@
     <h3>Current Placement</h3>
       <% @apprentice.placements.each do |placement| %>
         <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
+          <% @markers =
+            {
+              lat: placement.latitude,
+              lng: placement.longitude
+              # infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: placement }) }
+            },
+            {
+              lat: @apprentice.user.latitude,
+              lng: @apprentice.user.longitude
+          }%>
           <div class="show-placement-index-wrapper">
             <div class="placement-header">
               <h2> <i class="far fa-building"></i> <%= placement.host_validator.company_name %>
@@ -25,20 +35,23 @@
             </div>
 
             <div class="placement-show-content">
-              <p><i class="fas fa-map-marker"></i>&emsp;<%= placement.address %></p>
-              <p><i class="fas fa-pound-sign"></i>&emsp;<%= "#{placement.hourly_rate}/hour" %></p>
-              <div class="calendar">
-                <p>&emsp;<i class="far fa-comments"></i>&emsp;&emsp;&emsp;&emsp;<%= placement.interview_date.strftime('%A, %b %d') %></p>
-                <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;&emsp;<%= placement.pl_start_date.strftime('%A, %b %d') %></p>
-                <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;&emsp;<%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+              <div class="placement-show-content-col1">
+                <p><i class="fas fa-map-marker"></i>&emsp;<%= placement.address %></p>
+                <p><i class="fas fa-pound-sign"></i>&emsp;<%= "#{placement.hourly_rate} / hour" %></p>
+                <div class="calendar">
+                  <p>&emsp;<i class="far fa-comments"></i>&emsp;&emsp;&emsp;<%= placement.interview_date.strftime('%A, %b %d') %></p>
+                  <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;<%= placement.pl_start_date.strftime('%A, %b %d') %></p>
+                  <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;<%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                </div>
+                <p><i class="fas fa-walking"></i>&emsp;<%= @apprentice.user.first_name %> lives <%= Geocoder::Calculations.distance_between([@apprentice.user.latitude, @apprentice.user.longitude], [placement.latitude, placement.longitude]).round(2) %>km away.</p>
               </div>
+              <div id="map", class="placement-show-content-col2", style="width: 27vw; height: 30vh;"data-markers="<%= @markers.to_json %>"></div>
+            </div>
               <div class="ju">
               <% if (placement.host_validator == current_user) || (placement.host_invoice_contact == current_user) || (placement.apprentice.user == current_user) || (placement.apprentice.agency == current_user) %>
                   <%= link_to "View Timesheets", apprentice_placement_timesheets_path(placement.apprentice.id, placement), :class => "show-placement-btn justify-middle" %>
                 <% end %>
               </div>
-
-            </div>
           </div>
         <% end %>
       <% end %>

@@ -9,4 +9,7 @@ class Placement < ApplicationRecord
   validates :pl_start_date, presence: true
   validates :pl_end_date, presence: true
   validates :hourly_rate, presence: true, numericality: { greater_than_or_equal_to: 3.70 }
+
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end

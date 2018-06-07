@@ -31,6 +31,7 @@ padding-right: 20px;
 .placement-show-content {
   padding-left: 25px;
   margin-bottom: 20px;
+  display: flex;
 }
 .placement-edit {
   right: 45px;
@@ -57,4 +58,12 @@ padding-right: 20px;
 .ju {
  display: flex;
  justify-content: space-around;
+}
+
+.placement-show-content-col1 {
+    width: 50%;
+}
+
+.placement-show-content-col2 {
+  width: 50%;
 }

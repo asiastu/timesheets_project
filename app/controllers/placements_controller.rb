@@ -69,6 +69,6 @@ class PlacementsController < ApplicationController
   end
 
   def placement_params
-    params.require(:placement).permit(:pl_start_date, :pl_end_date, :address, :interview_date, :hourly_rate)
+    params.require(:placement).permit(:pl_start_date, :pl_end_date, :address, :hourly_rate)
   end
 end

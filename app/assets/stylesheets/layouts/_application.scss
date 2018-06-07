@@ -1,7 +1,6 @@
 .main-wrapper {
 margin-top: 70px;
 margin-bottom: 70px;
-height: calc(100vh-140px);
 }
 
 h1 {
@@ -36,4 +35,8 @@ body {
 }
 .fa-calendar-alt {
   color: $blue;
+}
+
+.master-div {
+  height: calc(100vh-140px);
 }

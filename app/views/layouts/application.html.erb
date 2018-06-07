@@ -31,11 +31,9 @@
   <body>
     <div><%= render 'shared/navbar' %></div>
     <div><%= render 'shared/flashes' %></div>
-     <% if params[:controller] == "pages" && params[:action] == "home" %>
+    <div class="master-div">
       <%= yield %>
-    <% else %>
-      <%= yield %>
-    <% end %>
+    </div>
       <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>

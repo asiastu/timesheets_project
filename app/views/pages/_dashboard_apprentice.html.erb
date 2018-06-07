@@ -20,10 +20,13 @@
     <div class="row">
       <div class="col-xs-12">
         <div class ="dashboard-card">
-          <div class="timesheet-title">
-            <div class="timesheet-description">
-              <h3>Timesheet for your placement with <strong><%= @timesheet.placement.host_validator.company_name %></strong> in <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
-            </div>
+
+            <div class="timesheet-description-new">
+              <h3>Host: <strong><%= @timesheet.placement.host_validator.company_name %></strong></h3>
+
+              <h3> <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
+              <p> <%= render '../views/timesheets/timesheet_status', timesheet: @timesheet %></p>
+
           </div>
           <div class="timesheet_segment_container">
             <% @timesheet.timesheet_segments.sort.each do |timesheetsegment| %>

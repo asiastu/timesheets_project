@@ -20,12 +20,13 @@
       <p>Action Items:</p>
         <% @timesheets.each do |timesheet| %>
             <div class="ag-dash-timesheet-card", id="data-timesheet-<%= timesheet.id %>">
+
               <div class=val-dash-item>
                 <%= render 'timesheets/timesheet_status', timesheet: timesheet %>
               </div>
               <div class="val-dash-item">
-          <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
-                <p><i class="far fa-user-circle"></i> <%= timesheet.placement.apprentice.user.first_name %> <%= timesheet.placement.apprentice.user.last_name %></p>
+                <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
+                  <p><i class="far fa-user-circle"></i> <%= timesheet.placement.apprentice.user.first_name %> <%= timesheet.placement.apprentice.user.last_name %></p>
                 <% end %>
               </div>
               <div class="text-left val-dash-item">
@@ -47,9 +48,10 @@
                 </div>
               </div>
             </div>
-
         <% end %>
+
       <% end %>
+
       </div>
     </div>
   </div>

@@ -1,5 +1,9 @@
 <div class="main-wrapper container">
-  <h2 class="text-center">Placement timesheets</h2>
+  <h2 class="text-center">
+    <%= link_to apprentice_placement_path(@placement.apprentice, @placement) do %>
+      <i class="fas fa-arrow-left profile-back in-title-back", title="back"></i>
+    <% end %>
+    Placement timesheets</h2>
   <h3 class="text-center"><i class="far fa-building"></i> <%= @placement.host_validator.company_name %> | <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.full_name %></h3>
   <br>
 

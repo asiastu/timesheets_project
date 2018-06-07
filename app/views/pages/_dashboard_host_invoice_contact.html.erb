@@ -1,9 +1,9 @@
 <div class="wrapper">
   <div class="dashboard-container">
     <h2>
-      <% if Time.now < 12 %>
+      <% if Time.now.hour < 12 %>
         Good morning,
-      <% elsif Time.now >= 18 && Time.now <= 24 %>
+      <% elsif Time.now.hour >= 18 && Time.now.hour <= 24 %>
         Good evening,
       <% else %>
         Good afternoon,

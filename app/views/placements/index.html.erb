@@ -1,11 +1,10 @@
 <div class="row wrapper-index">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <div class="row">
-    <h1>
-      <%= link_to apprentices_path do %>
+    <h2>
+      <%= link_to dashboard_path do %>
         <i class="fas fa-arrow-left profile-back in-title-back", title="back"></i>
       <% end %>
-    <%= @apprentice.user.first_name.possessive%> Placement History</h1>
+    <%= @apprentice.user.first_name.possessive%> Placement History</h2>
     <h3>Current Placement</h3>
       <% @apprentice.placements.each do |placement| %>
         <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>

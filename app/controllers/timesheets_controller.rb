@@ -28,7 +28,7 @@ class TimesheetsController < ApplicationController
       @placement = Placement.find(params[:placement_id])
       @timesheet = Timesheet.find(params[:id])
       @timesheetsegments = TimesheetSegment.where(timesheet_id: @timesheet)
-      @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday']
+      @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday', 'Not working']
     end
   end
 
@@ -36,7 +36,7 @@ class TimesheetsController < ApplicationController
     if @timesheet.update({status: timesheet_params[:status]})
       if params[:timesheet][:from_dashboard] == 'true'
         respond_to do |format|
-          # format.html { dashboard_path }
+          #format.html { dashboard_path }
           format.js {render "update_all_segments"}  # <-- will render `app/views/reviews/create.js.erb`
         end
       else

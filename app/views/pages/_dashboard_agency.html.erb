@@ -1,9 +1,9 @@
 <div class="main-wrapper container-fluid">
   <div class="ag-dash-wrapper">
     <h2>
-      <% if Time.now < 12 %>
+      <% if Time.now.hour < 12 %>
         Good morning,
-      <% elsif Time.now >= 18 && Time.now <= 24 %>
+      <% elsif Time.now.hour >= 18 && Time.now.hour <= 24 %>
         Good evening,
       <% else %>
         Good afternoon,
@@ -42,14 +42,19 @@
           <h3>Placement</h3>
         </div>
         <%# i = 0 %>
-        <% @agency_placements.each do |placement| %>
+        <% @agency_placements.sort_by { |p| p["pl_end_date"] }.each do |placement| %>
         <%# i += 1 %>
           <% if placement.pl_start_date >= Date.today && placement.pl_start_date <= Date.today + 14 %>
           <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
             <div class="ag-dash-timesheet-card">
-              <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
-              <p><i class="far fa-calendar-alt"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+              <div class="ag-dash-inside-timesheet-card">
+                <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+              </div>
+              <div class="ag-dash-inside-timesheet-card text-left">
+                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%></p>
+              </div>
+
               <div class="ag-dash-start-tag text-center
                ">
                 Starting soon
@@ -60,8 +65,13 @@
             <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
               <div class="ag-dash-timesheet-card">
-                <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
-                <p><i class="far fa-calendar-alt"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                <div class="ag-dash-inside-timesheet-card">
+                  <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+                </div>
+                <div class="ag-dash-inside-timesheet-card text-left">
+                  <p><i class="far fa-calendar-times"></i> <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                </div>
+
                 <div class="ag-dash-end-tag text-center
                  ">
                   Ending soon

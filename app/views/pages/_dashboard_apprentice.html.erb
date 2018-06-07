@@ -13,7 +13,7 @@
     <br>
   <% if @timesheets.length == 0 %>
     <div class="dashboard-card">
-      <h3>All your timesheets have been submitted! <i class="far fa-smile"></i></h3>
+      <h3 class="timesheets-submitted-message">All your timesheets have been submitted! <i class="far fa-smile"></i></h3>
     </div>
   <% else %>
     <h3 class="timesheet-counter">You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
@@ -38,7 +38,7 @@
               </div>
             <% end %>
           </div>
-          <div class="submit-button">
+          <div class="submit-button text-center">
             <%= simple_form_for([@apprentice, @timesheet.placement, @timesheet], remote: true) do |f| %>
               <%= f.hidden_field :status, value: 'Submitted' %>
               <%= f.hidden_field :from_dashboard, value: 'true' %>
@@ -87,7 +87,7 @@
                 <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
               </div>
               <div class="ag-dash-inside-timesheet-card text-left">
-                <p><i class="far fa-calendar-alt"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%></p>
               </div>
               <div class="ag-dash-start-tag text-center
                ">
@@ -120,6 +120,58 @@
           <% end %>
         <% end %>
       </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Summary</h3>
+      <div class="dashboard-card">
+        <p>This month...</p>
+        <div class="dashboard-card-summary">
+          <div class="hours-card text-center">
+            <i class="far fa-clock" style="font-size: 60px"></i>
+            <br>
+            <br>
+            <% month_timesheets = [] %>
+            <% @placements.each do |p|
+              timesheets = p.timesheets
+              timesheets.each do |t|
+                if t.week_start.month == Date.today.month
+                  month_timesheets << t
+                end
+              end
+            end %>
+            <% hours_worked_month = [] %>
+            <% month_timesheets.each do |t| %>
+              <% t.timesheet_segments.each do |ts| %>
+                <% hours_worked_month << ts.hours_worked %>
+              <% end %>
+            <% end %>
+            <p>You have worked <%= hours_worked_month.sum %> hours!</p>
+          </div>
+          <div class="money-card text-center">
+            <i class="far fa-money-bill-alt" style="font-size: 60px"></i>
+            <br>
+            <br>
+            <% month_timesheets = [] %>
+            <% @placements.each do |p| %>
+              <% timesheets = p.timesheets %>
+              <% timesheets.each do |t| %>
+                <% if t.week_start.month == Date.today.month %>
+                  <% month_timesheets << t %>
+                <% end %>
+              <% end %>
+              <% @money_month = [] %>
+              <% month_timesheets.each do |t| %>
+                <% t.timesheet_segments.each do |ts| %>
+                  <% @money_month << ts.hours_worked * p.hourly_rate %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <p>You have earned <i class="fas fa-pound-sign"></i> <%= @money_month.sum %> ! </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   </div>
 </div>

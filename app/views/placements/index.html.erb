@@ -8,16 +8,13 @@
     <h3>Current Placement</h3>
       <% @apprentice.placements.each do |placement| %>
         <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
-          <% @markers =
+          <% @markers = [
             {
               lat: placement.latitude,
-              lng: placement.longitude
-              # infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: placement }) }
-            },
-            {
-              lat: @apprentice.user.latitude,
-              lng: @apprentice.user.longitude
-          }%>
+              lng: placement.longitude,
+              icon: "#{image_path 'marker3.png'}",
+              #infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: @placement }) }
+            } ] %>
           <div class="show-placement-index-wrapper">
             <div class="placement-header">
               <h2> <i class="far fa-building"></i> <%= placement.host_validator.company_name %>
@@ -43,7 +40,7 @@
                   <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;<%= placement.pl_start_date.strftime('%A, %b %d') %></p>
                   <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;<%= placement.pl_end_date.strftime('%A, %b %d') %></p>
                 </div>
-                <p><i class="fas fa-walking"></i>&emsp;<%= @apprentice.user.first_name %> lives <%= Geocoder::Calculations.distance_between([@apprentice.user.latitude, @apprentice.user.longitude], [placement.latitude, placement.longitude]).round(2) %>km away.</p>
+                <p><i class="fas fa-walking"></i>&emsp;<%= @apprentice.user.first_name %> lives approx. <%= Geocoder::Calculations.distance_between([@apprentice.user.latitude, @apprentice.user.longitude], [placement.latitude, placement.longitude]).round(2) %>km away.</p>
               </div>
               <div id="map", class="placement-show-content-col2", style="width: 27vw; height: 30vh;"data-markers="<%= @markers.to_json %>"></div>
             </div>

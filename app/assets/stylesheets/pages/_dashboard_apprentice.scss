@@ -9,6 +9,10 @@
   padding: 20px;
   box-shadow:1px 1px 2px rgba(0,0,0,0.1);
 }
+.dashboard-card-summary {
+  display: flex;
+  justify-content: space-around;
+}
 
 .timesheet_segment_container {
   display: flex;
@@ -50,4 +54,8 @@
 
 .timesheet-counter {
   color: $red;
+}
+
+.timesheets-submitted-message {
+  color: $green;
 }

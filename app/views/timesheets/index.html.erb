@@ -1,10 +1,10 @@
 <div class="main-wrapper container">
-  <h2 class="text-center">
+  <h2 class="">
     <%= link_to apprentice_placement_path(@placement.apprentice, @placement) do %>
       <i class="fas fa-arrow-left profile-back in-title-back", title="back"></i>
     <% end %>
     Placement timesheets</h2>
-  <h3 class="text-center"><i class="far fa-building"></i> <%= @placement.host_validator.company_name %> | <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.full_name %></h3>
+  <h3 class=""><i class="far fa-building"></i> <%= @placement.host_validator.company_name %> | <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.full_name %></h3>
   <br>
 
   <div class="row">
@@ -14,7 +14,7 @@
           <h3 class="text-center">No timesheets yet!</h3>
         </div>
       <% else %>
-        <h3 class="text-center"><strong><%= @timesheets.first.week_start.strftime("%Y") %></strong></h3>
+        <h3 class=""><strong><%= @timesheets.first.week_start.strftime("%Y") %></strong></h3>
         <% @timesheets.each do |timesheet| %>
           <% month = timesheet.week_start.month %>
           <% timesheet_month = @timesheets[@timesheets.index(timesheet) - 1].week_start %>
@@ -22,7 +22,7 @@
           <% timesheet_year = @timesheets[@timesheets.index(timesheet) - 1].week_start %>
             <%# raise %>
           <% unless year == timesheet_year.year %>
-            <h2 class="text-center"><strong><%= timesheet.week_start.strftime("%Y") %></strong></h2>
+            <h2 class=""><strong><%= timesheet.week_start.strftime("%Y") %></strong></h2>
           <% end %>
           <% if month != timesheet_month.month %>
             <h3><%= timesheet.week_start.strftime("%B") %></h3>

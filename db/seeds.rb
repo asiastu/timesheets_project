@@ -24,7 +24,7 @@ apprentice2.user = user2
 apprentice2.agency = user16
 apprentice2.save
 
-user3 = User.create!(address: 'N1 0EH', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Lily', last_name: 'Lilou')
+user3 = User.create!(address: 'N1 0EH', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Lily', last_name: 'Potter')
 apprentice3 = Apprentice.new(trade: 'Bricklaying' , skills:'blockwork', borough: 'Islington', personal_statement: 'Second year apprentice', app_start_date: '1/11/2017', app_end_date: '1/11/2019', college_day: 'Thursday', hourly_rate: 9.5)
 apprentice3.user = user3
 apprentice3.agency = user16
@@ -80,7 +80,7 @@ placement1d = Placement.create!(apprentice: apprentice1, host_validator: user8, 
 
 placement2 = Placement.create!(apprentice: apprentice2, host_validator: user7, host_invoice_contact: user12, pl_start_date: '10/05/2018', pl_end_date: '06/09/2018', address: 'NW1 5BQ', interview_date: '09/05/2018', hourly_rate: 8)
 
-placement3 = Placement.create!(apprentice: apprentice3, host_validator: user8, host_invoice_contact: user13, pl_start_date: '01/05/2018', pl_end_date: '10/05/2018', address: 'EC2R 7DA', interview_date: '01/05/2018', hourly_rate: 9)
+placement3 = Placement.create!(apprentice: apprentice3, host_validator: user8, host_invoice_contact: user13, pl_start_date: '04/06/2018', pl_end_date: '08/06/2018', address: 'EC2R 7DA', interview_date: '01/05/2018', hourly_rate: 9)
 
 placement4 = Placement.create!(apprentice: apprentice4, host_validator: user9, host_invoice_contact: user14, pl_start_date: '03/02/2018', pl_end_date: '09/05/2018', address: 'SE1 7BB', interview_date: '10/01/2018', hourly_rate: 7)
 

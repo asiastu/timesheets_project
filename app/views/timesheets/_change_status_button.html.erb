@@ -2,14 +2,14 @@
   <div data-toggle="modal" data-target="#accept" class="accept-reject-form">
     <%= simple_form_for [timesheet.placement.apprentice, timesheet.placement, timesheet], remote: true do |f| %>
     <%= f.hidden_field :status, value: 'Accepted' %>
-    <%= f.submit 'Approve', class: "", id: "accept-button"%>
+    <%= f.submit 'Approve', class: "accept-button"%>
     <% end %>
   </div>
 
   <div data-toggle="modal" data-target="#reject" class="accept-reject-form">
     <%= simple_form_for [timesheet.placement.apprentice, timesheet.placement, timesheet], remote: true do |f| %>
     <%= f.hidden_field :status, value: 'Rejected' %>
-    <%= f.submit 'Reject', class: "", id: "reject-button" %>
+    <%= f.submit 'Reject', class: "reject-button" %>
     <% end %>
   </div>
 <% end %>

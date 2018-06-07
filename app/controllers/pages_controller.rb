@@ -43,7 +43,7 @@ class PagesController < ApplicationController
       host_placements = current_user.invoice_placements
       host_apprentices = []
       host_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Submitted').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Submitted').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected')).or(placement.timesheets.where(status: 'Accepted'))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet
@@ -55,7 +55,7 @@ class PagesController < ApplicationController
       host_placements = current_user.hosted_placements
       host_apprentices = []
       host_placements.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Submitted').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected').where('week_start <= ?', Date.today))
+        selected_timesheets = placement.timesheets.where(status: 'Submitted').where('week_start <= ?', Date.today)
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet

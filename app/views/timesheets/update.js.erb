@@ -1,6 +1,7 @@
 function refreshForm(innerHTML) {
-  const status = document.getElementById('data-timesheet-<%= @timesheet.id%>');
-  status.innerHTML = innerHTML;
+  const statusDiv = document.getElementById('data-timesheet-<%= @timesheet.id%>').parentNode;
+  // statusDiv.innerHTML = '';
+  statusDiv.innerHTML = innerHTML;
 }
 
 if (window.location.pathname === '/dashboard') {

@@ -12,7 +12,7 @@
             {
               lat: placement.latitude,
               lng: placement.longitude,
-              icon: "#{image_path 'marker3.png'}",
+              icon: "#{image_path 'marker3.png'}"
               #infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: @placement }) }
             } ] %>
           <div class="show-placement-index-wrapper">

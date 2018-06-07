@@ -12,8 +12,13 @@
       <% end %>
       <%= "#{current_user.first_name}!" %>
     </h2>
+    <% if @timesheets == [] %>
+      <div class="dashboard-card">
+        <h3>No timesheet needs your attentions!</h3>
+      </div>
+    <% else %>
       <p>Action Items:</p>
-        <% @timesheets.select { |timesheet| timesheet.status = "Submitted" }.each do |timesheet| %>
+        <% @timesheets.each do |timesheet| %>
             <div class="ag-dash-timesheet-card", id="data-timesheet-<%= timesheet.id %>">
               <div class=val-dash-item>
                 <%= render 'timesheets/timesheet_status', timesheet: timesheet %>
@@ -44,7 +49,7 @@
             </div>
 
         <% end %>
-
+      <% end %>
       </div>
     </div>
   </div>

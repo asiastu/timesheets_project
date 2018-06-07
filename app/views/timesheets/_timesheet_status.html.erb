@@ -1,13 +1,12 @@
   <% if timesheet.pending_submission? %>
-    <p class="ts-stat timesheets-status stat-orange pending_status", id='data-timesheet-<%= timesheet.id %>'><strong><%= timesheet.status %></strong></p>
+    <p class="ts-stat timesheets-status stat-orange pending_status", id='data-timesheet-<%= timesheet.id %>'><%= timesheet.status %></p>
   <% else %>
     <p
 class="ts-stat timesheets-status
-  <%= 'stat-orange' if timesheet.status == 'Pending Submission' %>
-      <%= 'stat-red' if timesheet.status == 'Rejected' %>
-      <%= 'stat-green' if timesheet.status == 'Paid' %>
-      <%= 'stat-green' if timesheet.status == 'Accepted' %>
-      <%= 'stat-yellow' if timesheet.status == 'Submitted' %>"
+      <%= ' stat-red' if timesheet.status == 'Rejected' %>
+      <%= ' stat-green' if timesheet.status == 'Paid' %>
+      <%= ' stat-green' if timesheet.status == 'Accepted' %>
+      <%= ' stat-yellow' if timesheet.status == 'Submitted' %>"
      id="data-timesheet-<%= timesheet.id %>"><%= timesheet.status %></p>
   <% end %>
 

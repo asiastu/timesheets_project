@@ -1,0 +1,54 @@
+.ts-segment-card {
+  display: inline-block;
+  width: auto;
+  height: 100px;
+  margin-left: 25px;
+}
+.ts-segment-block {
+  background-color: white;
+    position: relative;
+  padding-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+
+}
+#accept-button {
+  position: absolute;
+  bottom: 15px;
+  right: 110px;
+  margin: 5px;
+  background-color: transparent;
+  color: $blue;
+  border: 2px solid $blue;
+  border-radius: 4px;
+  padding: 4px 8px;
+  opacity: .8;
+  &:hover {
+    text-decoration: none;
+    opacity: 1;
+  }
+}
+ #reject-button {
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
+  background-color: transparent;
+  margin: 5px;
+  color: $warning-red;
+  border: 2px solid $warning-red;
+  border-radius: 4px;
+  padding: 4px 8px;
+  opacity: .8;
+  &:hover {
+    text-decoration: none;
+    opacity: 1;
+  }
+ }
+ .ts-stat {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: auto;
+ }

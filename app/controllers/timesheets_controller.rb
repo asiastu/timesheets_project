@@ -40,7 +40,6 @@ class TimesheetsController < ApplicationController
           format.js {render "update_all_segments"}  # <-- will render `app/views/reviews/create.js.erb`
         end
       else
-        raise
         respond_to do |format|
           format.html { redirect_to apprentice_placement_timesheet_path(@timesheet.placement.apprentice, @timesheet.placement, @timesheet) }
           format.js  # <-- will render `app/views/reviews/create.js.erb`

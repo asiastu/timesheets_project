@@ -17,7 +17,7 @@
           <%= link_to apprentice_placement_timesheet_path(timesheet.placement.apprentice, timesheet.placement, timesheet) do %>
             <div class="ag-dash-timesheet-card">
               <div class="text-left ag-dash-inside-timesheet-card">
-                <p><i class="far fa-calendar-alt"></i> <%= timesheet.week_start.strftime('%A, %d %B') %></p>
+                <p><i class="far fa-calendar-alt"></i> <%= timesheet.week_start.strftime('%a, %d %b') %></p>
               </div>
               <div class="ag-dash-inside-timesheet-card">
                 <p><i class="far fa-user-circle"></i> <%= timesheet.placement.apprentice.formatted_name %></p>
@@ -52,7 +52,7 @@
                 <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
               </div>
               <div class="ag-dash-inside-timesheet-card text-left">
-                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%></p>
+                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %d %b')%></p>
               </div>
 
               <div class="ag-dash-start-tag text-center
@@ -69,7 +69,7 @@
                   <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
                 </div>
                 <div class="ag-dash-inside-timesheet-card text-left">
-                  <p><i class="far fa-calendar-times"></i> <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                  <p><i class="far fa-calendar-times"></i> <%= placement.pl_end_date.strftime('%a, %d %b') %></p>
                 </div>
 
                 <div class="ag-dash-end-tag text-center

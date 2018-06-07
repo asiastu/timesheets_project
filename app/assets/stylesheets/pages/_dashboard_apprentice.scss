@@ -1,6 +1,6 @@
 .dashboard-container {
 
-  margin-top: 8vh;
+  margin-top: 90px;
   margin-bottom: 8vh;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .dashboard-timesheetsgement {
-  height: 30vh;
+  height: 240px;
   //margin-bottom: 5vh;
   // background-color: rgba(200,225,225,0.1);
   // border-radius: 3px;
@@ -40,16 +40,17 @@
 .save-segment-btn {
   display: none;
   height: 1px;
-  padding: -10vh;
+  padding: -30px;
 }
 
 .timesheet-description {
-  margin-bottom: 5vh;
+  margin-bottom: 15px;
 }
 
 #submit-button {
   background-color: $primary-blue;
   border-color: $primary-blue;
+  margin-top: 15px;
 }
 
 .timesheet-counter {
@@ -58,4 +59,12 @@
 
 .timesheets-submitted-message {
   color: $green;
+}
+.dashboard-card-summary {
+  margin-bottom: 90px;
+}
+.timesheet-description-new {
+  display: flex;
+
+  margin-bottom: 30px;
 }

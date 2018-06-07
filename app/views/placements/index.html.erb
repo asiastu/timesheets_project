@@ -36,11 +36,10 @@
                 <p><i class="fas fa-map-marker"></i>&emsp;<%= placement.address %></p>
                 <p><i class="fas fa-pound-sign"></i>&emsp;<%= "#{placement.hourly_rate} / hour" %></p>
                 <div class="calendar">
-                  <p>&emsp;<i class="far fa-comments"></i>&emsp;&emsp;&emsp;<%= placement.interview_date.strftime('%A, %b %d') %></p>
                   <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;<%= placement.pl_start_date.strftime('%A, %b %d') %></p>
                   <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;<%= placement.pl_end_date.strftime('%A, %b %d') %></p>
                 </div>
-                <p><i class="fas fa-walking"></i>&emsp;<%= @apprentice.user.first_name %> lives approx. <%= Geocoder::Calculations.distance_between([@apprentice.user.latitude, @apprentice.user.longitude], [placement.latitude, placement.longitude]).round(2) %>km away.</p>
+                <p><i class="fas fa-walking"></i>&emsp;<%= @apprentice.user.first_name %> lives approx. <%= Geocoder::Calculations.distance_between([@apprentice.user.latitude, @apprentice.user.longitude], [placement.latitude, placement.longitude]).round(2) %>km away</p>
               </div>
               <div id="map", class="placement-show-content-col2", style="width: 27vw; height: 30vh;"data-markers="<%= @markers.to_json %>"></div>
             </div>

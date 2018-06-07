@@ -1,6 +1,5 @@
 .main-wrapper {
 margin-top: 70px;
-margin-bottom: 70px;
 }
 
 h1 {
@@ -38,5 +37,6 @@ body {
 }
 
 .master-div {
-  height: calc(100vh-140px);
+  min-height: calc(100vh - 140px);
+  background-color: black;
 }

@@ -1,23 +1,32 @@
 <div class="main-wrapper container">
-  <h1>Timesheet w/c <%= @timesheet.week_start %></h1>
-  <%= link_to 'Back', :back %>
-  <br>
   <div class="row">
-  <div id="timesheet">
-    <%= render 'timesheet_status', timesheet: @timesheet %>
+    <div class="col-xs-12">
+      <h2>
+        <%= link_to timesheets_path do %>
+          <i class="fas fa-arrow-left in-title-back" title="back"></i>
+        <% end %><%=
+        Placement.find(id=@timesheet.placement_id).apprentice.user.first_name.possessive %>
+        Timesheet for the week of <%= @timesheet.week_start.strftime('%a, %d') %>-<%=  (@timesheet.week_start + 6).strftime('%a, %d %B %Y')  %>
+      </h2>
+        <div id="timesheet">
+        </div>
+        <div class="ts-segment-block">
+          <% @timesheetsegments.sort_by { |segment| segment["date"] }.each do |timesheetsegment| %>
+            <div class="ts-segment-card">
+              <h3><%= timesheetsegment.date.strftime('%A') %></h3>
+              <p><%= timesheetsegment.type_of_work %></p>
+              <p><%= timesheetsegment.hours_worked %></p>
+            </div>
+          <% end %>
+          <% if current_user.host_validator? && @placement.host_validator_id == current_user.id %>
+          <div class="acc-rej-btns">
+            <div class="another">
+              <p> <%= render 'timesheet_status', timesheet: @timesheet %></p>
+              <%= render 'change_status_button', timesheet: @timesheet %>
+            </div>
+          </div>
+          <% end %>
+        </div>
   </div>
-
-    <% @timesheetsegments.each do |timesheetsegment| %>
-      <p><%= timesheetsegment.date.strftime('%a, %d %B %Y') %></p>
-      <p><%= timesheetsegment.type_of_work %></p>
-      <p><%= timesheetsegment.hours_worked %></p>
-    <% end %>
-    <% if current_user.host_validator? && @placement.host_validator_id == current_user.id %>
-      <%= render 'change_status_button', timesheet: @timesheet %>
-    <% end %>
-  </div>
-
-  <% if @timesheet.week_start <= Date.today %>
-    <%= link_to "Edit timesheet", edit_apprentice_placement_timesheet_path(@apprentice, @placement, @timesheet) %>
-  <% end %>
+ </div>
 </div>

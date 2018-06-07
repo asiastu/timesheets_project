@@ -38,3 +38,4 @@ end
 
 gem 'money-rails'
 gem 'pundit'
+gem "geocoder"

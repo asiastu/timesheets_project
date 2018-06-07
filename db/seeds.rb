@@ -12,31 +12,31 @@ user16 = User.create!(email: 'email16@email.com', password: '123456', role: "Emp
 
 # user20 = User.create!(email: 'email20@email.com', password: '123456', role: "Employment Agency", first_name: "Beta", last_name: "Caroten", company_name: "Pristeen", phone_number: "0123456789", address: "Somewhere")
 
-user1 = User.create!(address: 'London', email: 'email@email.com', password: '123456', role: "Apprentice",first_name: 'Danny', last_name: 'Elfmam')
+user1 = User.create!(address: 'E2 7SB', email: 'email@email.com', password: '123456', role: "Apprentice",first_name: 'Danny', last_name: 'Elfmam')
 apprentice1 = Apprentice.new(trade: 'Carpentry' , skills: 'stairs', borough: 'Hackney', personal_statement: 'Good with hammer', app_start_date: '10/10/2017', app_end_date: '10/10/2019', college_day: 'Monday', hourly_rate: 7)
 apprentice1.user = user1
 apprentice1.agency = user16
 apprentice1.save
 
-user2 = User.create!(address: 'London', email: 'email2@email.com', password: '123456', role: "Apprentice", first_name: 'Susan', last_name: 'Suse')
+user2 = User.create!(address: 'N1 6RX', email: 'email2@email.com', password: '123456', role: "Apprentice", first_name: 'Susan', last_name: 'Suse')
 apprentice2 = Apprentice.new(trade: 'Electrical' , skills: 'snagging', borough: 'Hackney', personal_statement: 'First year', app_start_date: '02/01/2018', app_end_date: '02/01/2020', college_day: 'Tuesday', hourly_rate: 7)
 apprentice2.user = user2
 apprentice2.agency = user16
 apprentice2.save
 
-user3 = User.create!(address: 'London', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Lily', last_name: 'Lilou')
+user3 = User.create!(address: 'N1 0EH', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Lily', last_name: 'Lilou')
 apprentice3 = Apprentice.new(trade: 'Bricklaying' , skills:'blockwork', borough: 'Islington', personal_statement: 'Second year apprentice', app_start_date: '1/11/2017', app_end_date: '1/11/2019', college_day: 'Thursday', hourly_rate: 9.5)
 apprentice3.user = user3
 apprentice3.agency = user16
 apprentice3.save
 
-user4 = User.create!(address: 'London', email: 'email4@email.com', password: '123456', role: "Apprentice", first_name: 'Eric', last_name: 'Erich')
+user4 = User.create!(address: 'SW1E 6SD', email: 'email4@email.com', password: '123456', role: "Apprentice", first_name: 'Eric', last_name: 'Erich')
 apprentice4 = Apprentice.new(trade: 'Bricklaying' , skills:'round corners', borough: 'City of Westminster', personal_statement: 'I love brickwork!', app_start_date: '03/02/2018', app_end_date: '03/02/2020', college_day: 'Thursday', hourly_rate: 8)
 apprentice4.user = user4
 apprentice4.agency = user16
 apprentice4.save
 
-user5 = User.create!(address: 'London', email: 'email5@email.com', password: '123456', role: "Apprentice", first_name: 'Sam', last_name: 'Err')
+user5 = User.create!(address: 'CR0 1RE', email: 'email5@email.com', password: '123456', role: "Apprentice", first_name: 'Sam', last_name: 'Err')
 apprentice5 = Apprentice.new(trade: 'Painting & Decorating' , skills:'columns', borough: 'Croydon', personal_statement: 'Looking for a commercial site', app_start_date: '12/12/2016', app_end_date: '12/12/2018', college_day: 'Wednesday', hourly_rate: 9)
 apprentice5.user = user5
 apprentice5.agency = user16

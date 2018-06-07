@@ -15,6 +15,9 @@ class User < ApplicationRecord
   validates :first_name, format: { with: /\A[a-zA-Z\s]+\z/, message: "only allows letters" }
   validates :last_name, format: { with: /\A[a-zA-Z\s]+\z/, message: "only allows letters" }
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   def agency?
     role == 'Employment Agency'
   end

@@ -1,120 +1,146 @@
 
 <div class="main-wrapper container">
-
-    <% def user_can_see?(apprentice)
-    current_user.id == apprentice.agency_id ||
-    current_user == User.find(apprentice.user_id) ||
-    if apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).present?
-      current_user.id == apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_validator_id
-    end ||
-    if apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).present?
-      current_user.id == apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_invoice_contact_id
-    end
-  end %>
-
-<!-- viewable for all users -->
-
-   <h1 class="">
-    <%= link_to dashboard_path do %>
-      <i class="fas fa-arrow-left profile-back", title="back"></i>
-    <% end %>
-    View Apprentices
-  </h1>
-
-<!-- agency specific view of apprentices -->
-  <% if current_user.agency? %>
-    <div class="blocks-view">
-      <% @apprentices.each do |apprentice| %>
-        <%= link_to apprentice_path(apprentice) do %>
-          <div class="index-row">
-            <div class="app-profile-container">
-              <%= link_to edit_apprentice_path(apprentice) do %>
-                <p id="why"> <i class="fas fa-pencil-alt apprentice-edit placement-edit", title='edit apprentice'></i></p>
-              <% end %>
-              <p><i class="far fa-user-circle"></i> <%= apprentice.user.first_name %>
-              <%= apprentice.user.last_name if user_can_see?(apprentice) %>
-                </p>
-              <p><i class="far fa-envelope"></i> <%= apprentice.user.email %></p>
-              <p><i class="fas fa-map-marker"></i> <%= apprentice.borough %></p>
-              <p><i class="fas fa-toolbox"></i> <%= apprentice.trade %></p>
-              <p><i class="fas fa-wrench"></i> <%= apprentice.skills %></p>
-              <p id="appr-link-id" class=" text-center appr-index-placements-link"><%= link_to 'Placements', apprentice_placements_path(apprentice) %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-<!-- view for hosts -->
-  <% elsif current_user.host_invoice_contact? || current_user.host_validator? %>
-
-    <h3>Present</h3>
-    <div class="row">
-      <% @placements.each do |placement| %>
-        <% if placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today %>
-          <div class="blocks-view">
-              <div class="index-row">
-                <div class="app-profile-container">
-                  <%= link_to apprentice_path(placement.apprentice) do  %>
-                  <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
-                  <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
-                    </strong></p>
-                    <% end %>
-                  <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
-                  <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
-                  <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
-                  <p class="appr-index-placements-link"><i class="far fa-building"></i> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <h3>Future</h3>
   <div class="row">
-      <% @placements.each do |placement| %>
-        <% if placement.pl_start_date >= Date.today && placement.pl_end_date >= Date.today %>
-          <div class="blocks-view">
-              <div class="index-row">
-                <div class="app-profile-container">
-                  <%= link_to apprentice_path(placement.apprentice) do  %>
-                  <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
-                  <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
-                    </strong></p>
-                    <% end %>
-                  <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
-                  <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
-                  <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
-                  <p class="appr-index-placements-link"><i class="far fa-building"></i> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+    <div class="col-xs-12">
 
-    <h3>Past</h3>
-    <div class="row">
-      <% @placements.each do |placement| %>
-        <% if placement.pl_start_date <= Date.today && placement.pl_end_date <= Date.today %>
-          <div class="blocks-view">
-              <div class="index-row">
-                <div class="app-profile-container">
-                  <%= link_to apprentice_path(placement.apprentice) do  %>
-                  <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
-                  <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
-                    </strong></p>
-                    <% end %>
-                  <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
-                  <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
-                  <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
-                  <p class="appr-index-placements-link"><i class="far fa-building"></i> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
 
-  <% end %>
+      <% def user_can_see?(apprentice)
+      current_user.id == apprentice.agency_id ||
+      current_user == User.find(apprentice.user_id) ||
+      if apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).present?
+        current_user.id == apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_validator_id
+      end ||
+      if apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).present?
+        current_user.id == apprentice.placements.where('placements.pl_start_date <= ? AND placements.pl_end_date >= ?', Date.today, Date.today).first.host_invoice_contact_id
+      end
+    end %>
+
+  <!-- viewable for all users -->
+     <h1 class="">
+      <%= link_to dashboard_path do %>
+        <i class="fas fa-arrow-left profile-back", title="back"></i>
+      <% end %>
+      View Apprentices
+    </h1>
+
+  <!-- agency specific view of apprentices -->
+    <% if current_user.agency? %>
+      <div class="blocks-view">
+        <% @apprentices.each do |apprentice| %>
+          <%= link_to apprentice_path(apprentice) do %>
+            <div class="index-row">
+              <div class="app-profile-container">
+                <%= link_to edit_apprentice_path(apprentice) do %>
+                  <p id="why"> <i class="fas fa-pencil-alt apprentice-edit placement-edit", title='edit apprentice'></i></p>
+                <% end %>
+                <p><i class="far fa-user-circle"></i> <%= apprentice.user.first_name %>
+                <%= apprentice.user.last_name if user_can_see?(apprentice) %>
+                  </p>
+                <p><i class="far fa-envelope"></i> <%= apprentice.user.email %></p>
+                <p><i class="fas fa-map-marker"></i> <%= apprentice.borough %></p>
+                <p><i class="fas fa-toolbox"></i> <%= apprentice.trade %></p>
+                <p><i class="fas fa-wrench"></i> <%= apprentice.skills %></p>
+                <p id="appr-link-id" class=" text-center appr-index-placements-link"><%= link_to 'Placements', apprentice_placements_path(apprentice) %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+  <!-- view for hosts -->
+    <% elsif current_user.host_invoice_contact? || current_user.host_validator? %>
+
+      <h3>Present</h3>
+
+        <% @placements.each do |placement| %>
+          <% if placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today %>
+            <div class="blocks-view">
+                  <div class="ag-dash-timesheet-card">
+                    <%= link_to apprentice_path(placement.apprentice) do  %>
+                    <div class="view-app-item-spacing">
+                      <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
+                      <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
+                        </strong></p>
+                        <% end %>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
+                    </div>
+                    <div class="">
+                      <p id="appr-link-id" class="appr-index-placements-link text-center"> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
+                    </div>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    <h3>Future</h3>
+
+        <% @placements.each do |placement| %>
+          <% if placement.pl_start_date >= Date.today && placement.pl_end_date >= Date.today %>
+            <div class="blocks-view">
+                  <div class="ag-dash-timesheet-card">
+                    <%= link_to apprentice_path(placement.apprentice) do  %>
+                    <div class="view-app-item-spacing">
+                      <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
+                      <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
+                        </strong></p>
+                        <% end %>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
+                    </div>
+                    <div class="">
+                      <p id="appr-link-id" class="appr-index-placements-link text-center"> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
+                    </div>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+
+
+      <h3>Past</h3>
+
+        <% @placements.each do |placement| %>
+          <% if placement.pl_start_date <= Date.today && placement.pl_end_date <= Date.today %>
+            <div class="blocks-view">
+                  <div class="ag-dash-timesheet-card">
+                    <%= link_to apprentice_path(placement.apprentice) do  %>
+                    <div class="view-app-item-spacing">
+                      <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
+                      <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
+                        </strong></p>
+                        <% end %>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
+                    </div>
+                    <div class="view-app-item-spacing">
+                      <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
+                    </div>
+                    <div class=" text-right">
+                      <p id="appr-link-id" class="appr-index-placements-link text-center"> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
+                    </div>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    <% end %>
+     </div>
+  </div>
 </div>

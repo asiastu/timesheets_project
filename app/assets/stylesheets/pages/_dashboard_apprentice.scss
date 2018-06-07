@@ -21,9 +21,8 @@
 }
 
 .dashboard-timesheetsgement {
-  height: 35vh;
-  padding-top: 5vh;
-  margin-bottom: 5vh;
+  height: 30vh;
+  //margin-bottom: 5vh;
   // background-color: rgba(200,225,225,0.1);
   // border-radius: 3px;
   // box-shadow:1px 1px 1px rgba(0,0,0,0.1);
@@ -36,4 +35,19 @@
 
 .save-segment-btn {
   display: none;
+  height: 1px;
+  padding: -10vh;
+}
+
+.timesheet-description {
+  margin-bottom: 5vh;
+}
+
+#submit-button {
+  background-color: $primary-blue;
+  border-color: $primary-blue;
+}
+
+.timesheet-counter {
+  color: $red;
 }

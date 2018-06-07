@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @apprentice = Apprentice.where(user: current_user).first
-    @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday']
+    @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday', 'Not working']
     @timesheets = []
 
     if current_user.apprentice?

@@ -28,7 +28,7 @@ class TimesheetsController < ApplicationController
       @placement = Placement.find(params[:placement_id])
       @timesheet = Timesheet.find(params[:id])
       @timesheetsegments = TimesheetSegment.where(timesheet_id: @timesheet)
-      @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday']
+      @type_of_work = ['On Site', 'College', 'Off sick', 'Holiday', 'Not working']
     end
   end
 

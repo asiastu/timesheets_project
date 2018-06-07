@@ -1,11 +1,9 @@
-<div class="container">
-  <br>
-  <p><%= link_to :back do %>
+<div class="main-wrapper container">
+  <h2 class="text-center"><%= link_to dashboard_path do %>
       <i class="fas fa-arrow-left profile-back", title="back"></i>
     <% end %>
-    <h2 class="text-center">Timesheets</h2>
+    Timesheets</h2>
     <br>
-  </p>
 
   <div class="row">
     <div class="col-xs-12">
@@ -14,7 +12,7 @@
           <h3 class="text-center">No timesheets yet!</h3>
         </div>
       <% else %>
-        <h2 class="text-center"><strong><%= @show_timesheets.sort_by! { |x| x["week_start"]}.first.week_start.strftime("%Y") %></strong></h2>
+        <h2 class="text-center"><strong><%= @show_timesheets.sort_by! { |x| x["week_start"] }.first.week_start.strftime("%Y") %></strong></h2>
         <% @show_timesheets.each do |timesheet| %>
           <% month = timesheet.week_start.month %>
           <% timesheet_month = @show_timesheets[@show_timesheets.index(timesheet) - 1].week_start %>

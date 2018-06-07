@@ -1,9 +1,9 @@
 <div class="wrapper">
   <div class="dashboard-container container">
     <h2>
-      <% if Time.now < 12 %>
+      <% if Time.now.hour < 12 %>
         Good morning,
-      <% elsif Time.now >= 18 && Time.now <= 24 %>
+      <% elsif Time.now.hour >= 18 && Time.now.hour <= 24 %>
         Good evening,
       <% else %>
         Good afternoon,
@@ -16,12 +16,14 @@
       <h3>All your timesheets have been submitted! <i class="far fa-smile"></i></h3>
     </div>
   <% else %>
-    <h3>You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
+    <h3 class="timesheet-counter">You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>
     <div class="row">
       <div class="col-xs-12">
         <div class ="dashboard-card">
           <div class="timesheet-title">
-            <h3>Timesheet for your placement with <strong><%= @timesheet.placement.host_validator.company_name %></strong> in <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
+            <div class="timesheet-description">
+              <h3>Timesheet for your placement with <strong><%= @timesheet.placement.host_validator.company_name %></strong> in <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
+            </div>
           </div>
           <div class="timesheet_segment_container">
             <% @timesheet.timesheet_segments.sort.each do |timesheetsegment| %>
@@ -40,7 +42,7 @@
             <%= simple_form_for([@apprentice, @timesheet.placement, @timesheet], remote: true) do |f| %>
               <%= f.hidden_field :status, value: 'Submitted' %>
               <%= f.hidden_field :from_dashboard, value: 'true' %>
-              <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button"  %>
+              <%= f.submit 'Submit timesheet', class: "btn btn-primary", id: "submit-button" %>
             <% end %>
           </div>
         </div>
@@ -75,17 +77,17 @@
           <h3>Placement</h3>
         </div>
         <%# i = 0 %>
-        <% @placements.each do |placement| %>
+        <% @placements.sort_by { |p| p["pl_end_date"] }.each do |placement| %>
         <%# i += 1 %>
           <% if placement.pl_start_date >= Date.today && placement.pl_start_date <= Date.today + 14 %>
           <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
             <div class="ag-dash-timesheet-card">
-              <div>
+              <div class="ag-dash-inside-timesheet-card text-left">
                 <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
               </div>
-              <div>
-                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+              <div class="ag-dash-inside-timesheet-card text-left">
+                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%></p>
               </div>
               <div class="ag-dash-start-tag text-center
                ">
@@ -97,8 +99,12 @@
             <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
               <div class="ag-dash-timesheet-card">
-                <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
-                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%> - <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                <div class="ag-dash-inside-timesheet-card text-left">
+                  <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+                </div>
+                <div class="ag-dash-inside-timesheet-card text-left">
+                  <p><i class="far fa-calendar-times"></i> <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+                </div>
                 <div class="ag-dash-end-tag text-center
                  ">
                   Ending soon

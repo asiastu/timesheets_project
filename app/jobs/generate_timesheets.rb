@@ -25,8 +25,13 @@ class GenerateTimesheets < ApplicationJob
             timesheetsegment.type_of_work = "College"
             timesheetsegment.hours_worked = 7.0
           else
-            timesheetsegment.type_of_work = "On Site"
-            timesheetsegment.hours_worked = 0.0
+            if timesheetsegment.date.cwday == 6 || timesheetsegment.date.cwday == 7
+              timesheetsegment.type_of_work = "Not working"
+              timesheetsegment.hours_worked = 0.0
+            else
+              timesheetsegment.type_of_work = "On Site"
+              timesheetsegment.hours_worked = 0.0
+            end
           end
           timesheetsegment.save
         end

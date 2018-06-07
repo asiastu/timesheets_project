@@ -22,11 +22,15 @@
         <div class ="dashboard-card">
 
             <div class="timesheet-description-new">
-              <h3>Host: <strong><%= @timesheet.placement.host_validator.company_name %></strong></h3>
-
-              <h3> <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
-              <p> <%= render '../views/timesheets/timesheet_status', timesheet: @timesheet %></p>
-
+              <div class="ag-dash-inside-timesheet-card">
+                <h3>Host: <strong><%= @timesheet.placement.host_validator.company_name %></strong></h3>
+              </div>
+              <div class="ag-dash-inside-timesheet-card">
+                <h3> <strong><%= @timesheet.week_start.strftime("%B") %> <%= @timesheet.week_start.strftime("%Y") %></strong> </h3>
+              </div>
+              <div class="ag-dash-inside-timesheet-card">
+                <p> <%= render '../views/timesheets/timesheet_status', timesheet: @timesheet %></p>
+              </div>
           </div>
           <div class="timesheet_segment_container">
             <% @timesheet.timesheet_segments.sort.each do |timesheetsegment| %>
@@ -55,19 +59,30 @@
   <br>
   <div class="row">
     <div class="ag-dash-placements col-sm-12 col-md-6">
-    <h3 >Current Placement</h3>
+    <h3>Current Placement</h3>
       <div class="row">
       <% @apprentice.placements.each do |placement| %>
+      <% @markers = [
+            {
+              lat: placement.latitude,
+              lng: placement.longitude,
+              icon: "#{image_path 'marker3.png'}"
+              #infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: @placement }) }
+            } ] %>
         <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
           <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
             <div class="col-xs-12">
-              <div class ="dashboard-card text-left">
-                <h3><strong><%= placement.host_validator.company_name %></strong></h3>
-                <p><i class="fas fa-map-marker"></i> <%= placement.address %></p>
-                <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %d %B %Y') %></p>
-                <p><i class="far fa-calendar-times"></i> <%= placement.pl_end_date.strftime('%a, %d %B %Y') %></p>
-                <p><i class="far fa-user-circle"></i> <%= placement.host_validator.full_name %></p>
-                  <p><i class="fas fa-at"></i> <%= placement.host_validator.email %></p>
+              <div class ="dashboard-card apprentice-dash text-left">
+                <div>
+                  <h2><strong><%= placement.host_validator.company_name %></strong></h2>
+                  <p><i class="fas fa-map-marker"></i>&emsp; <%= placement.address %></p>
+                  <p><i class="far fa-calendar-check"></i>&emsp; <%= placement.pl_start_date.strftime('%a, %d %B %Y') %></p>
+                  <p><i class="far fa-calendar-times"></i>&emsp; <%= placement.pl_end_date.strftime('%a, %d %B %Y') %></p>
+                  <p><i class="far fa-user-circle"></i>&emsp; <%= placement.host_validator.full_name %></p>
+                    <p><i class="fas fa-at"></i>&emsp; <%= placement.host_validator.email %></p>
+                    <p><i class="fas fa-walking"></i>&emsp; You live <%= Geocoder::Calculations.distance_between([@apprentice.user.latitude, @apprentice.user.longitude], [placement.latitude, placement.longitude]).round(2) %>km away</p>
+                </div>
+                <div id="map", class="mini-map", style="width: 260px; height: 230px;"data-markers="<%= @markers.to_json %>"></div>
               </div>
             </div>
         <% end %>
@@ -77,17 +92,19 @@
   </div>
     <div class="ag-dash-placements col-sm-12 col-md-6">
         <div>
-          <h3>Placement</h3>
+          <h3>Placement news</h3>
         </div>
-        <%# i = 0 %>
+        <% if @placements == [] %>
+          <div class="ag-dash-timesheet-card">
+            <p>No placement needs your attention.</p>
+          </div>
+        <% else %>
         <% @placements.sort_by { |p| p["pl_end_date"] }.each do |placement| %>
-        <%# i += 1 %>
           <% if placement.pl_start_date >= Date.today && placement.pl_start_date <= Date.today + 14 %>
-          <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
             <div class="ag-dash-timesheet-card">
               <div class="ag-dash-inside-timesheet-card text-left">
-                <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+                <p><i class="far fa-building"></i> <%= placement.host_validator.company_name %></p>
               </div>
               <div class="ag-dash-inside-timesheet-card text-left">
                 <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%A, %b %d')%></p>
@@ -99,11 +116,10 @@
             </div>
             <% end %>
           <% elsif placement.pl_end_date >= Date.today && placement.pl_end_date <= Date.today + 14 %>
-            <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
               <div class="ag-dash-timesheet-card">
                 <div class="ag-dash-inside-timesheet-card text-left">
-                  <p><i class="far fa-user-circle"></i> <%= placement.apprentice.formatted_name %></p>
+                  <p><i class="far fa-building"></i> <%= placement.host_validator.company_name %></p>
                 </div>
                 <div class="ag-dash-inside-timesheet-card text-left">
                   <p><i class="far fa-calendar-times"></i> <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
@@ -114,20 +130,16 @@
                   Ending soon
                 </div>
               </div>
-          <%# elsif i == 0 %>
-    <!--         <div class="ag-dash-timesheet-card">
-              <p>No placement needs your attention.</p>
-            </div> -->
-            <%# i += 1 %>
             <% end %>
           <% end %>
         <% end %>
+      <% end %>
       </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <h3>Summary</h3>
-      <div class="dashboard-card">
+      <div class="dashboard-card summary">
         <p>This month...</p>
         <div class="dashboard-card-summary">
           <div class="hours-card text-center">

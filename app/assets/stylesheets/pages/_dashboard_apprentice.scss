@@ -1,7 +1,6 @@
 .dashboard-container {
-
-  margin-top: 90px;
-  margin-bottom: 8vh;
+  margin-top: 70px;
+  // margin-bottom: 8vh;
 }
 
 .dashboard-card {
@@ -9,6 +8,7 @@
   padding: 20px;
   box-shadow:1px 1px 2px rgba(0,0,0,0.1);
 }
+
 .dashboard-card-summary {
   display: flex;
   justify-content: space-around;
@@ -67,4 +67,18 @@
   display: flex;
 
   margin-bottom: 30px;
+}
+
+.apprentice-dash {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mini-map {
+  margin-top: 2vh;
+}
+
+.summary {
+  height: 250px;
+  margin-bottom: 20px;
 }

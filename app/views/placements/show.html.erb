@@ -1,12 +1,12 @@
-<div class="main-wrapper container">
-  <div class="col-xs-12 col-md-8 col-md-offset-2">
+<div class="row wrapper-index main-wrapper">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
     <h2>
       <%= link_to apprentice_placements_path(@placement.apprentice) do %>
         <i class="fas fa-arrow-left in-title-back" title="back"></i>
       <% end %>
       Placement Details
     </h2>
-    <div class="show-placement-wrapper">
+    <div class="show-placement-index-wrapper">
       <div class="row">
         <div class="col-xs-12">
 
@@ -34,7 +34,7 @@
             <div>
               <h2>
                 <% if current_user == @placement.apprentice.user %>
-                  <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.host_validator.full_name %>
+                  <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.host_validator.first_name %>
                 <% else %>
                   <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.first_name %>
                 <% end %>
@@ -54,7 +54,18 @@
                 <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;<%= @placement.pl_start_date.strftime('%A, %b %d') %></p>
                 <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;<%= @placement.pl_end_date.strftime('%A, %b %d') %></p>
               </div>
-              <p><i class="far fa-envelope"></i>&emsp;<%= @placement.host_validator.email %></p>
+              <% if current_user == @placement.host_validator %>
+                <p><i class="far fa-user-circle placement-user-margin"></i>&emsp;<%= @placement.apprentice.user.full_name %></p>
+                <p><i class="far fa-envelope"></i>&emsp;<%= @placement.apprentice.user.email %></p></p>
+              <% elsif current_user == @placement.apprentice.user %>
+                <p><i class="far fa-user-circle placement-user-margin"></i>&emsp;<%= @placement.host_validator.full_name %></p>
+                <p><i class="far fa-envelope"></i>&emsp;<%= @placement.host_validator.email %></p>
+              <% else %>
+                <p><i class="far fa-user-circle placement-user-margin"></i>&emsp;<%= @placement.apprentice.user.full_name %></p>
+                <p><i class="far fa-envelope"></i>&emsp;<%= @placement.apprentice.user.email %></p>
+                <p><i class="fas fa-user-circle placement-user-margin"></i>&emsp;<%= @placement.host_validator.full_name %></p>
+                <p><i class="fas fa-envelope"></i>&emsp;<%= @placement.host_validator.email %></p>
+              <% end %>
               <p><i class="fas fa-walking"></i>&emsp;
                 <% if current_user == @placement.apprentice.user %>
                 You live
@@ -63,7 +74,7 @@
                 <% end %>
                  <%= Geocoder::Calculations.distance_between([@placement.apprentice.user.latitude, @placement.apprentice.user.longitude], [@placement.latitude, @placement.longitude]).round(2) %>km away</p>
             </div>
-            <div id="map", class="placement-show-content-col2", style="width: 27vw; height: 30vh;"data-markers="<%= @markers.to_json %>"></div>
+            <div id="map", class="placement-show-content-col2", style="width: 430px; height: 380px;"data-markers="<%= @markers.to_json %>"></div>
           </div>
           <div class="ju">
             <% if @placement.host_validator == current_user || @placement.host_invoice_contact == current_user || @placement.apprentice.user == current_user || @placement.apprentice.agency == current_user %>

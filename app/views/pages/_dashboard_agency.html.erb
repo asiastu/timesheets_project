@@ -24,7 +24,7 @@
               </div>
               <div class="ag-dash-inside-timesheet-card">
                 <div class="ag-dash-timesheet-status text-center
-                  <%= 'stat-orange' if timesheet.status == 'Pending Submission' %>
+                  <%= 'stat-orange' if timesheet.status == 'Pending' %>
                   <%= 'stat-red' if timesheet.status == 'Rejected' %>
                   <%= 'stat-green' if timesheet.status == 'Paid' %>
                   <%= 'stat-green' if timesheet.status == 'Accepted' %>
@@ -41,11 +41,8 @@
         <div>
           <h3>Placement</h3>
         </div>
-        <%# i = 0 %>
         <% @agency_placements.sort_by { |p| p["pl_end_date"] }.each do |placement| %>
-        <%# i += 1 %>
           <% if placement.pl_start_date >= Date.today && placement.pl_start_date <= Date.today + 14 %>
-          <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
             <div class="ag-dash-timesheet-card">
               <div class="ag-dash-inside-timesheet-card">
@@ -62,7 +59,6 @@
             </div>
             <% end %>
           <% elsif placement.pl_end_date >= Date.today && placement.pl_end_date <= Date.today + 14 %>
-            <%# i += 1 %>
             <%= link_to apprentice_placements_path(placement.apprentice) do %>
               <div class="ag-dash-timesheet-card">
                 <div class="ag-dash-inside-timesheet-card">
@@ -77,11 +73,6 @@
                   Ending soon
                 </div>
               </div>
-          <%# elsif i == 0 %>
-    <!--         <div class="ag-dash-timesheet-card">
-              <p>No placement needs your attention.</p>
-            </div> -->
-            <%# i += 1 %>
             <% end %>
           <% end %>
         <% end %>

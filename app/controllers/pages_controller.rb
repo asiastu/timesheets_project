@@ -13,7 +13,7 @@ class PagesController < ApplicationController
     if current_user.apprentice?
       @placements = current_user.apprentice.placements
       @placements.each do |placement|
-        timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected'))
+        timesheets = placement.timesheets.where(status: 'Pending').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected'))
         timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet
@@ -31,7 +31,7 @@ class PagesController < ApplicationController
         end
       end
       @agency_placements.flatten!.each do |placement|
-        selected_timesheets = placement.timesheets.where(status: 'Pending Submission').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected'))
+        selected_timesheets = placement.timesheets.where(status: 'Pending').where('week_start <= ?', Date.today).or(placement.timesheets.where(status: 'Rejected'))
         selected_timesheets.each do |timesheet|
           unless timesheet.nil?
             @timesheets << timesheet

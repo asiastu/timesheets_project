@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_140302) do
     t.datetime "updated_at", null: false
     t.date "week_start"
     t.date "week_end"
-    t.string "status", default: "Pending Submission"
+    t.string "status", default: "Pending"
     t.index ["placement_id"], name: "index_timesheets_on_placement_id"
   end
 

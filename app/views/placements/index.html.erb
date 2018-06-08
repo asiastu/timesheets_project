@@ -7,7 +7,7 @@
     <%= @apprentice.user.first_name.possessive%> Placement History</h2>
     <h3>Current Placement</h3>
       <div class="row">
-        <% if @placements.where('pl_start_date < ? AND pl_end_date < ?', Date.today, Date.today).first.nil? %>
+        <% if @placements.where('pl_start_date <= ? AND pl_end_date <= ?', Date.today, Date.today).first.nil? %>
           <div class="col-xs-12">
             <div class ="placement-index-card">
               <h3>No placement yet!</h3>

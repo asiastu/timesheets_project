@@ -18,7 +18,6 @@
           <% timesheet_month = @show_timesheets[@show_timesheets.index(timesheet) - 1].week_start %>
           <% year = timesheet.week_start.year %>
           <% timesheet_year = @show_timesheets[@show_timesheets.index(timesheet) - 1].week_start %>
-            <%# raise %>
           <% unless year == timesheet_year.year %>
             <h2 class=""><strong><%= timesheet.week_start.strftime("%Y") %></strong></h2>
           <% end %>

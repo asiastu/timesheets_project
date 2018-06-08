@@ -102,7 +102,7 @@ Placement.all.each do |placement|
 
   #create timesheets for each week
     unique_weeks_array.map do |week|
-      timesheet = Timesheet.create(week_start: week.beginning_of_week, week_end: week.end_of_week, placement_id: placement.id, status: "Pending Submission")
+      timesheet = Timesheet.create(week_start: week.beginning_of_week, week_end: week.end_of_week, placement_id: placement.id, status: "Pending")
 
     #create only valid timesheet segments for each timesheet
     (timesheet.week_start..timesheet.week_end).each do |date|

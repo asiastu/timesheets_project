@@ -3,7 +3,7 @@ class Timesheet < ApplicationRecord
   has_many :timesheet_segments, dependent: :destroy
   has_many :expenses, dependent: :destroy
 
-  validates :status, inclusion: { in: ["Paid", "Accepted", "Rejected", "Submitted", "Pending Submission"] }
+  validates :status, inclusion: { in: ["Paid", "Accepted", "Rejected", "Submitted", "Pending"] }
 
   def paid?
     status == 'Paid'
@@ -26,6 +26,6 @@ class Timesheet < ApplicationRecord
   end
 
   def pending_submission?
-    status == 'Pending Submission'
+    status == 'Pending'
   end
 end

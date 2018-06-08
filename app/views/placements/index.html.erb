@@ -27,7 +27,7 @@
               <div>
                 <h2>
                   <% if current_user == @apprentice.user %>
-                    <i class="far fa-user-circle placement-user-margin"></i> <%= placement.host_validator.full_name %>
+                    <i class="far fa-user-circle placement-user-margin"></i> <%= placement.host_validator.first_name %>
                   <% else %>
                     <%= link_to apprentice_path(@apprentice) do %>
                       <i class="far fa-user-circle placement-user-margin"></i> <%= @apprentice.user.first_name %>
@@ -48,7 +48,18 @@
                   <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;<%= placement.pl_start_date.strftime('%A, %b %d') %></p>
                   <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;<%= placement.pl_end_date.strftime('%A, %b %d') %></p>
                 </div>
-                <p><i class="far fa-envelope"></i>&emsp;<%= placement.host_validator.email %></p>
+                <% if current_user == placement.host_validator %>
+                  <p><i class="far fa-user-circle placement-user-margin"></i>&emsp;<%= @apprentice.user.full_name %></p>
+                  <p><i class="far fa-envelope"></i>&emsp;<%= placement.apprentice.user.email %></p></p>
+                <% elsif current_user == placement.apprentice.user %>
+                  <p><i class="far fa-user-circle placement-user-margin"></i>&emsp;<%= placement.host_validator.full_name %></p>
+                  <p><i class="far fa-envelope"></i>&emsp;<%= placement.host_validator.email %></p>
+                <% else %>
+                  <p><i class="far fa-user-circle placement-user-margin"></i>&emsp;<%= placement.apprentice.user.full_name %></p>
+                  <p><i class="far fa-envelope"></i>&emsp;<%= placement.apprentice.user.email %></p>
+                  <p><i class="fas fa-user-circle placement-user-margin"></i>&emsp;<%= placement.host_validator.full_name %></p>
+                  <p><i class="fas fa-envelope"></i>&emsp;<%= placement.host_validator.email %></p>
+                <% end %>
                 <p><i class="fas fa-walking"></i>&emsp;
                   <% if current_user == @apprentice.user %>
                   You live
@@ -57,7 +68,7 @@
                   <% end %>
                    <%= Geocoder::Calculations.distance_between([@apprentice.user.latitude, @apprentice.user.longitude], [placement.latitude, placement.longitude]).round(2) %>km away</p>
               </div>
-              <div id="map", class="placement-show-content-col2", style="width: 27vw; height: 30vh;"data-markers="<%= @markers.to_json %>"></div>
+              <div id="map", class="placement-show-content-col2", style="width: 430px; height: 380px;"data-markers="<%= @markers.to_json %>"></div>
             </div>
               <div class="ju">
               <% if (placement.host_validator == current_user) || (placement.host_invoice_contact == current_user) || (placement.apprentice.user == current_user) || (placement.apprentice.agency == current_user) %>
@@ -82,25 +93,37 @@
               </div>
             </div>
           <% end %>
+        <%# else %>
+          <!-- <div class="col-xs-12">
+            <div class ="placement-index-card">
+              <h3>No future placements yet!</h3>
+            </div>
+          </div> -->
         <% end %>
       <% end %>
     </div>
 
   <h3>Past</h3>
   <div class="row">
-  <% @placements.each do |placement| %>
-    <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
-      <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
-       <div class="col-xs-12 col-md-6">
-        <div class ="placement-index-card">
-          <h2 class="host-card-title-green"><i class="far fa-building"></i> <%= placement.host_validator.company_name %> </h2>
-          <p><i class="far fa-calendar-check"></i>&emsp; <%= placement.pl_start_date.strftime('%A, %b %d') %></p>
-          <p><i class="far fa-calendar-times"> </i>&emsp; <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
-        </div>
-      </div>
+    <% @placements.each do |placement| %>
+      <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
+        <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
+          <div class="col-xs-12 col-md-6">
+            <div class ="placement-index-card">
+              <h2 class="host-card-title-green"><i class="far fa-building"></i> <%= placement.host_validator.company_name %> </h2>
+              <p><i class="far fa-calendar-check"></i>&emsp; <%= placement.pl_start_date.strftime('%A, %b %d') %></p>
+              <p><i class="far fa-calendar-times"> </i>&emsp; <%= placement.pl_end_date.strftime('%A, %b %d') %></p>
+            </div>
+          </div>
+        <% end %>
+      <%# else %>
+<!--         <div class="col-xs-12">
+          <div class ="placement-index-card">
+            <h3>No past placements!</h3>
+          </div>
+        </div> -->
       <% end %>
-      <% end %>
-      <% end %>
+    <% end %>
     </div>
   </div>
 </div>

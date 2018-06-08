@@ -6,6 +6,15 @@
       <% end %>
     <%= @apprentice.user.first_name.possessive%> Placement History</h2>
     <h3>Current Placement</h3>
+      <div class="row">
+        <% if @placements.where('pl_start_date < ? AND pl_end_date < ?', Date.today, Date.today).first.nil? %>
+          <div class="col-xs-12">
+            <div class ="placement-index-card">
+              <h3>No placement yet!</h3>
+            </div>
+          </div>
+        <% end %>
+      </div>
       <% @apprentice.placements.each do |placement| %>
         <% if (placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today) %>
           <% @markers = [
@@ -109,7 +118,7 @@
     <% if @placements.where('pl_start_date < ? AND pl_end_date < ?', Date.today, Date.today).first.nil? %>
       <div class="col-xs-12">
         <div class ="placement-index-card">
-          <h3>No future placements yet!</h3>
+          <h3>No past placements yet!</h3>
         </div>
       </div>
     <% end %>
@@ -124,12 +133,6 @@
             </div>
           </div>
         <% end %>
-      <%# else %>
-<!--         <div class="col-xs-12">
-          <div class ="placement-index-card">
-            <h3>No past placements!</h3>
-          </div>
-        </div> -->
       <% end %>
     <% end %>
     </div>

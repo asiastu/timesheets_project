@@ -82,6 +82,13 @@
 
     <h3>Future</h3>
     <div class="row">
+      <% if @placements.where('pl_start_date > ? AND pl_end_date > ?', Date.today, Date.today).first.nil? %>
+        <div class="col-xs-12">
+          <div class ="placement-index-card">
+            <h3>No future placements yet!</h3>
+          </div>
+        </div>
+      <% end %>
       <% @placements.each do |placement| %>
         <% if placement.pl_start_date > Date.today && placement.pl_end_date > Date.today %>
           <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>
@@ -93,18 +100,19 @@
               </div>
             </div>
           <% end %>
-        <%# else %>
-          <!-- <div class="col-xs-12">
-            <div class ="placement-index-card">
-              <h3>No future placements yet!</h3>
-            </div>
-          </div> -->
         <% end %>
       <% end %>
     </div>
 
   <h3>Past</h3>
   <div class="row">
+    <% if @placements.where('pl_start_date < ? AND pl_end_date < ?', Date.today, Date.today).first.nil? %>
+      <div class="col-xs-12">
+        <div class ="placement-index-card">
+          <h3>No future placements yet!</h3>
+        </div>
+      </div>
+    <% end %>
     <% @placements.each do |placement| %>
       <% if placement.pl_start_date < Date.today && placement.pl_end_date < Date.today %>
         <%= link_to apprentice_placement_path(@apprentice.id, placement.id) do %>

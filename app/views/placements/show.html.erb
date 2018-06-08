@@ -21,6 +21,7 @@
             icon: "#{image_path 'marker3.png'}",
             #infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: @placement }) }
           } ] %>
+
         <div>
           <div class="placement-header">
             <h2> <i class="far fa-building"></i> <%= @placement.host_validator.company_name %>

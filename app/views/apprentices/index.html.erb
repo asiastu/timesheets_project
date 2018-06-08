@@ -15,12 +15,12 @@
     end %>
 
   <!-- viewable for all users -->
-     <h1 class="">
+     <h2 class="">
       <%= link_to dashboard_path do %>
         <i class="fas fa-arrow-left profile-back", title="back"></i>
       <% end %>
       View Apprentices
-    </h1>
+    </h2>
 
   <!-- agency specific view of apprentices -->
     <% if current_user.agency? %>

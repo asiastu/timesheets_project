@@ -12,9 +12,9 @@
         <%= "#{current_user.first_name}!" %>
       </h2>
       <% if @timesheets == [] %>
-        <div class="dashboard-card">
-          <h3>No timesheet needs your attentions!</h3>
-        </div>
+    <div class="dashboard-card">
+      <h3 class="timesheets-submitted-message">Your attention is no longer needed. Go back to work!&emsp;<i class="far fa-smile"></i></h3>
+    </div>
       <% else %>
         <p>Action Items:</p>
         <% @timesheets.each do |timesheet| %>

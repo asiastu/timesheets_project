@@ -4,12 +4,12 @@
 
         <% if current_user.apprentice? %>
 
-          <h1>Edit Profile</h1>
+          <h2>Edit Profile</h2>
           <%= render 'app_view_form' %>
 
         <% elsif current_user.agency? %>
-        
-          <h1>Edit Apprentice</h1>
+
+          <h2>Edit Apprentice</h2>
           <%= render 'form' %>
 
         <% end %>

@@ -13,7 +13,7 @@
     <br>
   <% if @timesheets.length == 0 %>
     <div class="dashboard-card">
-      <h3 class="timesheets-submitted-message">All your timesheets have been submitted! <i class="far fa-smile"></i></h3>
+      <h3 class="timesheets-submitted-message">All your timesheets have been submitted!&emsp;<i class="far fa-smile"></i></h3>
     </div>
   <% else %>
     <h3 class="timesheet-counter">You have <strong><%= @timesheets.count %></strong> outstanding <%= @timesheets.count > 1 ? 'timesheets' : 'timesheet' %></h3>

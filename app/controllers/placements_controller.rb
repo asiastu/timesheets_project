@@ -38,7 +38,7 @@ class PlacementsController < ApplicationController
     @placement.host_invoice_contact_id = @host_invoicer.id
     if @placement.save
       GenerateTimesheets.perform_now(@placement.id)
-      redirect_to apprentices_path
+      redirect_to apprentice_placement_path(@apprentice, @placement)
     else
       render :new
     end

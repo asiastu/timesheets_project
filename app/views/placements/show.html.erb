@@ -1,62 +1,76 @@
 <div class="main-wrapper container">
-<div class="show-placement-wrapper col-xs-12 col-md-8 col-md-offset-2">
-  <div class="row">
-    <div class="col-xs-12">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <h2>
+      <%= link_to apprentice_placements_path(@placement.apprentice) do %>
+        <i class="fas fa-arrow-left in-title-back" title="back"></i>
+      <% end %>
+      Placement Details
+    </h2>
+    <div class="show-placement-wrapper">
+      <div class="row">
+        <div class="col-xs-12">
 
 
-  <!-- edit and back buttons -->
+      <!-- edit and back buttons -->
 
-    <h1>
-    <%= link_to apprentice_placements_path(@placement.apprentice) do %>
-      <i class="fas fa-arrow-left in-title-back" title="back"></i>
-    <% end %>
-    Placement Details
-  </h1>
-<!-- container for all other contents -->
-    <% @markers = [
-      {
-        lat: @placement.latitude,
-        lng: @placement.longitude,
-        icon: "#{image_path 'marker3.png'}",
-        #infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: @placement }) }
-      } ] %>
-    <div class="placement-header">
-      <div>
-        <h2> <i class="far fa-building"></i> <%= @placement.host_validator.company_name %>
-        <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
-          <%= link_to edit_apprentice_placement_path do %>
-            <i class="fas fa-pencil-alt placement-edit", title='edit placement'></i>
-          <% end %>
-        <% end %>
-        </h2>
+    <!-- container for all other contents -->
+        <% @markers = [
+          {
+            lat: @placement.latitude,
+            lng: @placement.longitude,
+            icon: "#{image_path 'marker3.png'}",
+            #infoWindow: { content: render_to_string(partial: "/placements/map_box", locals: { placement: @placement }) }
+          } ] %>
         <div>
-          <h2> <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.first_name %></h2>
+          <div class="placement-header">
+            <h2> <i class="far fa-building"></i> <%= @placement.host_validator.company_name %>
+            <% unless current_user.apprentices.where(id: params[:apprentice_id]).first.nil? %>
+              <%= link_to edit_apprentice_placement_path do %>
+                <i class="fas fa-pencil-alt placement-edit", title='edit placement'></i>
+              <% end %>
+            <% end %>
+            </h2>
+            <div>
+              <h2>
+                <% if current_user == @placement.apprentice.user %>
+                  <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.host_validator.full_name %>
+                <% else %>
+                  <i class="far fa-user-circle placement-user-margin"></i> <%= @placement.apprentice.user.first_name %>
+                <% end %>
+              </h2>
+            </div>
+          </div>
+        </div>
+
+          <div class="placement-show-content">
+            <div class="placement-show-content-col1">
+              <% if current_user.role != "Apprentice" %>
+                <p><i class="fas fa-toolbox"></i>&emsp;<%= @placement.apprentice.trade %></p>
+              <% end %>
+              <p><i class="fas fa-map-marker"></i>&emsp;<%= @placement.address %></p>
+              <p><i class="fas fa-pound-sign"></i>&emsp;<%= "#{@placement.hourly_rate} / hour" %></p>
+              <div class="calendar">
+                <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;<%= @placement.pl_start_date.strftime('%A, %b %d') %></p>
+                <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;<%= @placement.pl_end_date.strftime('%A, %b %d') %></p>
+              </div>
+              <p><i class="far fa-envelope"></i>&emsp;<%= @placement.host_validator.email %></p>
+              <p><i class="fas fa-walking"></i>&emsp;
+                <% if current_user == @placement.apprentice.user %>
+                You live
+                <% else %>
+                <%= @placement.apprentice.user.first_name %> lives
+                <% end %>
+                 <%= Geocoder::Calculations.distance_between([@placement.apprentice.user.latitude, @placement.apprentice.user.longitude], [@placement.latitude, @placement.longitude]).round(2) %>km away</p>
+            </div>
+            <div id="map", class="placement-show-content-col2", style="width: 27vw; height: 30vh;"data-markers="<%= @markers.to_json %>"></div>
+          </div>
+          <div class="ju">
+            <% if @placement.host_validator == current_user || @placement.host_invoice_contact == current_user || @placement.apprentice.user == current_user || @placement.apprentice.agency == current_user %>
+              <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-
-      <div class="placement-show-content">
-        <div class="placement-show-content-col1">
-                <p><i class="fas fa-map-marker"></i>&emsp;<%= @placement.address %></p>
-                <p><i class="fas fa-pound-sign"></i>&emsp;<%= "#{@placement.hourly_rate} / hour" %></p>
-                <div class="calendar">
-                  <p>&emsp;<i class="fas fa-calendar-check"></i>&emsp;&emsp;&emsp;<%= @placement.pl_start_date.strftime('%A, %b %d') %></p>
-                  <p>&emsp;<i class="fas fa-calendar-times"></i>&emsp;&emsp;&emsp;<%= @placement.pl_end_date.strftime('%A, %b %d') %></p>
-                </div>
-                <p><i class="fas fa-walking"></i>&emsp;<%= @placement.apprentice.user.first_name %> lives approx. <%= Geocoder::Calculations.distance_between([@placement.apprentice.user.latitude, @placement.apprentice.user.longitude], [@placement.latitude, @placement.longitude]).round(2) %>km away</p>
-              </div>
-              <div id="map", class="placement-show-content-col2", style="width: 27vw; height: 30vh;"data-markers="<%= @markers.to_json %>"></div>
-            </div>
-      <div class="ju">
-        <% if @placement.host_validator == current_user || @placement.host_invoice_contact == current_user || @placement.apprentice.user == current_user || @placement.apprentice.agency == current_user %>
-          <%= link_to "View Timesheets", apprentice_placement_timesheets_path(@placement.apprentice.id, @placement), :class => "show-placement-btn justify-middle" %>
-        <% end %>
-      </div>
-      </div>
-
-
-    </div>
-    </div>
   </div>
-</div>
 </div>

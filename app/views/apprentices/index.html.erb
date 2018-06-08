@@ -49,60 +49,60 @@
     <% elsif current_user.host_invoice_contact? || current_user.host_validator? %>
       <h3>Present</h3>
 
+      <div class="blocks-view">
         <% @placements.each do |placement| %>
           <% if placement.pl_start_date <= Date.today && placement.pl_end_date >= Date.today %>
-            <div class="blocks-view">
-                  <div class="ag-dash-timesheet-card">
-                    <%= link_to apprentice_path(placement.apprentice) do  %>
-                    <div class="view-app-item-spacing">
-                      <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
-                      <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
-                        </strong></p>
-                        <% end %>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
-                    </div>
-                    <div class="">
-                      <p id="appr-link-id" class="appr-index-placements-link text-center"> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
-                    </div>
+             <%= link_to apprentice_placements_path(placement.apprentice) do %>
+                <div class="ag-dash-timesheet-card">
+                  <div class="view-app-item-spacing">
+                    <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
+                    <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
+                      </strong></p>
+                  </div>
+                  <div class="view-app-item-spacing">
+                    <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
+                  </div>
+                  <div class="view-app-item-spacing">
+                    <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
+                  </div>
+                  <div class="view-app-item-spacing">
+                    <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
+                  </div>
+                  <div class="">
+                    <p id="appr-link-id" class="appr-index-placements-link text-center">Placements</p>
+                  </div>
               </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>
 
     <h3>Future</h3>
 
+      <div class="blocks-view">
         <% @placements.each do |placement| %>
           <% if placement.pl_start_date >= Date.today && placement.pl_end_date >= Date.today %>
-            <div class="blocks-view">
-                  <div class="ag-dash-timesheet-card">
-                    <%= link_to apprentice_path(placement.apprentice) do  %>
-                    <div class="view-app-item-spacing">
-                      <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
-                      <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
-                        </strong></p>
-                        <% end %>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
-                    </div>
-                    <div class="">
-                      <p id="appr-link-id" class="appr-index-placements-link text-center"> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
-                    </div>
+            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+              <div class="ag-dash-timesheet-card">
+                <div class="view-app-item-spacing">
+                  <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
+                  <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
+                    </strong></p>
+                </div>
+                <div class="view-app-item-spacing">
+                  <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
+                </div>
+                <div class="view-app-item-spacing">
+                  <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
+                </div>
+                <div class="view-app-item-spacing">
+                  <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
+                </div>
+                <div class="">
+                  <p id="appr-link-id" class="appr-index-placements-link text-center">Placements</p>
+                </div>
               </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -110,35 +110,34 @@
 
       <h3>Past</h3>
 
+      <div class="blocks-view">
         <% @placements.each do |placement| %>
           <% if placement.pl_start_date <= Date.today && placement.pl_end_date <= Date.today %>
-            <div class="blocks-view">
-                  <div class="ag-dash-timesheet-card">
-                    <%= link_to apprentice_path(placement.apprentice) do  %>
-                    <div class="view-app-item-spacing">
-                      <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
-                      <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
-                        </strong></p>
-                        <% end %>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
-                    </div>
-                    <div class="view-app-item-spacing">
-                      <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
-                    </div>
-                    <div class=" text-right">
-                      <p id="appr-link-id" class="appr-index-placements-link text-center"> <%= link_to 'Placements', apprentice_placements_path(placement.apprentice) %></p>
-                    </div>
+            <%= link_to apprentice_placements_path(placement.apprentice) do %>
+              <div class="ag-dash-timesheet-card">
+                <div class="view-app-item-spacing">
+                  <p><strong><i class="far fa-user-circle"></i> <%= placement.apprentice.user.first_name %>
+                  <%= placement.apprentice.user.last_name if user_can_see?(placement.apprentice) %>
+                    </strong></p>
+                </div>
+                <div class="view-app-item-spacing">
+                  <p><i class="far fa-calendar-check"></i> <%= placement.pl_start_date.strftime('%a, %b %d')%> - <%= placement.pl_end_date.strftime('%a, %b %d') %></p>
+                </div>
+                <div class="view-app-item-spacing">
+                  <p><i class="fas fa-toolbox"></i> <%= placement.apprentice.trade %></p>
+                </div>
+                <div class="view-app-item-spacing">
+                  <p><i class="fas fa-wrench"></i> <%= placement.apprentice.skills %></p>
+                </div>
+                <div class=" text-right">
+                  <p id="appr-link-id" class="appr-index-placements-link text-center">Placements</p>
+                </div>
               </div>
+            <% end %>
           <% end %>
         <% end %>
+      <% end %>
       </div>
-
-    <% end %>
      </div>
   </div>
 </div>

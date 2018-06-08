@@ -2,7 +2,7 @@ Apprentice.destroy_all
 Placement.destroy_all
 User.destroy_all
 
-user16 = User.create!(email: 'email16@email.com', password: '123456', role: "Employment Agency", first_name: "Pippa", last_name: "Derby", company_name: "Construction Cie.", phone_number: "0123456789", address: "London")
+user16 = User.create!(email: 'pippa@agency.com', password: '123456', role: "Employment Agency", first_name: "Pippa", last_name: "Derby", company_name: "Construction Cie.", phone_number: "0123456789", address: "London")
 
 # user17 = User.create!(email: 'email17@email.com', password: '123456', role: "Employment Agency", first_name: "Paula", last_name: "Delta", company_name: "Hammer & Nailz", phone_number: "0123456789", address: "London")
 
@@ -24,7 +24,7 @@ apprentice2.user = user2
 apprentice2.agency = user16
 apprentice2.save
 
-user3 = User.create!(address: 'N1 0EH', email: 'email3@email.com', password: '123456', role: "Apprentice", first_name: 'Lily', last_name: 'Potter')
+user3 = User.create!(address: 'N1 0EH', email: 'lily@apprentice.com', password: '123456', role: "Apprentice", first_name: 'Lily', last_name: 'Potter')
 apprentice3 = Apprentice.new(trade: 'Bricklaying' , skills:'blockwork', borough: 'Islington', personal_statement: 'Second year apprentice', app_start_date: '1/11/2017', app_end_date: '1/11/2019', college_day: 'Thursday', hourly_rate: 9.5)
 apprentice3.user = user3
 apprentice3.agency = user16
@@ -48,7 +48,7 @@ user6 = User.create!(email: 'email6@email.com', password: '123456', role: "Host 
 user7 = User.create!(email: 'email7@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Mace", first_name: "Sixteen", last_name: "die Antwword", phone_number: "0132456789", address: "Bristol")
 
 
-user8 = User.create!(email: 'email8@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Bouygues", first_name: "Roger", last_name: "Hodgson", phone_number: "0132456789", address: "Manchester")
+user8 = User.create!(email: 'roger@construction.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Bouygues", first_name: "Roger", last_name: "Hodgson", phone_number: "0132456789", address: "Manchester")
 
 
 user9 = User.create!(email: 'email9@email.com', password: '123456', role: "Host Company (Timesheet Validation)", company_name: "Morgan Sindall", first_name: "Tim", last_name: "Minchin", phone_number: "0132456789", address: "Doncaster")

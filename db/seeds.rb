@@ -80,7 +80,7 @@ placement1d = Placement.create!(apprentice: apprentice1, host_validator: user8, 
 
 placement2 = Placement.create!(apprentice: apprentice2, host_validator: user7, host_invoice_contact: user12, pl_start_date: '06/06/2018', pl_end_date: '06/09/2018', address: 'NW1 5BQ', hourly_rate: 8)
 
-placement3 = Placement.create!(apprentice: apprentice3, host_validator: user8, host_invoice_contact: user13, pl_start_date: '04/06/2018', pl_end_date: '08/06/2018', address: 'EC2R 7DA', hourly_rate: 9)
+placement3 = Placement.create!(apprentice: apprentice3, host_validator: user8, host_invoice_contact: user13, pl_start_date: '09/06/2018', pl_end_date: '16/06/2018', address: 'EC2R 7DA', hourly_rate: 6)
 
 placement4 = Placement.create!(apprentice: apprentice4, host_validator: user9, host_invoice_contact: user14, pl_start_date: '03/02/2019', pl_end_date: '09/05/2019', address: 'SE1 7BB', hourly_rate: 7)
 

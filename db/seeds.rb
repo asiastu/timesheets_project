@@ -72,15 +72,15 @@ user14 = User.create!(email: 'email14@email.com', password: '123456', role: "Hos
 user15 = User.create!(email: 'email15@email.com', password: '123456', role: "Host Company (Invoicing)", first_name: "John", last_name: "Doe", phone_number: "0132456789", address: "Surrey", company_name: "Willmott Dixon",)
 
 
-placement1 = Placement.create!(apprentice: apprentice1, host_validator: user6, host_invoice_contact: user12, pl_start_date: '11/06/2018', pl_end_date: '01/07/2018', address: 'E5 0EX', hourly_rate: 7)
-placement1a = Placement.create!(apprentice: apprentice1, host_validator: user7, host_invoice_contact: user13, pl_start_date: '01/06/2018', pl_end_date: '08/06/2018', address: 'N1 5AP', hourly_rate: 7.5)
-placement1b = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/09/2018', pl_end_date: '10/10/2018', address: 'E20 1DG', hourly_rate: 7)
-placement1c = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/03/2019', pl_end_date: '31/03/2019', address: 'N1C 4AG', hourly_rate: 7)
-placement1d = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/04/2019', pl_end_date: '30/04/2019', address: 'WC2N 5DU', hourly_rate: 7)
+placement1 = Placement.create!(apprentice: apprentice1, host_validator: user6, host_invoice_contact: user12, pl_start_date: '11/11/2018', pl_end_date: '01/12/2018', address: 'E5 0EX', hourly_rate: 7)
+placement1a = Placement.create!(apprentice: apprentice1, host_validator: user7, host_invoice_contact: user13, pl_start_date: '01/10/2018', pl_end_date: '08/12/2018', address: 'N1 5AP', hourly_rate: 7.5)
+placement1b = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/09/2018', pl_end_date: '10/11/2018', address: 'E20 1DG', hourly_rate: 7)
+placement1c = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/09/2019', pl_end_date: '31/06/2019', address: 'N1C 4AG', hourly_rate: 7)
+placement1d = Placement.create!(apprentice: apprentice1, host_validator: user8, host_invoice_contact: user11, pl_start_date: '15/10/2019', pl_end_date: '30/12/2019', address: 'WC2N 5DU', hourly_rate: 7)
 
-placement2 = Placement.create!(apprentice: apprentice2, host_validator: user7, host_invoice_contact: user12, pl_start_date: '06/06/2018', pl_end_date: '06/09/2018', address: 'NW1 5BQ', hourly_rate: 8)
+placement2 = Placement.create!(apprentice: apprentice3, host_validator: user7, host_invoice_contact: user12, pl_start_date: '06/06/2018', pl_end_date: '06/11/2018', address: 'NW1 5BQ', hourly_rate: 8)
 
-placement3 = Placement.create!(apprentice: apprentice3, host_validator: user8, host_invoice_contact: user13, pl_start_date: '09/06/2018', pl_end_date: '16/06/2018', address: 'EC2R 7DA', hourly_rate: 6)
+placement3 = Placement.create!(apprentice: apprentice3, host_validator: user8, host_invoice_contact: user13, pl_start_date: '12/11/2018', pl_end_date: '12/12/2018', address: 'EC2R 7DA', hourly_rate: 6)
 
 placement4 = Placement.create!(apprentice: apprentice4, host_validator: user9, host_invoice_contact: user14, pl_start_date: '03/02/2019', pl_end_date: '09/05/2019', address: 'SE1 7BB', hourly_rate: 7)
 
